@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>TODO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TODO" />
+  <meta name="keywords" content="TODO" />
+  <meta name="author" content="TODO" />
+  <meta name="email" content="TODO" />
+  <meta name="website" content="TODO" />
+  <meta name="Version" content="TODO" />
+  <!-- favicon -->
+  <link rel="shortcut icon" href="common/images/favicon.ico">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+  <style>
+    table {
+      font-family: Nunito, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      max-width: 600px;
+      border: none;
+      margin: 0 auto;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #253649;
+      box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);
+    }
+
+    thead>tr {
+      background-color: #1f2d3d;
+      padding: 3px 0;
+      border: none;
+      line-height: 68px;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .hello-title {
+      padding: 48px 24px 0;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .text-primary {
+      color: #fff;
+    }
+
+    .text-muted {
+      color: #8492a6;
+    }
+
+    .btn {
+      padding: 8px 20px;
+      background-color: #ff5b69;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 6px;
+      outline: none;
+      text-decoration: none;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+
+    }
+
+    .footer {
+      background-color: #1f2d3d;
+      color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="margin-top: 50px;">
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th scope="col">Confirmation de votre email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="hello-title">Bonjour {{user_display}},</td>
+        </tr>
+        <tr>
+          <td class="text-muted" style="padding: 15px 24px 15px;">
+            Merci d'avoir créer un compte sur <strong class="text-primary">Eroo</strong>. Pour continuer, veuillez
+            confirmer votre adresse email en cliquant sur ce bouton:
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 15px 24px 36px; text-align: center;">
+            <a class="btn" href="{{ activate_url }}">Confirmer mon email</a>
+          </td>
+        </tr>
+        <tr class="footer">
+          <td class="text-muted" style="padding: 16px 8px; ">
+            © 2021 Eroo.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

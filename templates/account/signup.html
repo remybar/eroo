@@ -1,0 +1,127 @@
+{% extends "_base.html" %}
+
+{% block head_title %} TODO {% endblock %}
+
+{% block body_content %}
+<!-- Navbar STart -->
+<header id="topnav" class="defaultscroll sticky">
+    <div class="container mt-3">
+        <!-- Logo container-->
+        {% include "logo.html" %}
+        <div class="buy-button">
+            <a href="{% url 'account_login' %}" class="btn btn-secondary">Se connecter</a>
+        </div>
+        <!--end login button-->
+        <!-- End Logo container-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+    </div>
+    <!--end navigation-->
+    </div>
+    <!--end container-->
+</header>
+<!--end header-->
+<!-- Navbar End -->
+
+<!-- Start Hero -->
+<section class="bg-home bg-half-170 bg-light d-table w-100">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-7 col-md-6">
+                <div class="title-heading">
+                    <span class="badge rounded-lg bg-danger">BETA</span>
+                    <h1 class="fw-bold">Créer votre site web de location<br />
+                        <span class="text-primary typewrite" data-period="2000"
+                            data-type='[ "prend du temps", "est complexe", "est coûteux" ]'>
+                            <span class="wrap"></span>
+                        </span> ?
+                    </h1>
+                    <p class="para-desc text-muted pt-3">
+                        Générez un site complet en un clic à partir de votre annonce Airbnb et améliorez ainsi
+                        votre présence en ligne, augmenter vos réservations et vos revenus.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                <div class="card shadow rounded border-0 ms-lg-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Tester gratuitement</h5>
+                        {% include "account/form_errors.html" %}
+                        <form class="login-form mt-4" method="post" action="{% url 'account_signup' %}">
+                            {% csrf_token %}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <div class="row">
+<!--
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Prénom <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="Votre nom"
+                                                name="username" required="">
+                                        </div>
+                                    </div>
+                                </div>
+-->
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="mail" class="fea icon-sm icons"></i>
+                                            <input type="email" class="form-control ps-5" placeholder="Votre email"
+                                                name="email" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Mot de passe <span
+                                                class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                            <input type="password" class="form-control ps-5"
+                                                placeholder="Votre mot de passe" name="password1" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                            <input type="password" class="form-control ps-5"
+                                                placeholder="Confirmation de votre mot de passe" name="password2"
+                                                required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary">S'inscrire</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--end section-->
+<!-- End Hero -->
+{% endblock %}

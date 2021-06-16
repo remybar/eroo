@@ -1,0 +1,28 @@
+{% extends "_base.html" %} {% block head_title %} TODO {% endblock %} {% load
+account %} {% block body_content %}
+<section class="bg-home bg-light d-flex align-items-center">
+  <div class="bg-overlay bg-overlay-white"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card login-page bg-white shadow rounded border-0">
+          <div class="card-body">
+            <h4 class="card-title text-center">Vérification de votre email</h4>
+            <p>
+              Nous vous avons envoyé un email pour vérification. <br />Veuillez
+              cliquer sur le lien fourni pour finaliser votre inscription.
+              Contactez-nous si vous n'avez pas reçu l'email dans les prochaines
+              minutes.
+            </p>
+            <div class="col-lg-12 mb-0">
+              <div class="d-grid">
+                <a class="btn btn-primary" href="/">Retour à l'accueil</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
