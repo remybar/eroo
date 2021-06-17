@@ -36,15 +36,15 @@
               </div>
 -->
               </div>
-            <form>
+            <form id="generate-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'>
               {% csrf_token %}
               <div class="row justify-content-center">
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" placeholder="exemple: https://fr.airbnb.be/rooms/123456789"
-                    name="rental_url" required="">
+                  <input id="id_rental_url" name="rental_url" type="text" class="form-control" placeholder="exemple: https://fr.airbnb.be/rooms/123456789"
+                     required="">
                 </div>
                 <div class="col-sm-1">
-                  <button id="generate" class="btn btn-primary">Générer</button>
+                  <button id="generate-btn" class="btn btn-primary">Générer</button>
                 </div>
               </div>
             </form>
@@ -106,5 +106,5 @@
   </div>
 </section>
 {% endif %}
-  <script src="{% static 'rentals/js/generate.js' %}"></script>
+  <script src="{% static 'websites/js/app.js' %}"></script>
 {% endblock %}

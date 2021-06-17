@@ -1,0 +1,9 @@
+
+SCRAPPER_ROOT_URL = "http://0.0.0.0:5000"
+SCRAPPER_API_URL = f"{SCRAPPER_ROOT_URL}/api/v1/scrap"
+
+WEBSITE_URL = "/websites/%s"
+
+MAX_WEBSITES_COUNT = 5
+
+HOST_PICTURE_FILENAME = "host.jpg"

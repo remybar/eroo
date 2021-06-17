@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+{% include "websites/template1/components/head.html" with map_enabled=False %}
+
+<body>
+    <div class='body-content'>
+        <header>
+            {% include "websites/template1/components/menu.html" with selected_menu="contact" %}
+        </header>
+
+        <main class="container p-6">
+            <h3 class="title is-3">Contact</h3>
+            <h5 class="title is-5 pt-3">Qui sommes-nous ?</h5>
+
+            <!-- about the host -->
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-128x128">
+                        <a href='{{MEDIA_URL}}/{{key}}/{{host.picture}}'>
+                            <img src="{{MEDIA_URL}}/{{key}}/{{host.picture}}" alt="" />
+                        </a>
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p class="is-size-5">{{host.description}}</p>
+                        <p class="is-size-6"><strong>{{host.name}}</strong></p>
+                        <p class="is-size-6">{{host.languages}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="title is-5 pt-6">Nous contacter</h5>
+
+            <div class="columns">
+                <div class="form column is-half is-offset-one-quarter">
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="text" placeholder="Votre nom">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-male"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="email" placeholder="Votre email">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Téléphone</label>
+                        <div class="control has-icons-left">
+                            <input class="input" type="tel" placeholder="Votre numéro de téléphone">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-phone"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Message</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Votre message et/ou questions"></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary">
+                                Envoyer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% include "websites/template1/components/footer.html" %}
+</body>
+
+</html>

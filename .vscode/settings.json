@@ -1,5 +1,15 @@
 {
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true
+    },
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "editor.formatOnPaste": false,
+    "python.pythonPath": "/home/odoo/.virtualenvs/eroo-5Du0Sui6/bin/python",
 }

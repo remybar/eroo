@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+{% include "websites/template1/components/head.html" with map_enabled=False %}
+
+<body>
+    <div class='body-content'>
+        <header>
+            {% include "websites/template1/components/menu.html" with selected_menu="photos" %}
+        </header>
+
+        <main class="container p-6">
+            <h3 class="title is-3">Photos</h3>
+            <div class="columns is-multiline">
+                {% for photo in photos %}
+                <div class="column is-one-quarter-desktop is-one-third-tablet">
+                    <figure class="image is-3by2">
+                        <a href='{{MEDIA_URL}}/{{key}}/photos/{{ photo.filename }}'>
+                            <img class="rental-photo" src="{{MEDIA_URL}}/{{key}}/photos/{{ photo.filename }}" alt="" />
+                        </a>
+                    </figure>
+                    <p class="has-text-centered is-size-6 is-family-primary px-2 pt-1">{{photo.caption}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+    {% include "websites/template1/components/footer.html" %}
+</body>
+
+</html>

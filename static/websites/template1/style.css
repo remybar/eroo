@@ -1,0 +1,74 @@
+/* ==============================================
+        LAYOUT
+  ============================================== */
+
+body, html {
+  height: 100%;
+}
+
+/* ==============================================
+        HEADER SECTION
+  ============================================== */
+
+#main-image {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 1rem;
+
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 75vh;
+    max-height: 75vh;
+
+    z-index: 0;
+}
+
+.booking-bar-container {
+    position: relative;
+    top: -40px;
+    width: 60%;
+    margin: auto;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 30px 30px -15px rgba(0,0,0,0.15);
+    z-index: 1;
+}
+
+#main-navbar {
+    box-shadow: 0 20px 20px -15px rgba(0,0,0,0.15);
+}
+
+/* ==============================================
+        RENTAL DESCRIPTION SECTION
+  ============================================== */
+
+
+.info-tag-level {
+    border: 2px solid grey;
+    border-radius: 0.5rem;
+}
+
+.rental-photo {
+    border-radius: 1rem;
+}
+
+.room_info {
+  width: 80px;
+  height: 80px;
+  border-radius: 1rem;
+  border: 2px solid grey;
+}
+
+  /* ==============================================
+        FOOTER SECTION
+  ============================================== */
+
+footer {
+  background-color: rgb(60, 60, 60);
+}
+
+.powered-by {
+  color: grey;
+}

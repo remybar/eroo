@@ -1,0 +1,38 @@
+<div class="booking-bar-container p-4">
+    <div id="booking-bar" class="field has-addons">
+        <!-- start date -->
+        <div class="control has-icons-left is-expanded">
+            <input class="input is-large" type="text" placeholder="Date d'arrivée">
+            <span class="icon is-large is-left">
+                <i class="fas fa-calendar-alt"></i>
+            </span>
+        </div>
+
+        <!-- end date -->
+        <div class="control has-icons-left is-expanded">
+            <input class="input is-large" type="text" placeholder="Date de départ">
+            <span class="icon is-large is-left">
+                <i class="fas fa-calendar-alt"></i>
+            </span>
+        </div>
+
+        <!-- number of people -->
+        <div class="control has-icons-left is-expanded">
+            <div class="select is-large">
+                <select>
+                    {% for i in "x"|ljust:general_info.guest_count %}
+                    <option {% if forloop.first %} selected {% endif %}>
+                        {{forloop.counter}} voyageur{% if forloop.counter > 1 %}s{% endif %}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <span class="icon is-large is-left">
+                <i class="fas fa-user-friends"></i>
+            </span>
+        </div>
+        <div class="control is-expanded">
+            <div class="button is-primary is-large">Réserver</div>
+        </div>
+    </div>
+</div>

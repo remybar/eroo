@@ -1,0 +1,32 @@
+<!-- Main navigation bar -->
+<nav role="navigation" id="main-navbar" class="navbar py-5 px-6" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="http://localhost:5500">
+            <h1 class="title is-4">{{name}}</h1>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item px-5 is-tab {% if selected_menu == 'home' %} is-active {% endif %}"
+                href="/websites/{{key}}">Accueil</a>
+            <a class="navbar-item px-5 is-tab {% if selected_menu == 'photos' %} is-active {% endif %}"
+                href="/websites/{{key}}/photos">Photos</a>
+            <a class="navbar-item px-5 is-tab {% if selected_menu == 'details' %} is-active {% endif %}"
+                href="/websites/{{key}}/details">Le logement</a>
+            <a class="navbar-item px-5 is-tab {% if selected_menu == 'contact' %} is-active {% endif %}"
+                href="/websites/{{key}}/contact">Contact</a>
+            <div class="navbar-item px-5">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Réserver</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

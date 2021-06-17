@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+{% include "websites/template1/components/head.html" with map_enabled=True %}
+
+<body>
+    <div class='body-content'>
+        <header>
+            {% include "websites/template1/components/menu.html" with selected_menu="home" %}
+
+            <!-- main image -->
+            <div class="container.is-fullhd mx-2">
+                <div id="main-image" style="background-image: url('{{MEDIA_URL}}/{{key}}/photos/{{main_photo}}');" />
+            </div>
+
+            {% include "websites/template1/components/booking_bar.html" %}
+        </header>
+
+        <main class="container pt-4">
+            <section id="description-section">
+                <h2 class="title is-2 section-title">{{name}}</h2>
+
+                <!-- info bar with guests count, rooms count, ... -->
+                <div class="info-tags">
+                    <span class="tag is-medium is-warning mr-3">
+                        <span class="icon is-large is-left">
+                            <i class="fas fa-user-friends"></i>
+                        </span>
+                        {{general_info.guest_count}} voyageur{% if general_info.guest_count > 1 %}s{% endif %}</span>
+                    <span class="tag is-medium is-warning mr-3">
+                        <span class="icon is-large is-left">
+                            <i class="fas fa-bed"></i>
+                        </span>
+                        {{general_info.bedroom_count}} chambre{% if general_info.bedroom_count > 1 %}s{% endif %} ·
+                        {{general_info.bed_count}} lit{% if general_info.bed_count > 1 %}s{% endif %}</span>
+                    <span class="tag is-medium is-warning">
+                        <span class="icon is-large is-left">
+                            <i class="fas fa-bath"></i>
+                        </span>
+                        {{general_info.bathroom_count}} salle{% if general_info.bathroom_count > 1 %}s{% endif %} de
+                        bain</span>
+                </div>
+
+                <!-- description -->
+                <div class="container rental-description-container pt-6">
+                    <div class="is-size-5 has-text-justified">
+                        {{ description | safe }}
+                    </div>
+                </div>
+
+                <!-- highlights -->
+                <div class="container highlights-container pt-5">
+                    <span class="is-size-4 pr-3">Points forts:</span>
+                    {% for h in highlights %}
+                    <span class="tag is-rounded is-large is-info is-light">{{h.title}}</span>
+                    <!-- <p>{{h.message}}</p> -->
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section id="location-section" class="pt-6">
+                <h3 class="title is-2">Localisation</h3>
+                <h4 class="title is-5 is-primary">{{location.title}}</h4>
+                <div id="location-map" data-latitude="{{location.latitude}}" data-longitude="{{location.longitude}}"
+                    data-zoom="13">
+                </div>
+            </section>
+
+            <section id="testimonials-section" class="pt-6">
+                <h2 class="title is-2 section-title has-text-centered">Ce qu'en pensent nos invités...</h2>
+
+                <!-- slideshow testimonials -->
+                <div class="testimonials-container mb-6">
+                    {% for testimonial in testimonials %}
+                    <div class="box p-6">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-128x128">
+                                    <a href='{{MEDIA_URL}}/{{key}}/reviewers/{{ testimonial.author_picture_filename }}'>
+                                        <img class="is-rounded"
+                                            src="{{MEDIA_URL}}/{{key}}/reviewers/{{ testimonial.author_picture_filename }}"
+                                            alt="" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p class="is-size-5">{{testimonial.review}}</p>
+                                    <p class="is-size-6"><strong>{{testimonial.author_name}}</strong> ·
+                                        <em>{{testimonial.date}}</em>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- TODO vous souhaitez séjourner chez nous ? Contacter nous pour réserver + booking bar (ou juste bouton) ? -->
+
+        </main>
+    </div>
+    {% include "websites/template1/components/footer.html" %}
+    {% include "websites/map.html" %}
+</body>
+
+</html>

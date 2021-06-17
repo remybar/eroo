@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{% include "websites/template1/components/head.html" with map_enabled=False %}
+
+<body>
+    <div class='body-content'>
+        <header>
+            {% include "websites/template1/components/menu.html" with selected_menu="details" %}
+        </header>
+
+        <main class="container p-6">
+
+            <h3 class="title is-3">Le logement</h3>
+
+            <!-- détails des chambres sur 1 ligne -->
+            <h4 class="title is-4 pt-2">Règles</h4>
+            {% for rule in rules %}
+            <p>{{rule}}</p>
+            {% endfor %}
+
+            <!-- liste des équipements -->
+            <h4 class="title is-4 pt-6">Equipements</h4>
+            <table class="table is-striped">
+                <tr></tr>
+                <tr>
+                    <td class="has-text-right">
+                        {% for room in rooms %}
+                        <p><strong>{{room.name}}</strong></p>
+                        {% endfor %}
+                    </td>
+                    <td colspan="4">
+                        {% for room in rooms %}
+                        <p>{{room.details}}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% for area in equipments_per_area %}
+                <tr>
+                    <td class="has-text-right"><strong>{{area.name}}</strong></td>
+                    {% for equipment_list in area.equipments %}
+                    <td>
+                        {% for eq in equipment_list %}
+                        <p>
+                            {{eq.name}}
+                            {% if eq.description != "" %}
+                            <span class="icon">
+                                <span data-tooltip="{{eq.description}}">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                            </span>
+                            {% endif %}
+                        </p>
+                        {% endfor %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </main>
+    </div>
+    {% include "websites/template1/components/footer.html" %}
+</body>
+
+</html>

@@ -16,9 +16,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ENVIRONMENT = env.str("ENVIRONMENT", default="development")
 DEBUG = (ENVIRONMENT == "development")
 
-# Safety configuration
+# Keys configuration
 
 SECRET_KEY = env.str("SECRET_KEY")
+GOOGLE_MAP_API_KEY = env.str("GOOGLE_MAP_API_KEY")
+
+# Safety configuration
+
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
 if ENVIRONMENT == "production":
@@ -106,6 +110,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.request",
+                "django.template.context_processors.media",
             ],
         },
     },
@@ -164,3 +169,8 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Media files
+
+MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_URL = "/media/"
