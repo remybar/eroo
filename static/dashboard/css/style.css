@@ -1,0 +1,7 @@
+.msg-area {
+    position: fixed;
+    max-height: 100%;
+    width: 480px;
+    top: 15px;
+    right: 20px;
+}

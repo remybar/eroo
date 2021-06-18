@@ -1,0 +1,61 @@
+{% extends "dashboard/layouts/base.html" %}
+
+{% block title %} Tableau de bord {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    <div id="msg-area" class="msg-area">
+    </div>
+
+    <div class="mt-5 mb-3 mb-lg-0">
+    <h1 class="h3">Vos sites webs</h1>
+        <p class="mb-4">Ajouter un nouveau site web en entrant l'URL de votre annonce Airbnb ci-dessous:</p>
+        <form id="generate-form" method='POST' data-url='{% url 'api_website_create' %}'>
+            {% csrf_token %}
+            <div class="row justify-content-start">
+            <div class="col-sm-6">
+                <input id="id_rental_url" name="rental_url" type="text" class="form-control" placeholder="exemple: https://fr.airbnb.be/rooms/123456789"
+                    required="">
+            </div>
+            <div class="col-sm-1">
+                <button id="generate-btn" class="btn btn-secondary px-5">Ajouter</button>
+            </div>
+            </div>
+        </form>
+    </div>
+    <div id="websites-table-container" class="card border-light shadow-sm mt-5 mb-4" {% if not websites %} style="display: none;"{% endif %}>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table id="websites-table" class="table table-centered table-nowrap mb-0 rounded">
+                      <thead class="thead-light">
+                          <tr>
+                              <th class="border-0">Nom</th>
+                              <th class="border-0">Identifiant</th>
+                              <th class="border-0">Date</th>
+                              <th class="border-0"></th>
+                          </tr>
+                      </thead>
+                      <tbody id="website-table-body">
+                        {% for site in websites %}
+                          <tr id="website_{{site.key}}">
+                              <td class="border-0"><a target="_blank" href='{{site.url}}'>{{site.name}}</a></td>
+                              <td class="border-0">{{site.key}}</td>
+                              <td class="border-0">{{site.generated_date|date:"d/m/Y G:i"}}</td>
+                              <td class="border-0">
+                                  <a data-url='{% url 'api_website_delete' key=site.key %}' class='website-delete-btn text-tertiary'>
+                                    <span class="fas fa-trash-alt me-2"></span>
+                                    Supprimer
+                                  </a>
+                              </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

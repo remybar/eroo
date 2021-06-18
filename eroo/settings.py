@@ -39,7 +39,7 @@ if ENVIRONMENT == "production":
 
 # Account/Allauth configurations
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "dashboard"
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     "allauth.account",
     # local apps
     "accounts",
+    "dashboard",
     "websites",
 ]
 AUTH_USER_MODEL = "accounts.CustomUser"

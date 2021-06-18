@@ -75,7 +75,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="table-responsive bg-white shadow rounded">
-          <table class="table mb-0 table-center">
+          <table id="websites-table" class="table mb-0 table-center">
             <thead class="bg-light">
               <tr>
                 <th scope="col" class="border-bottom text-muted" style="min-width: 300px;">Sites déjà générés</th>
@@ -88,13 +88,13 @@
                   <td>
                     <div class="d-flex">
                       <div class="flex-1 content ms-3">
-                        <span class="text-muted">{{site.generated_date|date:"d/m/Y"}} <span>
+                        <span class="text-muted">{{site.generated_date|date:"d/m/Y h:m"}} <span>
                         <a target="_blank" href="{{site.url}}" class="text-info fw-bold">{{site.name}}</a>
                       </div>
                     </div>
                   </td>
                   <td>
-                  <a href="">X</a>
+                    <button class="website-delete-btn" data-url="{% url 'website_delete' key=site.key %}">X</button>
                   </td>
                 </tr>
                 {% endfor %}
