@@ -1,8 +1,6 @@
 Finalisation:
     - dashboard
         - meilleure affichage des erreurs sur le dashboard (alert) + dismiss
-        - gestion de la limite de sites web générés
-        - ne pas télécharger les medias qui existent déjà (photos) + vérifier que ça fonctionne bien (doublons)
         - nettoyer les fichiers html et compléter les TODO (<head>)
         - quels keywords dans <head> ?
 
@@ -19,6 +17,12 @@ Finalisation:
         - pouvoir monitorer tout ça et principalement les erreurs (du scrapper notamment)
         - scrapper: garder les données scrappées pour pouvoir investiguer en cas d'erreur (dans un fichier json)
         - envoi de mail en cas d'erreur de scrapping/de conversion des données/etc...
+        - test de déploiement avec poney-checkup
+
+    - sécurité
+        - django-honeypot
+        - django-2fa (pour l'admin)
+
 
 Questions:
     - comment vais-je gérer/tester les mises à jour ? (migrations de db, ...)

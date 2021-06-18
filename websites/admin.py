@@ -14,7 +14,12 @@ from .models import (
     Rule,
 )
 
-admin.site.register(Website)
+
+class WebsiteAdmin(admin.ModelAdmin):
+    readonly_fields = ('generated_date',)
+
+
+admin.site.register(Website, WebsiteAdmin)
 admin.site.register(WebsiteHost)
 admin.site.register(WebsitePhoto)
 admin.site.register(WebsiteLocation)

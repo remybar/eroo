@@ -43,16 +43,19 @@ def explode_airbnb_url(url):
         res = re.search(r"/([0-9]+)$", base_url)
         if res:
             return (base_url, res.group(1))
-        return None
+        return None, None
 
-    res = _explode(url)
-    if not res:
-        # the provided url main be a shortcut of the real airbnb URL
-        # in this case, just access to the URL to retrieve the real URL
-        response = requests.get(url)
-        if response.status_code != 200:
-            return None
-        res = _explode(response.url)
+    try:
+        res = _explode(url)
+        if not res:
+            # the provided url main be a shortcut of the real airbnb URL
+            # in this case, just access to the URL to retrieve the real URL
+            response = requests.get(url)
+            if response.status_code != 200:
+                return None, None
+            res = _explode(response.url)
+    except Exception:
+        res = None, None
 
     return res
 
@@ -71,16 +74,19 @@ def download_media_file(file_info, root_dir):
     url, filename = file_info
     filepath = root_dir / filename
 
-    response = requests.get(url)
-    if response.status_code != 200:
-        logger.warning("Unable to download the media file at '%s'", url)
-        return
+    try:
+        response = requests.get(url)
+        if response.status_code != 200:
+            logger.warning("Unable to download the media file at '%s'", url)
+            return
 
-    if not filepath.parent.exists():
-        filepath.parent.mkdir(parents=True)
+        if not filepath.parent.exists():
+            filepath.parent.mkdir(parents=True)
 
-    with open(filepath, "wb") as f:
-        f.write(response.content)
+        with open(filepath, "wb") as f:
+            f.write(response.content)
+    except Exception as e:
+        logger.error("Unable to download the media file (error: %s)", str(e))
 
 
 def download_media_files(root_dir, files_info):
@@ -90,3 +96,5 @@ def download_media_files(root_dir, files_info):
     pool = multiprocessing.Pool()
     download_func = partial(download_media_file, root_dir=root_dir)
     pool.map(download_func, files_info)
+    pool.close()
+    pool.join()
