@@ -1,6 +1,5 @@
 Finalisation:
     - dashboard
-        - meilleure affichage des erreurs sur le dashboard (alert) + dismiss
         - nettoyer les fichiers html et compléter les TODO (<head>)
         - quels keywords dans <head> ?
 

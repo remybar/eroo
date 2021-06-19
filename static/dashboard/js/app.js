@@ -9,15 +9,30 @@ function handleErrors(response) {
   return response.json();
 }
 
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 function addMessage(kind, msg) {
   let messageContainer = document.getElementById("msg-area")
   let msgDiv = document.createElement("div");
+  msgDiv.id = `alert_${uuidv4()}`
   msgDiv.className = `alert alert-${kind} alert-dismissible fade show`;
+  msgDiv.role = "alert";
   msgDiv.innerHTML = `
     ${msg}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="btn-sm btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   `;
   messageContainer.appendChild(msgDiv);
+  setTimeout(function () { 
+      div = document.getElementById(msgDiv.id);
+      div.remove();
+    },
+    5000
+  );
 }
 
 function deleteWebsite(action_url, csrftoken) {
@@ -123,9 +138,8 @@ function generateWebsite(action_url, csrftoken, rental_url) {
 //========================================================
 
 document.querySelector("#websites-table").addEventListener("click", (e) => {
-  e.preventDefault();
-
   if (e.target && e.target.matches(".website-delete-btn")) {
+    e.preventDefault();
     const url = e.target.getAttribute("data-url");
     const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
     deleteWebsite(url, csrftoken);
