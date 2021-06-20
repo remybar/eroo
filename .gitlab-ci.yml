@@ -1,0 +1,42 @@
+# ---- test the app ----
+test:
+  image: python:latest
+  services:
+  - postgres:latest
+  variables:
+    POSTGRES_DB: eroo_db
+    POSTGRES_USER: eroo
+    POSTGRES_PASSWORD: eroo
+    POSTGRES_HOST_AUTH_METHOD: trust
+    DATABASE_URL: "postgresql://$POSTGRES_USER:$POSGRES_PASSWORD@postgres:5432/$POSTGRES_DB"
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run python manage.py migrate
+    - pipenv run python manage.py test
+
+# TODO: add more high level tests in the future
+
+# ---- staging deployment ----
+staging:
+  type: deploy
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --skip-cleanup
+  only:
+  - staging
+
+# ---- production deployment ----
+production:
+  type: deploy
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_APP_PRODUCION --api-key=$HEROKU_API_KEY --skip-cleanup
+  only:
+  - master
+
+
