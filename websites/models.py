@@ -36,8 +36,6 @@ HOST_PICTURE_FILENAME = "host.jpg"
 
 EXPECTED_DATA_KEYS = ["name", "description", "photos"]
 
-MEDIA_ROOT_DIR = settings.MEDIA_ROOT
-
 
 class WebsiteLocation(models.Model):
     title = models.CharField(max_length=LOCATION_TITLE_LENGTH)
@@ -95,7 +93,7 @@ class Website(models.Model):
             for photo in photos_data
         ]
         download_media_files(
-            MEDIA_ROOT_DIR / self.key / "photos",
+            settings.WEBSITE_DATA_STORE / self.key / "photos",
             [(url, filename) for url, filename, _ in photos_infos],
         )
 
@@ -109,7 +107,7 @@ class Website(models.Model):
             (t["author_picture_url"], get_filename_from_url(t["author_picture_url"]))
             for t in testimonials_data
         ]
-        download_media_files(MEDIA_ROOT_DIR / self.key / "reviewers", review_infos)
+        download_media_files(settings.WEBSITE_DATA_STORE / self.key / "reviewers", review_infos)
 
         for t in testimonials_data:
             Testimonial(
@@ -133,7 +131,7 @@ class Website(models.Model):
 
     def _create_host(self, host_data):
         download_media_files(
-            MEDIA_ROOT_DIR / self.key,
+            settings.WEBSITE_DATA_STORE / self.key,
             [(host_data["picture_url"], HOST_PICTURE_FILENAME)],
         )
         WebsiteHost(
@@ -206,7 +204,7 @@ class Website(models.Model):
         website._create_rooms(data["rooms"])
 
         # for debugging purpose, store data received from the scrapper
-        with open(MEDIA_ROOT_DIR / website.key / "api_data.json", "w") as f:
+        with open(settings.WEBSITE_DATA_STORE / website.key / "api_data.json", "w") as f:
             json.dump(data, f)
 
         return website

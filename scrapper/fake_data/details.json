@@ -1,0 +1,1039 @@
+{
+  "pdp_listing_detail": {
+    "listing_amenities": [
+      {
+        "description": "",
+        "id": 5,
+        "is_present": false,
+        "name": "Climatisation"
+      },
+      {
+        "description": "Disponible dans l'ensemble du logement",
+        "id": 4,
+        "is_present": true,
+        "name": "Wifi"
+      },
+      { "description": "", "id": 30, "is_present": false, "name": "Chauffage" },
+      {
+        "description": "",
+        "id": 9,
+        "is_present": true,
+        "name": "Parking gratuit sur place"
+      },
+      {
+        "description": "Espace o\u00f9 les voyageurs peuvent cuisiner",
+        "id": 8,
+        "is_present": true,
+        "name": "Cuisine"
+      },
+      {
+        "description": "",
+        "id": 34,
+        "is_present": true,
+        "name": "S\u00e8che-linge"
+      },
+      {
+        "description": "",
+        "id": 2,
+        "is_present": true,
+        "name": "T\u00e9l\u00e9vision par c\u00e2ble"
+      },
+      {
+        "description": "",
+        "id": 46,
+        "is_present": true,
+        "name": "Fer \u00e0 repasser"
+      },
+      { "description": "", "id": 7, "is_present": true, "name": "Piscine" },
+      {
+        "description": "",
+        "id": 45,
+        "is_present": true,
+        "name": "S\u00e8che-cheveux"
+      },
+      {
+        "description": "",
+        "id": 47,
+        "is_present": true,
+        "name": "Espace de travail d\u00e9di\u00e9"
+      },
+      { "description": "", "id": 41, "is_present": true, "name": "Shampooing" },
+      { "description": "", "id": 44, "is_present": true, "name": "Cintres" },
+      { "description": "", "id": 33, "is_present": true, "name": "Lave-linge" },
+      {
+        "description": "",
+        "id": 1,
+        "is_present": true,
+        "name": "T\u00e9l\u00e9vision"
+      },
+      {
+        "description": "Serviettes, draps, savon et papier toilette",
+        "id": 40,
+        "is_present": true,
+        "name": "\u00c9quipements de base"
+      },
+      { "description": "", "id": 61, "is_present": true, "name": "Baignoire" },
+      { "description": "", "id": 167, "is_present": true, "name": "Bidet" },
+      {
+        "description": "",
+        "id": 665,
+        "is_present": true,
+        "name": "Produits de nettoyage"
+      },
+      { "description": "", "id": 77, "is_present": true, "name": "Eau chaude" },
+      {
+        "description": "",
+        "id": 210,
+        "is_present": true,
+        "name": "Douche ext\u00e9rieure"
+      },
+      { "description": "", "id": 85, "is_present": true, "name": "Draps" },
+      {
+        "description": "",
+        "id": 671,
+        "is_present": true,
+        "name": "Espace de rangement pour les v\u00eatements"
+      },
+      {
+        "description": "",
+        "id": 667,
+        "is_present": true,
+        "name": "\u00c9tendoir \u00e0 linge"
+      },
+      {
+        "description": "",
+        "id": 86,
+        "is_present": true,
+        "name": "Oreillers et couvertures suppl\u00e9mentaires"
+      },
+      { "description": "", "id": 73, "is_present": true, "name": "Stores" },
+      {
+        "description": "",
+        "id": 232,
+        "is_present": true,
+        "name": "Coffre-fort"
+      },
+      {
+        "description": "",
+        "id": 87,
+        "is_present": true,
+        "name": "Connexion Ethernet"
+      },
+      {
+        "description": "",
+        "id": 65,
+        "is_present": true,
+        "name": "Barri\u00e8res de s\u00e9curit\u00e9 pour b\u00e9b\u00e9"
+      },
+      {
+        "description": "",
+        "id": 71,
+        "is_present": true,
+        "name": "Lit pour b\u00e9b\u00e9"
+      },
+      {
+        "description": "",
+        "id": 64,
+        "is_present": true,
+        "name": "Chaise haute"
+      },
+      {
+        "description": "L'h\u00f4te n'a pas indiqu\u00e9 si le logement dispose d'un d\u00e9tecteur de monoxyde de carbone.",
+        "id": 36,
+        "is_present": false,
+        "name": "D\u00e9tecteur de monoxyde de carbone"
+      },
+      {
+        "description": "",
+        "id": 35,
+        "is_present": true,
+        "name": "D\u00e9tecteur de fum\u00e9e"
+      },
+      {
+        "description": "",
+        "id": 626,
+        "is_present": true,
+        "name": "Ustensiles de barbecue"
+      },
+      {
+        "description": "",
+        "id": 90,
+        "is_present": true,
+        "name": "Cafeti\u00e8re"
+      },
+      {
+        "description": "Casseroles et po\u00eales, huile, sel et poivre",
+        "id": 94,
+        "is_present": true,
+        "name": "Ustensiles de cuisine de base"
+      },
+      {
+        "description": "",
+        "id": 236,
+        "is_present": true,
+        "name": "Table \u00e0 manger"
+      },
+      {
+        "description": "",
+        "id": 93,
+        "is_present": true,
+        "name": "Vaisselle et couverts"
+      },
+      {
+        "description": "",
+        "id": 92,
+        "is_present": true,
+        "name": "Lave-vaisselle"
+      },
+      {
+        "description": "",
+        "id": 308,
+        "is_present": true,
+        "name": "Cong\u00e9lateur"
+      },
+      {
+        "description": "",
+        "id": 137,
+        "is_present": true,
+        "name": "Bouilloire \u00e9lectrique"
+      },
+      {
+        "description": "",
+        "id": 89,
+        "is_present": true,
+        "name": "Four \u00e0 micro-ondes"
+      },
+      { "description": "", "id": 95, "is_present": true, "name": "Four" },
+      {
+        "description": "",
+        "id": 91,
+        "is_present": true,
+        "name": "R\u00e9frig\u00e9rateur"
+      },
+      {
+        "description": "",
+        "id": 96,
+        "is_present": true,
+        "name": "Cuisini\u00e8re"
+      },
+      {
+        "description": "",
+        "id": 251,
+        "is_present": true,
+        "name": "Grille-pain"
+      },
+      {
+        "description": "",
+        "id": 672,
+        "is_present": true,
+        "name": "Verres \u00e0 vin"
+      },
+      {
+        "description": "Entr\u00e9e par une rue diff\u00e9rente ou un immeuble s\u00e9par\u00e9",
+        "id": 57,
+        "is_present": true,
+        "name": "Entr\u00e9e priv\u00e9e"
+      },
+      { "description": "", "id": 99, "is_present": true, "name": "Barbecue" },
+      {
+        "description": "Un espace ouvert du logement g\u00e9n\u00e9ralement recouvert d'herbe",
+        "id": 101,
+        "is_present": true,
+        "name": "Arri\u00e8re-cour"
+      },
+      {
+        "description": "",
+        "id": 179,
+        "is_present": true,
+        "name": "Espace repas en plein air"
+      },
+      {
+        "description": "",
+        "id": 280,
+        "is_present": true,
+        "name": "Mobilier d'ext\u00e9rieur"
+      },
+      {
+        "description": "",
+        "id": 100,
+        "is_present": true,
+        "name": "Patio ou balcon"
+      },
+      {
+        "description": "",
+        "id": 23,
+        "is_present": true,
+        "name": "Parking gratuit dans la rue"
+      },
+      {
+        "description": "Pas d'escaliers dans le logement",
+        "id": 98,
+        "is_present": true,
+        "name": "Logement de plain-pied"
+      },
+      {
+        "description": "S\u00e9jours de 28 jours ou plus autoris\u00e9s",
+        "id": 104,
+        "is_present": true,
+        "name": "S\u00e9jours longue dur\u00e9e autoris\u00e9s"
+      },
+      {
+        "description": "Pour le confort des voyageurs en cas d'arriv\u00e9e anticip\u00e9e ou de d\u00e9part tardif",
+        "id": 103,
+        "is_present": true,
+        "name": "D\u00e9p\u00f4t de bagages autoris\u00e9"
+      },
+      {
+        "description": "",
+        "id": 129,
+        "is_present": true,
+        "name": "Cl\u00e9s remises par l'h\u00f4te"
+      }
+    ],
+    "root_amenity_sections": [
+      {
+        "id": "available_amenities",
+        "title": "\u00c9quipements",
+        "subtitle": "",
+        "amenity_ids": [4, 9, 8, 34]
+      },
+      {
+        "id": "unavailable_safety_amenities",
+        "title": "\u00c9quipements",
+        "subtitle": "L'h\u00f4te n'a pas indiqu\u00e9 si le logement dispose d'un d\u00e9tecteur de monoxyde de carbone.",
+        "amenity_ids": [36]
+      }
+    ],
+    "see_all_amenity_sections": [
+      {
+        "id": "pdp_m2_5_bathroom",
+        "title": "Salle de bain",
+        "subtitle": "",
+        "amenity_ids": [45, 41, 61, 167, 665, 77, 210]
+      },
+      {
+        "id": "pdp_m2_5_bedroom_laundry",
+        "title": "Chambre et linge",
+        "subtitle": "",
+        "amenity_ids": [34, 46, 44, 33, 40, 85, 671, 667, 86, 73, 232]
+      },
+      {
+        "id": "pdp_m2_5_entertainment",
+        "title": "Divertissement",
+        "subtitle": "",
+        "amenity_ids": [2, 1, 87]
+      },
+      {
+        "id": "pdp_m2_5_family",
+        "title": "Famille",
+        "subtitle": "",
+        "amenity_ids": [65, 71, 64]
+      },
+      {
+        "id": "pdp_m2_5_home_safety",
+        "title": "S\u00e9curit\u00e9 \u00e0 la maison",
+        "subtitle": "",
+        "amenity_ids": [35]
+      },
+      {
+        "id": "pdp_m2_5_internet_office",
+        "title": "Internet et bureau",
+        "subtitle": "",
+        "amenity_ids": [4, 47]
+      },
+      {
+        "id": "pdp_m2_5_kitchen_dining",
+        "title": "Cuisine et salle \u00e0 manger",
+        "subtitle": "",
+        "amenity_ids": [
+          8, 626, 90, 94, 236, 93, 92, 308, 137, 89, 95, 91, 96, 251, 672
+        ]
+      },
+      {
+        "id": "pdp_m2_5_location",
+        "title": "Caract\u00e9ristiques de l'emplacement",
+        "subtitle": "",
+        "amenity_ids": [57]
+      },
+      {
+        "id": "pdp_m2_5_outdoor",
+        "title": "Ext\u00e9rieur",
+        "subtitle": "",
+        "amenity_ids": [99, 101, 179, 280, 100]
+      },
+      {
+        "id": "pdp_m2_5_parking_facilities",
+        "title": "Parking et installations",
+        "subtitle": "",
+        "amenity_ids": [9, 7, 23, 98]
+      },
+      {
+        "id": "pdp_m2_5_services",
+        "title": "Services",
+        "subtitle": "",
+        "amenity_ids": [104, 103, 129]
+      },
+      {
+        "id": "pdp_unavailable",
+        "title": "Non inclus",
+        "subtitle": "",
+        "amenity_ids": [5, 30, 36]
+      }
+    ],
+    "bathroom_label": "2,5 salles de bain",
+    "bed_label": "4 lits",
+    "bedroom_label": "3 chambres",
+    "guest_label": "6 voyageurs",
+    "has_house_rules": true,
+    "id": 43882447,
+    "is_new_listing": false,
+    "listing_rooms": [
+      {
+        "beds": [
+          { "id": "97288289/single_bed", "quantity": 2, "type": "single_bed" }
+        ],
+        "id": 97288289,
+        "room_number": 3
+      },
+      {
+        "beds": [
+          { "id": "97288288/double_bed", "quantity": 1, "type": "double_bed" }
+        ],
+        "id": 97288288,
+        "room_number": 2
+      },
+      {
+        "beds": [
+          { "id": "97288287/double_bed", "quantity": 1, "type": "double_bed" }
+        ],
+        "id": 97288287,
+        "room_number": 1
+      }
+    ],
+    "p3_summary_address": "Lajares, Canarias, Espagne",
+    "p3_summary_title": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e",
+    "photos": [
+      {
+        "caption": "Quiet and private pool and terrace to relax, enjoy the sun and have a great dinner or breakfast.",
+        "id": 1023240230,
+        "large": "https://a0.muscache.com/im/pictures/0d5b4361-1681-4fb3-b9c5-33d4cea0baee.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AaHB6unv9/j18zsiBCMaCwFtdX33/vxMPzMuJCX1+PoBZWho3StIMyMZVQzo9N3UZNEX9iirS/EAAAAASUVORK5CYII=",
+        "scrim_color": "#302C2B",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "You access this lovely terrace and pool directly from a sliding window in the dinning room.",
+        "id": 1023240223,
+        "large": "https://a0.muscache.com/im/pictures/b64ddd50-53da-4046-8367-b29ab6e3af09.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AaCPfv8BAgn77wMdOBEqQwG9uLAjLjLn5+kA/ALi2tcBr5qE9PHvAxko1M3OAvj3AHMXsSv1sn0AAAAASUVORK5CYII=",
+        "scrim_color": "#251C15",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Big and bright open living room",
+        "id": 1023240024,
+        "large": "https://a0.muscache.com/im/pictures/39ded452-0ac4-4f17-a770-74ecac9f9b6d.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWNsbSuysfL5++ePprbuoYMHGbOq4sLdohj/s+kbGhXnZzJO7CmS5PrPxCmj8P/F0mUrAecjE+zrpFwMAAAAAElFTkSuQmCC",
+        "scrim_color": "#2B2817",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Big and bright open living room",
+        "id": 1023240028,
+        "large": "https://a0.muscache.com/im/pictures/9eb8d358-0986-4c4d-8262-8c7f3292792e.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Aa+2uBINCuXh3+vs7e/v8wH5+/yysqkgGx/Jycrk5ekB4NnLxrKf5OPtDPnr3Ov48N8g5yeDP7UAAAAASUVORK5CYII=",
+        "scrim_color": "#3B322B",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Big and bright open living room",
+        "id": 1023240059,
+        "large": "https://a0.muscache.com/im/pictures/50d79384-4ed1-4548-98be-90d6ec14a588.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWO0srWzMDWxtbGSk5b89ecPY2//hO9fPlrZWIpwc7758JnRwtPdWF5eS1OZk/E795f7AKhUEg0mVWL+AAAAAElFTkSuQmCC",
+        "scrim_color": "#1C1C1C",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "",
+        "id": 1023240077,
+        "large": "https://a0.muscache.com/im/pictures/be9d8db6-cab1-4a33-9fa6-7ee285d856c1.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AUpOUN/f31BOTkZDP+ru8wGgpqkMBwby8vAqJhzc3eABvKeQFAj7Gjxkr6aZ287HLmMYCw8kYU4AAAAASUVORK5CYII=",
+        "scrim_color": "#202125",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "",
+        "id": 1023240064,
+        "large": "https://a0.muscache.com/im/pictures/bb673050-296c-44b7-a9c2-e638626ea677.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Aa2ytampp+Lh4gMCAjU4OwHk6++6tbMTExO+ubUTGR8BvrSnExIT/fj08u/t7PP7RRQZ11CxGnAAAAAASUVORK5CYII=",
+        "scrim_color": "#222629",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "",
+        "id": 1023240040,
+        "large": "https://a0.muscache.com/im/pictures/013e3ad0-05d4-46b1-9c0f-fac84a8db849.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AaOgm/v8/hsbGg4PE+Lk6AHj4N3Z2doAAPwpLTUUFBQBxLCb/fv89gELEwkHDRojRawVZsbjifEAAAAASUVORK5CYII=",
+        "scrim_color": "#302B27",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Access to the laundry room just next to the kitchen",
+        "id": 1023240045,
+        "large": "https://a0.muscache.com/im/pictures/0d3a3f5e-a95d-40cc-9381-d30c02c2f98b.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AauwtRIOCvfz7/39+/Dz+AG/xMYJAvQJCRLw8fO8t7YBnXxjFA0CIjhNwamXxdvzle0aKkKk/xAAAAAASUVORK5CYII=",
+        "scrim_color": "#352A28",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "",
+        "id": 1023240049,
+        "large": "https://a0.muscache.com/im/pictures/1909a3ee-0214-443c-8dd6-5e76aa0596af.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AdTW1fz7+QQDAgkJDezt7wH6+/vi4N/q5+IICg38/gUB4c+4+fLq1dnj293mHxgVwM4dfXNHwbAAAAAASUVORK5CYII=",
+        "scrim_color": "#50453F",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Main entrance and access to the 3 bedrooms and 2 bathrooms",
+        "id": 1023240078,
+        "large": "https://a0.muscache.com/im/pictures/208b660a-4f28-4843-bba1-4b444752a669.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWNsbW329XYXEhT4+ZNx145tjP4hIeH+Xob62gx/WS5ePM/oaakRYKEoq6YtJSh86MJDAKZ5ERRQyJHKAAAAAElFTkSuQmCC",
+        "scrim_color": "#2A2623",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Parental suite with private bathroom",
+        "id": 1023240175,
+        "large": "https://a0.muscache.com/im/pictures/451a44cc-ea7f-4583-aacb-4f90126829f6.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWPcuWO3AC8PO4/QP3beVy+fMO7aulWcl1VQTp2FW/DJk0eMXTlREgLsTCwsokb+/zl5AI/wDuehMf63AAAAAElFTkSuQmCC",
+        "scrim_color": "#47342D",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Parental suite with private bathroom and closet",
+        "id": 1023240183,
+        "large": "https://a0.muscache.com/im/pictures/23aafd06-8c74-4577-b602-e893acbdb8e8.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Ac3DwQkcKQL//fTt58GypAHV1tYVFRP17Ono7PGgjIABxJ+G/QIG9/DuBwwN6NbIpZob4jHShFoAAAAASUVORK5CYII=",
+        "scrim_color": "#543C32",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Parental suite with private bathroom",
+        "id": 1023240192,
+        "large": "https://a0.muscache.com/im/pictures/cf90bd5f-9593-4ca4-8904-401a10d81dc2.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AdDJwgkMEPz/BwMFCev4AAHN1NcSBwMCAP35Agj0+f0Bpo59/fjyIzlMGSQqr56N+TsVe91cmo8AAAAASUVORK5CYII=",
+        "scrim_color": "#563A25",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Parental suite with private bathroom (bath with shower)",
+        "id": 1023240195,
+        "large": "https://a0.muscache.com/im/pictures/67b591b2-beca-4d13-a2a4-aaa34a7b24c6.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AYJ0Xyc8XBwQ/QoPEOzn3wGNdVcYHiMPEBXa7Af49vIBd2VNHhgU8/P5nbHL+Pv9uQMWCr4I5t4AAAAASUVORK5CYII=",
+        "scrim_color": "#1E1D25",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Parental suite with private bathroom  (bath with shower)",
+        "id": 1023240210,
+        "large": "https://a0.muscache.com/im/pictures/08f738b1-26a5-4bc7-86c4-52053a382bdd.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Aa+mjzU6NvDi2dfKzvgZQQG4rqIVICXw6+nw5+ICDRsBGhMOCAYFQzIjJRsK7/sFOjoUIVKEt9UAAAAASUVORK5CYII=",
+        "scrim_color": "#211811",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Room with two single beds",
+        "id": 1023240103,
+        "large": "https://a0.muscache.com/im/pictures/cd5f8692-6453-4878-80ef-1ab3eb342976.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AZWitSMiIhAPEfr7/fDx8QGFiIIlLTIeDQkgJyvW2uwBYZRhEBIV5tvqKuXw//wD8OUV1aP7DUQAAAAASUVORK5CYII=",
+        "scrim_color": "#3F3126",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Room with two single beds and closet",
+        "id": 1023240105,
+        "large": "https://a0.muscache.com/im/pictures/9d853d27-9f28-453e-b98f-f980f4b671a9.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AbfE3BUODdfRywwTGNve4QHAyuIbFRCRhHFMaHDJxMIBpJmVTEk8//Dbz+b59BIwNXgYxZ58dyAAAAAASUVORK5CYII=",
+        "scrim_color": "#342E30",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Double room",
+        "id": 1023240133,
+        "large": "https://a0.muscache.com/im/pictures/a3368ca0-48ec-4599-a082-471a8cf5af47.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AX19hj5HURcTEP359OPk5QGZiYJCWGcC+vbu3c4CBgwBjl095Ass/P7/+vfx/vDlNLEaX6iwcvAAAAAASUVORK5CYII=",
+        "scrim_color": "#302521",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Double room with closet",
+        "id": 1023240135,
+        "large": "https://a0.muscache.com/im/pictures/986577a4-3ee6-431a-8810-b4bc166ed58e.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Aby9xBAREQQB/8jBvZ6YlQHOxcD7BAsF/vbQysuxn5UBuLS4DA4PDxsj8fLtsnpOQfcYDD3KeU4AAAAASUVORK5CYII=",
+        "scrim_color": "#31221D",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Bathroom with bath+shower, separate shower, toilet and 2 sinks.",
+        "id": 1023240152,
+        "large": "https://a0.muscache.com/im/pictures/1d3c654f-2a0b-4e02-a20c-5b84276e0bb5.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWMMs1CMTY+U03b4+fPr9+/vGN3URSKiXFS1zd/zKfz9/5/RXII5JdBQy9jtw7/f3zgFAdsfFAYXhiSMAAAAAElFTkSuQmCC",
+        "scrim_color": "#3F200C",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Bathroom with bath+shower, separate shower, toilet and 2 sinks.",
+        "id": 1023240160,
+        "large": "https://a0.muscache.com/im/pictures/bc934395-6bd4-4e11-960e-9318335a38e4.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AZWEahISEh8nI/nz98zL0gFtaF8+NjAQGRnj1srAxdoBgGRDQEFH39/a5OblsbzT9xcX5IU0r5MAAAAASUVORK5CYII=",
+        "scrim_color": "#2C2219",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Guest toilet, next to the main entrance door",
+        "id": 1023240094,
+        "large": "https://a0.muscache.com/im/pictures/8b8506db-e313-4c02-8e58-3d94d1bdf6e1.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAOUlEQVQIHWPsr0rg4WQ10pL/+PrZPy5OxsxA8+DgSHF+xj/fXx7Zv49RU4jFSJxDU15Q01hx7/F7AJWkENFqF5P1AAAAAElFTkSuQmCC",
+        "scrim_color": "#28160A",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "A separate entrance on the right to access the swimming pool and the outside shower.",
+        "id": 1023239984,
+        "large": "https://a0.muscache.com/im/pictures/78b5ec62-cb30-44d6-98d3-6ef9d10baa97.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AWSSygsOFQIDAf79//bz9AFWW1BTXnYWEAz8/QG9xbcBVmFAHB0eIxUw4Nzcubu84xMU2scn2aIAAAAASUVORK5CYII=",
+        "scrim_color": "#1A1C17",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Private house with parking and garage (nice to store sport equipment).",
+        "id": 1023240302,
+        "large": "https://a0.muscache.com/im/pictures/01c54b64-8591-401b-aa52-2470b65b3e19.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//ARwqMRIV9x8tQ0ZQcCMgJAFYZWUpGg0qM0fz+PXb29IBSkpCUkE89fb55evw3eLncSUVAsJVPWMAAAAASUVORK5CYII=",
+        "scrim_color": "#111B13",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "The ground plan of our villa :)",
+        "id": 1171456420,
+        "large": "https://a0.muscache.com/im/pictures/miso/Hosting-43882447/original/49fac6e3-45ec-4f9f-962b-8b4d91783ed3.png?aki_policy=large",
+        "preview_encoded_png": "",
+        "scrim_color": "",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.5
+      },
+      {
+        "caption": "",
+        "id": 1171809729,
+        "large": "https://a0.muscache.com/im/pictures/miso/Hosting-43882447/original/0eaa404f-448a-4c57-88f3-0bde55e79f0f.png?aki_policy=large",
+        "preview_encoded_png": "",
+        "scrim_color": "",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.7110266159695817
+      },
+      {
+        "caption": "Way to the main entrance and this sliding window gives direct access to the kitchen (easier to unload groceries).",
+        "id": 1023240010,
+        "large": "https://a0.muscache.com/im/pictures/7c034230-232f-4f8b-af5b-e926a3caa791.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AX+z8Q4C9S8L5O/n38LK2AGTpKwEBhZBNSims7YbDA8Bam1lMB0dNzk5rbCx+/n/E+8VmXnC1kQAAAAASUVORK5CYII=",
+        "scrim_color": "#333237",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Outdoor shower and swimming pool.",
+        "id": 1023240246,
+        "large": "https://a0.muscache.com/im/pictures/1cc5bb36-d3b5-4a47-9690-6a027260ef4b.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//Aau+2C8nGB4VDc7g9f338gGipKgNCwgGDhHZzMYaFRAByquQFxgZBgsO9evo397e9HUVKCpOfswAAAAASUVORK5CYII=",
+        "scrim_color": "#373634",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Terrace and swimming pool.",
+        "id": 1023240229,
+        "large": "https://a0.muscache.com/im/pictures/0927f7a9-7b19-4620-8f77-2b6496d909b3.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AYdvWhMhMgA5Z/v+Avn4/AFhZF9fUlMnLyz3Aw7h3eABfmRXP0M/+P4F2dri8O7s4N0W5rdXxysAAAAASUVORK5CYII=",
+        "scrim_color": "#31271E",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      },
+      {
+        "caption": "Nice garden all around the house with palm trees and cactus.",
+        "id": 1023240274,
+        "large": "https://a0.muscache.com/im/pictures/68a1a0ce-afab-4871-912b-0f918702d4f8.jpg?aki_policy=large",
+        "preview_encoded_png": "iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAIAAADUVFKvAAAAO0lEQVQIHQEwAM//AW9xVyUrKSJDbAIHEvjs9AF2clkRGRwxKinn7v8JDiYBaV9W9P0I8/0L9vr+/fv2llsVgl+3QSEAAAAASUVORK5CYII=",
+        "scrim_color": "#383C3B",
+        "is_professional": false,
+        "picture_orientation": "LANDSCAPE",
+        "aspect_ratio": 1.499267935578331
+      }
+    ],
+    "primary_host": {
+      "about": "Hello! We are Anthony & C\u00e9cile, a 36yo belgian couple with our baby girl Alice. We spend 3 months/year in our villa in Lajares/Fuerteventura. When we are not there, we rent our villa with a heated pool. We love Fuerteventura for surfing, windsurfing, hiking, the sun and the sea and of course to relax! Welcome!",
+      "badges": [
+        {
+          "id": "identity-verified",
+          "label": "Identit\u00e9 v\u00e9rifi\u00e9e"
+        }
+      ],
+      "first_name": "Anthony",
+      "id": 13210126,
+      "is_superhost": false,
+      "member_since_full_str": "Membre depuis mars 2014",
+      "name": "Anthony",
+      "languages": ["English", "Fran\u00e7ais", "Espa\u00f1ol"],
+      "picture_url": "https://a0.muscache.com/im/pictures/user/01a03c74-87fc-427a-9b55-7f94b872e1e5.jpg?aki_policy=profile_x_medium",
+      "has_inclusion_badge": false,
+      "picture_large_url": "https://a0.muscache.com/im/pictures/user/01a03c74-87fc-427a-9b55-7f94b872e1e5.jpg?aki_policy=profile_large",
+      "host_intro_tags": ["V\u00e9rifi\u00e9"]
+    },
+    "room_and_property_type": "Villa enti\u00e8re",
+    "room_type_category": "entire_home",
+    "sectioned_description": {
+      "access": "Vous avez acc\u00e8s au logement entier, aucune pi\u00e8ce n'est r\u00e9serv\u00e9e/bloqu\u00e9e.",
+      "author_type": "human",
+      "description": "Notre villa est id\u00e9alement situ\u00e9e dans une rue tr\u00e8s calme \u00e0 quelques minutes des commerces et restaurants du charmant village de surfeurs de Lajares.\n\nLa villa est spacieuse et lumineuse, id\u00e9ale pour les familles, couples et amis.\n\nUne large pi\u00e8ce de vie ouverte (salon, salle \u00e0 manger, cuisine) pleine de charme et confortable.\n\nA l'ext\u00e9rieur vous pourrez profiter du soleil et de la piscine en toute tranquillit\u00e9 gr\u00e2ce \u00e0 la terrasse prot\u00e9g\u00e9e. Et profiter des soir\u00e9es autour du barbecue !\n\nCe qui rend notre villa tr\u00e8s agr\u00e9able est sa grande taille et la luminosit\u00e9. La cuisine est ouverte sur le salon et la salle \u00e0 manger. Cela en fait un espace tr\u00e8s convivial pour cuisiner devant les enfants ou pendant que des amis prennent un verre au bar. La salle \u00e0 manger donne directement acc\u00e8s \u00e0 la terrasse et \u00e0 la piscine, ou vous pourrez prendre tous vos repas \u00e0 l'ombre.\n\nVous avez acc\u00e8s au logement entier, aucune pi\u00e8ce n'est r\u00e9serv\u00e9e/bloqu\u00e9e.\n\nNous pouvons r\u00e9pondre \u00e0 toutes vos questions par message. Carlo est un voisin, il s'occupera de votre arriv\u00e9e sur place.\n\nLajares est un village de surfeurs o\u00f9 il fait bon vivre. Vous avez tout le n\u00e9cessaire \u00e0 proximit\u00e9 : magasins, restaurants, boulangerie, shops de surf, ... Parfaitement situ\u00e9 dans le nord de Fuerteventura, \u00e0 proximit\u00e9 de La Oliva, El Cotillo et Corralejo. Id\u00e9al pour acc\u00e9der \u00e0 tous les spots de surf, windsurf et kitesurf du north shore.\n\nIl vous faut une voiture pour aller \u00e0 la villa. Vous \u00eates \u00e0 environ 20 minutes de marche du centre de Lajares (1 minute en voiture). Parking ais\u00e9 et prot\u00e9g\u00e9 \u00e0 la villa.",
+      "interaction": "Nous pouvons r\u00e9pondre \u00e0 toutes vos questions par message. Carlo est un voisin, il s'occupera de votre arriv\u00e9e sur place.",
+      "locale": "fr",
+      "localized_language_name": "Fran\u00e7ais",
+      "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e",
+      "neighborhood_overview": "Lajares est un village de surfeurs o\u00f9 il fait bon vivre. Vous avez tout le n\u00e9cessaire \u00e0 proximit\u00e9 : magasins, restaurants, boulangerie, shops de surf, ... Parfaitement situ\u00e9 dans le nord de Fuerteventura, \u00e0 proximit\u00e9 de La Oliva, El Cotillo et Corralejo. Id\u00e9al pour acc\u00e9der \u00e0 tous les spots de surf, windsurf et kitesurf du north shore.",
+      "space": "Ce qui rend notre villa tr\u00e8s agr\u00e9able est sa grande taille et la luminosit\u00e9. La cuisine est ouverte sur le salon et la salle \u00e0 manger. Cela en fait un espace tr\u00e8s convivial pour cuisiner devant les enfants ou pendant que des amis prennent un verre au bar. La salle \u00e0 manger donne directement acc\u00e8s \u00e0 la terrasse et \u00e0 la piscine, ou vous pourrez prendre tous vos repas \u00e0 l'ombre.",
+      "summary": "Notre villa est id\u00e9alement situ\u00e9e dans une rue tr\u00e8s calme \u00e0 quelques minutes des commerces et restaurants du charmant village de surfeurs de Lajares.\n\nLa villa est spacieuse et lumineuse, id\u00e9ale pour les familles, couples et amis.\n\nUne large pi\u00e8ce de vie ouverte (salon, salle \u00e0 manger, cuisine) pleine de charme et confortable.\n\nA l'ext\u00e9rieur vous pourrez profiter du soleil et de la piscine en toute tranquillit\u00e9 gr\u00e2ce \u00e0 la terrasse prot\u00e9g\u00e9e. Et profiter des soir\u00e9es autour du barbecue !",
+      "transit": "Il vous faut une voiture pour aller \u00e0 la villa. Vous \u00eates \u00e0 environ 20 minutes de marche du centre de Lajares (1 minute en voiture). Parking ais\u00e9 et prot\u00e9g\u00e9 \u00e0 la villa."
+    },
+    "star_rating": 5.0,
+    "tier_id": 0,
+    "guest_controls": {
+      "allows_children": true,
+      "allows_events": false,
+      "allows_infants": true,
+      "allows_pets": true,
+      "allows_smoking": false,
+      "person_capacity": 6,
+      "structured_house_rules": [
+        "Non fumeur",
+        "Pas de f\u00eate ni de soir\u00e9e",
+        "L'entr\u00e9e dans les lieux se fait \u00e0 partir de 15:00"
+      ],
+      "structured_house_rules_with_tips": [
+        {
+          "key": "is_smoking_allowed_as_host",
+          "text": "Non fumeur",
+          "airmoji_key": "house_rules_no_smoking"
+        },
+        {
+          "key": "are_events_allowed_as_host",
+          "text": "Pas de f\u00eate ni de soir\u00e9e",
+          "airmoji_key": "house_rules_no_party"
+        },
+        {
+          "key": "check_in_time",
+          "text": "L'entr\u00e9e dans les lieux se fait \u00e0 partir de 15:00",
+          "airmoji_key": "accomodation_keys"
+        }
+      ],
+      "allows_non_china_users": true
+    },
+    "has_special_offer": false,
+    "max_nights": 1125,
+    "min_nights": 3,
+    "price_details": [
+      {
+        "label": "Frais de m\u00e9nage",
+        "value": "110\u20ac",
+        "attribute_type": "CLEANING_FEE"
+      },
+      {
+        "label": "Voyageur suppl\u00e9mentaire",
+        "value": "20\u20ac par nuit apr\u00e8s 4 voyageurs",
+        "attribute_type": "EXTRA_PEOPLE"
+      }
+    ],
+    "has_we_work_location": false,
+    "is_business_travel_ready": false,
+    "additional_hosts": [
+      {
+        "about": "Welcome to Lajares, Fuerteventura!",
+        "badges": [
+          {
+            "count": 9,
+            "id": "reviews",
+            "label": "9\u00a0commentaires",
+            "link": "/users/show/351225404#reviews"
+          }
+        ],
+        "first_name": "Carlo",
+        "id": 351225404,
+        "is_superhost": false,
+        "member_since_full_str": "Membre depuis juin 2020",
+        "name": "Carlo",
+        "languages": ["English", "Fran\u00e7ais", "Espa\u00f1ol"],
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "response_rate_without_na": "100%",
+        "response_time_without_na": "Moins d'une heure",
+        "has_inclusion_badge": false,
+        "picture_large_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_large",
+        "host_intro_tags": ["9 commentaires"]
+      }
+    ],
+    "is_hosted_by_superhost": false,
+    "hometour_rooms": [
+      {
+        "details": [],
+        "highlights_hometour": ["1 lit double"],
+        "highlights_preview": [],
+        "is_shared": false,
+        "id": 97288287,
+        "name": "",
+        "name_with_type": "Chambre 1",
+        "photos": [],
+        "room_type_id": 1,
+        "icons": [{ "type": "double_bed", "url": "" }]
+      },
+      {
+        "details": [],
+        "highlights_hometour": ["1 lit double"],
+        "highlights_preview": [],
+        "is_shared": false,
+        "id": 97288288,
+        "name": "",
+        "name_with_type": "Chambre 2",
+        "photos": [],
+        "room_type_id": 1,
+        "icons": [{ "type": "double_bed", "url": "" }]
+      },
+      {
+        "details": [],
+        "highlights_hometour": ["2 lits simples"],
+        "highlights_preview": [],
+        "is_shared": false,
+        "id": 97288289,
+        "name": "",
+        "name_with_type": "Chambre 3",
+        "photos": [],
+        "room_type_id": 1,
+        "icons": [
+          { "type": "single_bed", "url": "" },
+          { "type": "single_bed", "url": "" }
+        ]
+      }
+    ],
+    "hometour_sections": [],
+    "description_locale": "fr",
+    "initial_description_author_type": "human",
+    "localized_check_in_time_window": "Apr\u00e8s 15:00",
+    "localized_check_out_time": "",
+    "city": "Lajares",
+    "country": "Espagne",
+    "country_code": "ES",
+    "has_host_guidebook": false,
+    "has_local_attractions": false,
+    "lat": 28.67149,
+    "lng": -13.92543,
+    "location_title": "Lajares, Canarias, Espagne",
+    "neighborhood_community_tags": [],
+    "state": "Canarias",
+    "paid_growth_remarketing_listing_ids": [1106516],
+    "has_commercial_host_info": false,
+    "review_details_interface": {
+      "review_count": 9,
+      "review_summary": [
+        {
+          "value": 10,
+          "label": "Pr\u00e9cision",
+          "localized_rating": "5,0",
+          "percentage": 1.0
+        },
+        {
+          "value": 10,
+          "label": "Communication",
+          "localized_rating": "5,0",
+          "percentage": 1.0
+        },
+        {
+          "value": 10,
+          "label": "Propret\u00e9",
+          "localized_rating": "4,9",
+          "percentage": 0.978
+        },
+        {
+          "value": 10,
+          "label": "Emplacement",
+          "localized_rating": "4,9",
+          "percentage": 0.978
+        },
+        {
+          "value": 10,
+          "label": "Arriv\u00e9e",
+          "localized_rating": "5,0",
+          "percentage": 1.0
+        },
+        {
+          "value": 10,
+          "label": "Qualit\u00e9-prix",
+          "localized_rating": "5,0",
+          "percentage": 1.0
+        }
+      ]
+    },
+    "reviews_order": "language_country",
+    "host_quote": "",
+    "host_signature_font": {
+      "url": "https://a0.muscache.com/airbnb/static/temp-fonts/HandsomePro-Normal.otf"
+    },
+    "nearby_airport_distance_descriptions": [],
+    "property_type_in_city": "",
+    "render_tier_id": 0,
+    "is_hotel": false,
+    "show_review_tag": false,
+    "is_representative_inventory": false,
+    "localized_city": "Lajares",
+    "highlights": [
+      {
+        "type": "LISTING_ENTIRE_HOME_PROPERTY_TYPE",
+        "message": "Vous aurez le logement (villa) rien que pour vous.",
+        "headline": "Logement entier",
+        "position": "0",
+        "icon": "accomodation_home"
+      },
+      {
+        "type": "LISTING_ENHANCED_CLEANING",
+        "message": "Cet h\u00f4te s'engage \u00e0 appliquer le processus de nettoyage renforc\u00e9 en 5\u00a0\u00e9tapes d'Airbnb.",
+        "headline": "Nettoyage renforc\u00e9",
+        "position": "1"
+      },
+      {
+        "type": "LISTING_CHECKIN_REVIEW_RATING",
+        "message": "100\u00a0% des voyageurs ont attribu\u00e9 5\u00a0\u00e9toiles \u00e0 la proc\u00e9dure d'arriv\u00e9e.",
+        "headline": "Proc\u00e9dure d'arriv\u00e9e irr\u00e9prochable",
+        "position": "2",
+        "icon": "accomodation_keys"
+      },
+      {
+        "type": "LISTING_POPULAR_AMENITY",
+        "message": "Il s'agit de l'un des rares endroits de la r\u00e9gion qui dispose de cet \u00e9quipement.",
+        "headline": "S\u00e8che-linge",
+        "position": "3",
+        "icon": "extras_star"
+      }
+    ],
+    "highlights_impression_id": "bf660757-f753-f4bb-fbce-a48d561a9725",
+    "categorized_preview_amenities": [
+      {
+        "category": "Standard",
+        "amenities": "Wifi, Cuisine, S\u00e8che-linge, et 21\u00a0autres"
+      },
+      {
+        "category": "Autres points forts",
+        "amenities": "Parking gratuit sur place, Piscine, Baignoire, et 28\u00a0autres"
+      }
+    ],
+    "point_of_interests": [],
+    "china_points_of_interest_matcha": {},
+    "page_view_type": "DEFAULT",
+    "preview_tags": [],
+    "see_all_hometour_sections": [],
+    "education_modules": {},
+    "enable_highlights_voting": false,
+    "listing_expectations": [],
+    "localized_listing_expectations": [],
+    "hero_module": { "categorized_photos": [] },
+    "reviews_module": {
+      "localized_overall_rating": "5,0",
+      "appreciation_tags": [
+        {
+          "localized_text": "R\u00e9activit\u00e9",
+          "localized_count_string": "8",
+          "icon": "IconIndicatorChatBubble"
+        },
+        {
+          "localized_text": "D\u00e9co et design",
+          "localized_count_string": "7",
+          "icon": "IconIndicatorInterior"
+        },
+        {
+          "localized_text": "Hospitalit\u00e9 unique",
+          "localized_count_string": "6",
+          "icon": "IconIndicatorHeart"
+        },
+        {
+          "localized_text": "Propret\u00e9 impeccable",
+          "localized_count_string": "5",
+          "icon": "IconIndicatorTub"
+        },
+        {
+          "localized_text": "\u00c9quipements exceptionnels",
+          "localized_count_string": "3",
+          "icon": "IconIndicatorCup"
+        }
+      ]
+    },
+    "availability_module": {},
+    "additional_house_rules": "",
+    "sorted_reviews": [],
+    "document_display_pictures": [],
+    "sections": [],
+    "metadata": {},
+    "p3_impression_id": "bf660757-f753-f4bb-fbce-a48d561a9725",
+    "id_str": "43882447",
+    "paid_growth_remarketing_listing_ids_str": ["1106516"]
+  },
+  "metadata": {}
+}

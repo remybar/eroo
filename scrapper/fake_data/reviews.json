@@ -1,0 +1,338 @@
+{
+  "reviews": [
+    {
+      "author": {
+        "first_name": "Marianne",
+        "has_profile_pic": true,
+        "id": 32358204,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/dfc8f626-a9c6-4c8b-92fa-cfe778f7e18d.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Marianne",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/dfc8f626-a9c6-4c8b-92fa-cfe778f7e18d.jpg?aki_policy=profile_small"
+      },
+      "author_id": 32358204,
+      "can_be_edited": false,
+      "comments": "Beautiful villa in Lajares, a nice village with life and restaurants. Location is ideal, in the north of Fuerteventura, really close to El Cotillo (with our favorite beach and restaurant!), and close to Corralejo and the sand dunes. Carlo and Anthony were very helpful hosts, answering quickly and willing for us to have a nice stay. The villa is very spacious and nicely decorated. We felt at home with our 2 little ones, we could live here :-) The terrace is protected from the wind and with a heated pool which is so wonderful! The garden and its cactus and plants is also pretty. To anyone coming to Fuerteventura, I recommend Lajares and El Cotillo, and this villa.",
+      "created_at": "2021-04-18T12:39:37Z",
+      "id": 749738215,
+      "id_str": "749738215",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Valentina",
+        "has_profile_pic": true,
+        "id": 3206615,
+        "picture_url": "https://a0.muscache.com/im/users/3206615/profile_pic/1424203499/original.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Valentina",
+        "thumbnail_url": "https://a0.muscache.com/im/users/3206615/profile_pic/1424203499/original.jpg?aki_policy=profile_small"
+      },
+      "author_id": 3206615,
+      "can_be_edited": false,
+      "comments": "Very cool place to enjoy Fuerteventura even when you need to spend some hours working remotely. Conveniently located between the main surf spots in the North and just 10 minutes away from the main driveway of Lajares with its shops and restaurants. Both Anthony and Carlo are super nice and helpful and the house is gorgeous and very well furnished, though placed among several other houses you won\u2019t hear a noise (if you exclude the next door cocorita) and your privacy is guaranteed",
+      "created_at": "2021-04-26T12:10:40Z",
+      "id": 752306453,
+      "id_str": "752306453",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Ryan",
+        "has_profile_pic": true,
+        "id": 211346709,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/79294294-9b07-439a-8ac5-cdd8e29d9d70.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Ryan",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/79294294-9b07-439a-8ac5-cdd8e29d9d70.jpg?aki_policy=profile_small"
+      },
+      "author_id": 211346709,
+      "can_be_edited": false,
+      "comments": "We had a wonderful time staying here. The location is perfect. The heated pool is really nice and the terrace gets sun all day. Would recommend!",
+      "created_at": "2021-04-10T13:46:11Z",
+      "id": 747324305,
+      "id_str": "747324305",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Malin",
+        "has_profile_pic": true,
+        "id": 10888140,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/e512df32-fd4d-4eda-9d6d-d8d22962c477.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Malin",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/e512df32-fd4d-4eda-9d6d-d8d22962c477.jpg?aki_policy=profile_small"
+      },
+      "author_id": 10888140,
+      "can_be_edited": false,
+      "comments": "We were a group of friends really enjoying the stay with Anthony and Carlo. The communication and check-in experience was super smooth and we felt very welcomed from the beginning - we even got a welcome PDF with all necessary information and insider tipps for nice restaurants etc. The villa itself is even bigger than it looks on the photos with really nice high ceilings and a huge outdoor space - easily fits a bigger family or a group of friends. The open kitchen is perfect for nice cooking evenings (first time we had an oven on this island which was amazing). We also did many bbq evenings on the terrace. The highlight is the heated !! pool, which is also hard to find on Fuerteventura (most of them are not heated). It also gets cleaned at least once per week, which is very convenient. Over all we have nothing to complain and really enjoyed our time here working remotely. If you like to (kite-)surf and nice restaurants Lajares is definitely the place to be. Thanks again for your hospitality Anthony and Carlos!",
+      "created_at": "2021-03-19T16:04:01Z",
+      "id": 740268146,
+      "id_str": "740268146",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Elias",
+        "has_profile_pic": false,
+        "id": 47641729,
+        "picture_url": "https://a0.muscache.com/defaults/user_pic-225x225.png?v=3",
+        "smart_name": "Elias",
+        "thumbnail_url": "https://a0.muscache.com/defaults/user_pic-50x50.png?v=3"
+      },
+      "author_id": 47641729,
+      "can_be_edited": false,
+      "comments": "We enjoyed our stay at this comfortable villa that has a nice wind shielded outside area and lots of sunlight also inside due to its well thought out layout. Spacious living room and open kitchen.\nVery welcoming hosts, we would gladly return.",
+      "created_at": "2021-02-21T14:32:56Z",
+      "id": 733172476,
+      "id_str": "733172476",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Ale   Lau",
+        "has_profile_pic": true,
+        "id": 32070486,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/959ec33a-7836-4b87-9b7a-4cfb61d35f31.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Ale   Lau",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/959ec33a-7836-4b87-9b7a-4cfb61d35f31.jpg?aki_policy=profile_small"
+      },
+      "author_id": 32070486,
+      "can_be_edited": false,
+      "comments": "La casa \u00e8 molto grande e bella, con tre stanze, tre bagni, uno spazio esterno molto bello e un grande salone/cucina. Ci siamo trovati molto bene. \u00c8 un casa perfetta per una famiglia. Non vediamo l\u2019ora di tornarci.",
+      "created_at": "2021-01-09T15:11:35Z",
+      "id": 722972196,
+      "id_str": "722972196",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "it",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Syra",
+        "has_profile_pic": true,
+        "id": 14495793,
+        "picture_url": "https://a0.muscache.com/im/users/14495793/profile_pic/1397995532/original.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Syra",
+        "thumbnail_url": "https://a0.muscache.com/im/users/14495793/profile_pic/1397995532/original.jpg?aki_policy=profile_small"
+      },
+      "author_id": 14495793,
+      "can_be_edited": false,
+      "comments": "Preciosa Villa a 3 minutos en coche del centro de Lajares. La ubicaci\u00f3n es muy buena ya que est\u00e1s cerca del centro pero lejos del \"bullicio\" de Lajares. La comunicaci\u00f3n con Carlo fue r\u00e1pida, amable y resolvi\u00f3 todas nuestras dudas de manera muy efectiva. Nosotros \u00e9ramos una pareja pero la casa tiene capacidad para 6 personas con total comodidad. A destacar la limpieza de toda la casa, estaba impecable. Los electrodom\u00e9sticos parec\u00edan nuevos a estrenar por lo que funcionaban perfectamente. El colch\u00f3n de la habitaci\u00f3n principal era s\u00faper c\u00f3modo, grande y de buena calidad as\u00ed como las almohadas. Hab\u00eda persianas en todas las habitaciones para gozar de total oscuridad al dormir. Hemos descansado muy bien. El sof\u00e1 del sal\u00f3n es muy c\u00f3modo y muy grande y la decoraci\u00f3n muy bonita. En definitiva un espacio perfecto para disfrutar de unos d\u00edas de relax. La piscina perfecta para refrescarse y darse un chapuz\u00f3n. Sin duda repetir\u00edamos otra vez.",
+      "created_at": "2020-11-01T14:17:07Z",
+      "id": 705713183,
+      "id_str": "705713183",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "es",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Zeneida",
+        "has_profile_pic": false,
+        "id": 353549492,
+        "picture_url": "https://a0.muscache.com/defaults/user_pic-225x225.png?v=3",
+        "smart_name": "Zeneida",
+        "thumbnail_url": "https://a0.muscache.com/defaults/user_pic-50x50.png?v=3"
+      },
+      "author_id": 353549492,
+      "can_be_edited": false,
+      "comments": "Ubicado en un lugar muy tranquilo. La villa cuenta con todas las comodidades. Un sitio para repetir.",
+      "created_at": "2020-08-30T14:07:06Z",
+      "id": 658360614,
+      "id_str": "658360614",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "es",
+      "user_flag": null
+    },
+    {
+      "author": {
+        "first_name": "Natalia",
+        "has_profile_pic": true,
+        "id": 36145822,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/7090652e-b638-4d67-bbe4-510a01eeefd8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Natalia",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/7090652e-b638-4d67-bbe4-510a01eeefd8.jpg?aki_policy=profile_small"
+      },
+      "author_id": 36145822,
+      "can_be_edited": false,
+      "comments": "The house is very nice and have space for a big family.",
+      "created_at": "2020-07-15T15:03:47Z",
+      "id": 638413410,
+      "id_str": "638413410",
+      "listing_id": 43882447,
+      "recipient_id": 351225404,
+      "collection_tag": null,
+      "listing": {
+        "id": 43882447,
+        "listing_id_str": "43882447",
+        "name": "Villa spacieuse et lumineuse avec piscine chauff\u00e9e"
+      },
+      "rating": 5,
+      "recipient": {
+        "first_name": "Carlo",
+        "has_profile_pic": true,
+        "id": 351225404,
+        "picture_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_x_medium",
+        "smart_name": "Carlo",
+        "thumbnail_url": "https://a0.muscache.com/im/pictures/user/96e9b3ee-9798-4aad-b4e3-36d523dd87e8.jpg?aki_policy=profile_small"
+      },
+      "response": "",
+      "role": "guest",
+      "language": "en",
+      "user_flag": null
+    }
+  ],
+  "metadata": { "reviews_count": 9, "should_show_review_translations": true }
+}

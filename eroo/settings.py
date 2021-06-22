@@ -74,12 +74,13 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    # allauth
+    # third-party apps
     "allauth",
     "allauth.account",
     # local apps
     "accounts",
     "dashboard",
+    "scrapper",
     "websites",
 ]
 AUTH_USER_MODEL = "accounts.CustomUser"
@@ -175,3 +176,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_ROOT = BASE_DIR / "media/"
 MEDIA_URL = "/media/"
+
+# local apps config
+
+WEBSITE_DATA_STORE = MEDIA_ROOT / "websites"
+SCRAPPED_DATA_STORE = MEDIA_ROOT / "scrapped_data"
+SCRAPPER_USE_FAKE_FILES = False

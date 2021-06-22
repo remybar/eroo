@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "edeb0ab1d12d151bda1e641f80306767579a40b8b35242531c122f1491db1a58"
+            "sha256": "6fcda18f12fcc3d69c0549d00d1a2bc78ee969eb8767bb2f81f4819e87878448"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,11 @@
         ]
     },
     "default": {
+        "airbnb-python": {
+            "editable": true,
+            "git": "git://github.com/remybar/airbnb-python",
+            "ref": "7dd494f02866b893339028b8ec06ad95703dac02"
+        },
         "asgiref": {
             "hashes": [
                 "sha256:92906c611ce6c967347bbfea733f13d6313901d54dcca88195eaeb52b2a8e8ee",
@@ -283,12 +288,20 @@
             "markers": "python_version >= '3.6'",
             "version": "==2.1.0"
         },
+        "python-dateutil": {
+            "hashes": [
+                "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c",
+                "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==2.8.1"
+        },
         "python-dotenv": {
             "hashes": [
-                "sha256:00aa34e92d992e9f8383730816359647f358f4a3be1ba45e5a5cefd27ee91544",
-                "sha256:b1ae5e9643d5ed987fc57cc2583021e38db531946518130777734f9589b3141f"
+                "sha256:dd8fe852847f4fbfadabf6183ddd4c824a9651f02d51714fa075c95561959c7d",
+                "sha256:effaac3c1e58d89b3ccb4d04a40dc7ad6e0275fda25fd75ae9d323e2465e202d"
             ],
-            "version": "==0.17.1"
+            "version": "==0.18.0"
         },
         "python3-openid": {
             "hashes": [
@@ -327,6 +340,14 @@
             ],
             "index": "pypi",
             "version": "==1.0.1"
+        },
+        "six": {
+            "hashes": [
+                "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
+                "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==1.16.0"
         },
         "sqlparse": {
             "hashes": [

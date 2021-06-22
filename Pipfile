@@ -12,6 +12,7 @@ gunicorn = "==19.9.0"
 django-allauth = "*"
 shortuuid = "*"
 flake8 = "*"
+airbnb-python = {editable = true, ref = "master", git = "git://github.com/remybar/airbnb-python"}
 
 [dev-packages]
 black = "*"

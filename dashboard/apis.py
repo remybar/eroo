@@ -7,8 +7,10 @@ from django.utils import timezone
 from django.urls import reverse
 
 from websites.utils import is_ajax, explode_airbnb_url
-from websites.config import SCRAPPER_API_URL, WEBSITE_URL, MAX_WEBSITES_COUNT
+from websites.config import WEBSITE_URL, MAX_WEBSITES_COUNT
 from websites.models import Website
+
+from scrapper.views import scrap_airbnb_data
 
 
 def _user_error(msg):
@@ -37,25 +39,15 @@ def api_website_create(request):
 
     # send the URL to the scrapper
     try:
-        res = requests.post(
-            SCRAPPER_API_URL,
-            json={"provider": "airbnb", "provider_data": {"id": airbnb_id}},
-        )
+        data = scrap_airbnb_data(airbnb_id)
     except Exception:
-        res = False
+        data = False
 
-    if not res or res.status_code != 200:
+    if not data:
         return _internal_error("Impossible d'accéder à votre annonce Airbnb")
 
-    # extract and validate the payload
-    payload = res.json()
-    if payload["result"] != "success" or "data" not in payload:
-        return _internal_error(
-            "Impossible de récupérer les données de votre annonce Airbnb"
-        )
-
     # generate the website and get the redirect page
-    website = Website.create(request.user, rental_base_url, payload["data"])
+    website = Website.create(request.user, rental_base_url, data)
 
     return JsonResponse({
         "key": website.key,

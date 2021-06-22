@@ -1,22 +1,24 @@
 Finalisation:
+    - deploiement
+        - sécuriser API scrapper (limiter à eroo host + authentication)
+        - besoin d'une carte de crédit acceptée par Heroku pour:
+            - gestion des emails avec SendGrid
+            - gestion des logs/exceptions avec Sentry
+            - configurer le domaine eroo.fr pour pointer vers la prod
+            - configurer le domaine staging.eroo.fr pour pointer vers la staging
+            - SSL & https
+        - gestion des medias sur Amazon S3 (ou autre)
+        - test de déploiement avec poney-checkup
+        - conserver les données scrappées sur Amazon S3 aussi ?
+
     - dashboard
         - nettoyer les fichiers html et compléter les TODO (<head>)
         - quels keywords dans <head> ?
+        - nettoyer le repo en supprimant tout ce qui ne sert à rien (js, images, ...)
 
     - template 1
         - rendu du footer dans le template website
         - booking bar avec calendriers + pop-up "to be implemented"
-
-    - deploiement
-        - utiliser postgres au lieu de sqlite
-        - nettoyer le repo en supprimant tout ce qui ne sert à rien (js, images, ...)
-        - gestion des medias sur Amazon S3 (ou autre)
-        - gestion des emails avec SendGrid (avoir un mail contact@eroo.fr)
-        - avoir un pipeline staging/production pour pouvoir vérifier que tout roule en staging avant de déployer en production.
-        - pouvoir monitorer tout ça et principalement les erreurs (du scrapper notamment)
-        - scrapper: garder les données scrappées pour pouvoir investiguer en cas d'erreur (dans un fichier json)
-        - envoi de mail en cas d'erreur de scrapping/de conversion des données/etc...
-        - test de déploiement avec poney-checkup
 
     - sécurité
         - django-honeypot
