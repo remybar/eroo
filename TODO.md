@@ -1,6 +1,5 @@
 Finalisation:
     - deploiement
-        - sécuriser API scrapper (limiter à eroo host + authentication)
         - besoin d'une carte de crédit acceptée par Heroku pour:
             - gestion des emails avec SendGrid
             - gestion des logs/exceptions avec Sentry

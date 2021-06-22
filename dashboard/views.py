@@ -1,9 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from websites.config import MAX_WEBSITES_COUNT, WEBSITE_URL
 from websites.models import Website
 
+
+def homepage(request):
+    if request.user.is_authenticated:
+        redirect("dashboard")
+    return redirect("account_signup")
 
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
