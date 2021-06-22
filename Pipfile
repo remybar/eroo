@@ -9,14 +9,13 @@ environs = {version = "==8.0.0", extras = ["django"]}
 psycopg2-binary = "==2.8.5"
 whitenoise = "==5.1.0"
 gunicorn = "==19.9.0"
-django-allauth = "*"
-shortuuid = "*"
-flake8 = "*"
+django-allauth = "==0.43.0"
+shortuuid = "==1.0.1"
 airbnb-python = {editable = true, ref = "master", git = "git://github.com/remybar/airbnb-python"}
 
 [dev-packages]
-black = "*"
-flake8 = "*"
+black = "==21.6b0"
+flake8 = "==3.9.2"
 
 [requires]
 python_version = "3.9"
