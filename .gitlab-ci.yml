@@ -1,6 +1,6 @@
 # ---- test the app ----
 test:
-  image: python:latest
+  image: python:3.9
   services:
   - postgres:latest
   variables:
@@ -11,7 +11,7 @@ test:
     DATABASE_URL: "postgresql://$POSTGRES_USER:$POSGRES_PASSWORD@postgres:5432/$POSTGRES_DB"
   script:
     - pip install pipenv
-    - pipenv install
+    - pipenv install --ignore-pipfile
     - pipenv run python manage.py migrate
     - pipenv run python manage.py test
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6fcda18f12fcc3d69c0549d00d1a2bc78ee969eb8767bb2f81f4819e87878448"
+            "sha256": "8ccd0fce52ae575ae6603369a1a4d0865bb3ad87bbc96e8c580b14398cb464d9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,7 +16,7 @@
         ]
     },
     "default": {
-        "airbnb-python": {
+        "airbnb": {
             "editable": true,
             "git": "git://github.com/remybar/airbnb-python",
             "ref": "7dd494f02866b893339028b8ec06ad95703dac02"
@@ -147,10 +147,10 @@
         },
         "django-allauth": {
             "hashes": [
-                "sha256:e51af457466022f52154d74c8523ac69375120fad2acce6e239635d85e610b25"
+                "sha256:0bfb975fe46e8bff67effb3fa46dea5acd7c66140cb78b5ed92c533f639898e2"
             ],
             "index": "pypi",
-            "version": "==0.44.0"
+            "version": "==0.43.0"
         },
         "django-cache-url": {
             "hashes": [
@@ -169,14 +169,6 @@
             ],
             "index": "pypi",
             "version": "==8.0.0"
-        },
-        "flake8": {
-            "hashes": [
-                "sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b",
-                "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"
-            ],
-            "index": "pypi",
-            "version": "==3.9.2"
         },
         "gunicorn": {
             "hashes": [
@@ -201,13 +193,6 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==3.12.1"
-        },
-        "mccabe": {
-            "hashes": [
-                "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42",
-                "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"
-            ],
-            "version": "==0.6.1"
         },
         "oauthlib": {
             "hashes": [
@@ -253,14 +238,6 @@
             "index": "pypi",
             "version": "==2.8.5"
         },
-        "pycodestyle": {
-            "hashes": [
-                "sha256:514f76d918fcc0b55c6680472f0a37970994e07bbb80725808c17089be302068",
-                "sha256:c389c1d06bf7904078ca03399a4816f974a1d590090fecea0c63ec26ebaf1cef"
-            ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
-            "version": "==2.7.0"
-        },
         "pycparser": {
             "hashes": [
                 "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0",
@@ -268,14 +245,6 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.20"
-        },
-        "pyflakes": {
-            "hashes": [
-                "sha256:7893783d01b8a89811dd72d7dfd4d84ff098e5eed95cfa8905b22bbffe52efc3",
-                "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"
-            ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
-            "version": "==2.3.1"
         },
         "pyjwt": {
             "extras": [
