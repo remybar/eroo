@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "storages",
     # third-party apps
     "allauth",
     "allauth.account",
@@ -164,21 +165,50 @@ USE_TZ = True
 
 SITE_ID = 1
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+USE_S3 = env.bool("USE_S3", default=False)
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
-STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Static & Media files
 
-# Media files
+STATIC_LOCATION = 'static'
+PUBLIC_MEDIA_LOCATION = 'media'
+PRIVATE_MEDIA_LOCATION = 'private'
 
-MEDIA_ROOT = BASE_DIR / "media/"
-MEDIA_URL = "/media/"
+STATICFILES_DIRS = [str(BASE_DIR / "static")]
+
+if USE_S3:
+    # AWS settings
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+    # S3 static settings
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'website.storage_backends.StaticStorage'
+
+    # S3 public media settings
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'website.storage_backends.PublicMediaStorage'
+
+    # S3 private media settings
+    PRIVATE_FILE_STORAGE = 'website.storage_backends.PrivateMediaStorage'
+else:
+    # local static settings
+    STATIC_URL = "/static/"
+    STATIC_ROOT = str(BASE_DIR / "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+    # local public media settings
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = str(BASE_DIR / "mediafiles")
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
+    # local private media settings
+    PRIVATE_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 
 # local apps config
 
-WEBSITE_DATA_STORE = MEDIA_ROOT / "websites"
-SCRAPPED_DATA_STORE = MEDIA_ROOT / "scrapped_data"
 SCRAPPER_USE_FAKE_FILES = False

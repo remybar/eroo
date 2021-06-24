@@ -14,8 +14,8 @@
                 {% for photo in photos %}
                 <div class="column is-one-quarter-desktop is-one-third-tablet">
                     <figure class="image is-3by2">
-                        <a href='{{MEDIA_URL}}/{{key}}/photos/{{ photo.filename }}'>
-                            <img class="rental-photo" src="{{MEDIA_URL}}/{{key}}/photos/{{ photo.filename }}" alt="" />
+                        <a href='{{ photo.url }}'>
+                            <img class="rental-photo" src="{{ photo.url }}" alt="" />
                         </a>
                     </figure>
                     <p class="has-text-centered is-size-6 is-family-primary px-2 pt-1">{{photo.caption}}</p>

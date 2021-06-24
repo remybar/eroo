@@ -1,14 +1,15 @@
 Finalisation:
     - deploiement
+        - gestion des medias sur Amazon S3 => à tester!
+        - conserver les données scrappées sur Amazon S3 aussi ?
+
         - besoin d'une carte de crédit acceptée par Heroku pour:
             - gestion des emails avec SendGrid
             - gestion des logs/exceptions avec Sentry
             - configurer le domaine eroo.fr pour pointer vers la prod
             - configurer le domaine staging.eroo.fr pour pointer vers la staging
             - SSL & https
-        - gestion des medias sur Amazon S3 (ou autre)
         - test de déploiement avec poney-checkup
-        - conserver les données scrappées sur Amazon S3 aussi ?
 
     - dashboard
         - nettoyer les fichiers html et compléter les TODO (<head>)

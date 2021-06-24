@@ -12,6 +12,9 @@ gunicorn = "==19.9.0"
 django-allauth = "==0.43.0"
 shortuuid = "==1.0.1"
 airbnb = {editable = true, ref = "master", git = "git://github.com/remybar/airbnb-python"}
+django-storages = "1.11.1"
+boto3 = "*"
+pillow = "*"
 
 [dev-packages]
 black = "==21.6b0"

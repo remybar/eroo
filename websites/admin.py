@@ -7,7 +7,7 @@ from .models import (
     WebsiteLocation,
     Room,
     RoomDetail,
-    Testimonial,
+    Review,
     Equipment,
     EquipmentArea,
     Highlight,
@@ -25,7 +25,7 @@ admin.site.register(WebsitePhoto)
 admin.site.register(WebsiteLocation)
 admin.site.register(Room)
 admin.site.register(RoomDetail)
-admin.site.register(Testimonial)
+admin.site.register(Review)
 admin.site.register(Equipment)
 admin.site.register(EquipmentArea)
 admin.site.register(Highlight)

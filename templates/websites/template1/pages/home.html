@@ -9,7 +9,7 @@
 
             <!-- main image -->
             <div class="container.is-fullhd mx-2">
-                <div id="main-image" style="background-image: url('{{MEDIA_URL}}/{{key}}/photos/{{main_photo}}');" />
+                <div id="main-image" style="background-image: url('{{main_photo_url}}');" />
             </div>
 
             {% include "websites/template1/components/booking_bar.html" %}
@@ -65,28 +65,28 @@
                 </div>
             </section>
 
-            <section id="testimonials-section" class="pt-6">
+            <section id="reviews-section" class="pt-6">
                 <h2 class="title is-2 section-title has-text-centered">Ce qu'en pensent nos invités...</h2>
 
-                <!-- slideshow testimonials -->
-                <div class="testimonials-container mb-6">
-                    {% for testimonial in testimonials %}
+                <!-- slideshow reviews -->
+                <div class="reviews-container mb-6">
+                    {% for review in reviews %}
                     <div class="box p-6">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-128x128">
-                                    <a href='{{MEDIA_URL}}/{{key}}/reviewers/{{ testimonial.author_picture_filename }}'>
+                                    <a href='{{ review.picture_url }}'>
                                         <img class="is-rounded"
-                                            src="{{MEDIA_URL}}/{{key}}/reviewers/{{ testimonial.author_picture_filename }}"
+                                            src="{{ review.picture_url }}"
                                             alt="" />
                                     </a>
                                 </figure>
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <p class="is-size-5">{{testimonial.review}}</p>
-                                    <p class="is-size-6"><strong>{{testimonial.author_name}}</strong> ·
-                                        <em>{{testimonial.date}}</em>
+                                    <p class="is-size-5">{{review.review}}</p>
+                                    <p class="is-size-6"><strong>{{review.author_name}}</strong> ·
+                                        <em>{{review.date}}</em>
                                     </p>
                                 </div>
                             </div>

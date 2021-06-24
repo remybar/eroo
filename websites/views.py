@@ -3,12 +3,11 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 
-from .config import HOST_PICTURE_FILENAME
 from .models import (
     Website,
     WebsiteHost,
     WebsitePhoto,
-    Testimonial,
+    Review,
     Highlight,
     EquipmentArea,
     RoomDetail,
@@ -43,7 +42,7 @@ class WebsiteHomePage(LoginRequiredMixin, DetailView):
             context |= {
                 "GOOGLE_MAP_API_KEY": settings.GOOGLE_MAP_API_KEY,
                 "description": website.description,
-                "main_photo": WebsitePhoto.objects.filter(website=website).first().filename,
+                "main_photo_url": WebsitePhoto.objects.filter(website=website).first().url(),
                 "general_info": {
                     "bathroom_count": website.bathroom_count,
                     "bed_count": website.bed_count,
@@ -55,15 +54,15 @@ class WebsiteHomePage(LoginRequiredMixin, DetailView):
                     "latitude": website.location.latitude,
                     "longitude": website.location.longitude,
                 },
-                "testimonials": [
+                "reviews": [
                     {
                         "author_name": t.author_name,
-                        "author_picture_filename": t.author_picture_filename,
+                        "picture_url": t.picture_url(),
                         "review": t.review,
                         "date": t.date,
                         "language": t.language,
                     }
-                    for t in Testimonial.objects.filter(website=website)
+                    for t in Review.objects.filter(website=website)
                 ],
                 "highlights": [
                     {
@@ -90,7 +89,7 @@ class WebsitePhotosPage(LoginRequiredMixin, DetailView):
             context |= _build_context(website)
             context |= {
                 "photos": [
-                    {"filename": photo.filename, "caption": photo.caption}
+                    {"url": photo.url(), "caption": photo.caption}
                     for photo in WebsitePhoto.objects.filter(website=website)
                 ],
             }
@@ -156,7 +155,7 @@ class WebsiteContactPage(LoginRequiredMixin, DetailView):
             context |= {
                 "host": {
                     "name": host.name,
-                    "picture": HOST_PICTURE_FILENAME,
+                    "picture_url": host.picture_url(),
                     "description": host.description,
                     "languages": host.languages.replace(",", " · "),
                 }

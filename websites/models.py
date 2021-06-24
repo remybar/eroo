@@ -2,14 +2,17 @@ import json
 import logging
 from shortuuid import ShortUUID
 
-from allauth.utils import get_user_model
 from django.conf import settings
 from django.db import models
 from django.utils import html
 
+from allauth.utils import get_user_model
+
 from .utils import (
     get_filename_from_url,
     download_media_files,
+    download_media_file,
+    save_debug_data
 )
 
 logger = logging.getLogger(__name__)
@@ -35,6 +38,14 @@ HOST_LANGUAGES_LENGTH = 255
 HOST_PICTURE_FILENAME = "host.jpg"
 
 EXPECTED_DATA_KEYS = ["name", "description", "photos"]
+
+
+def _get_photo_dir_path(instance, filename):
+    return f"websites/{instance.website.key}/photos/{filename}"
+
+
+def _get_review_dir_path(instance, filename):
+    return f"websites/{instance.website.key}/reviews/{filename}"
 
 
 class WebsiteLocation(models.Model):
@@ -83,42 +94,32 @@ class Website(models.Model):
             [f"<p>{html.escape(line)}</p>" if line else "<br />" for line in desc_lines]
         )
 
-    def _create_photos(self, url, photos_data):
-        photos_infos = [
-            (
-                photo["url"],
-                get_filename_from_url(photo["url"]),
-                photo["caption"],
+    def _create_photos(self, photos):
+        photos_infos = []
+        for p in photos:
+            photo = WebsitePhoto(caption=p["caption"], website=self)
+            photo.save()
+            photos_infos.append((p["url"], get_filename_from_url(p["url"]), photo.image, photo))
+        download_media_files(photos_infos)
+
+    def _create_reviews(self, reviews):
+        review_infos = []
+        for r in reviews:
+            review = Review(
+                author_name=r["author_name"],
+                review=r["review"],
+                date=r["date"],
+                language=r["language"],
+                website=self
             )
-            for photo in photos_data
-        ]
-        download_media_files(
-            settings.WEBSITE_DATA_STORE / self.key / "photos",
-            [(url, filename) for url, filename, _ in photos_infos],
-        )
-
-        for url, filename, caption in photos_infos:
-            WebsitePhoto(
-                url=url, filename=filename, caption=caption, website=self
-            ).save()
-
-    def _create_testimonials(self, testimonials_data):
-        review_infos = [
-            (t["author_picture_url"], get_filename_from_url(t["author_picture_url"]))
-            for t in testimonials_data
-        ]
-        download_media_files(settings.WEBSITE_DATA_STORE / self.key / "reviewers", review_infos)
-
-        for t in testimonials_data:
-            Testimonial(
-                author_name=t["author_name"],
-                author_picture_url=t["author_picture_url"],
-                author_picture_filename=get_filename_from_url(t["author_picture_url"]),
-                review=t["review"],
-                date=t["date"],
-                language=t["language"],
-                website=self,
-            ).save()
+            review.save()
+            review_infos.append((
+                r["author_picture_url"],
+                get_filename_from_url(r["author_picture_url"]),
+                review.author_picture,
+                review
+            ))
+        download_media_files(review_infos)
 
     def _create_location(location_data):
         location = WebsiteLocation(
@@ -130,16 +131,15 @@ class Website(models.Model):
         return location
 
     def _create_host(self, host_data):
-        download_media_files(
-            settings.WEBSITE_DATA_STORE / self.key,
-            [(host_data["picture_url"], HOST_PICTURE_FILENAME)],
-        )
-        WebsiteHost(
+        host = WebsiteHost(
             name=host_data["name"],
             description=host_data["description"],
             languages=",".join(host_data["languages"]),
             website=self,
-        ).save()
+        )
+        host.save()
+        logger.info("VALUE OF USE_S3: %s", settings.USE_S3)
+        download_media_file((host_data["picture_url"], HOST_PICTURE_FILENAME, host.picture, host))
 
     def _create_equipments(self, equipment_data):
         # create equipments
@@ -196,16 +196,15 @@ class Website(models.Model):
         )
         website.save()
         website._create_host(data["host"])
-        website._create_photos(url, data["photos"])
-        website._create_testimonials(data["testimonials"])
+        website._create_photos(data["photos"])
+        website._create_reviews(data["reviews"])
         website._create_equipments(data["equipments"])
         website._create_highlights(data["highlights"])
         website._create_rules(data["house_rules"])
         website._create_rooms(data["rooms"])
 
         # for debugging purpose, store data received from the scrapper
-        with open(settings.WEBSITE_DATA_STORE / website.key / "api_data.json", "w") as f:
-            json.dump(data, f)
+        save_debug_data(f"api/{website.key}/api_data.json", data)
 
         return website
 
@@ -215,27 +214,30 @@ class WebsiteHost(models.Model):
     description = models.TextField()
     languages = models.CharField(max_length=HOST_LANGUAGES_LENGTH)
     website = models.ForeignKey(Website, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to=_get_photo_dir_path)
 
     def __str__(self):
         return self.name
 
+    def picture_url(self):
+        return self.picture.url
+
 
 class WebsitePhoto(models.Model):
-    url = models.URLField()
-    filename = models.CharField(max_length=PHOTO_FILENAME_LENGTH)
+    image = models.ImageField(upload_to=_get_photo_dir_path)
     website = models.ForeignKey(Website, on_delete=models.CASCADE)
     caption = models.CharField(max_length=CAPTION_LENGTH)
 
     def __str__(self):
-        return self.filename
+        return self.image.name
+
+    def url(self):
+        return self.image.url
 
 
-class Testimonial(models.Model):
+class Review(models.Model):
     author_name = models.CharField(max_length=AUTHOR_NAME_LENGTH)
-    author_picture_url = models.URLField()
-    author_picture_filename = models.CharField(
-        max_length=AUTHOR_PICTURE_FILENAME_LENGTH
-    )
+    author_picture = models.ImageField(upload_to=_get_review_dir_path)
     review = models.TextField()
     date = models.DateField()
     language = models.CharField(max_length=LANGUAGE_LENGTH)
@@ -243,6 +245,9 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.author_name} ({self.date})"
+
+    def picture_url(self):
+        return self.author_picture.url
 
 
 class Equipment(models.Model):

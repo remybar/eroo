@@ -3,7 +3,9 @@ import json
 
 from django.conf import settings
 
-TESTIMONIALS_COUNT = 5
+from websites.utils import save_debug_data
+
+REVIEWS_COUNT = 5
 
 # ---------------------------------------------------------------
 # AIRBNB provider
@@ -33,13 +35,8 @@ def _scrap_airbnb_data(id):
         reviews = api.get_reviews(id)
 
         # backup received data for debugging purpose
-        req_path = settings.SCRAPPED_DATA_STORE / str(id)
-        req_path.mkdir(parents=True, exist_ok=True)
-
-        with open(req_path / "details.json", "w") as f:
-            json.dump(details, f)
-        with open(req_path / "reviews.json", "w") as f:
-            json.dump(reviews, f)
+        save_debug_data(f"scrapper/{id}/details.json", details)
+        save_debug_data(f"scrapper/{id}/reviews.json", reviews)
 
         return (details, reviews)
     except Exception:
@@ -114,7 +111,7 @@ def _get_airbnb_equipments(data):
     }
 
 
-def _get_airbnb_testimonials(data):
+def _get_airbnb_reviews(data):
     def _to_date(d):
         return d.split("T")[0]
 
@@ -132,7 +129,7 @@ def _get_airbnb_testimonials(data):
         ],
         key=lambda r: r["date"],
         reverse=True,
-    )[:TESTIMONIALS_COUNT]
+    )[:REVIEWS_COUNT]
 
 
 def _get_airbnb_prices(data):
@@ -180,7 +177,7 @@ def _convert_airbnb_data(data):
             "photos": _get_airbnb_photos(details),
             "description": _get_airbnb_description(details),
             "equipments": _get_airbnb_equipments(details),
-            "testimonials": _get_airbnb_testimonials(reviews),
+            "reviews": _get_airbnb_reviews(reviews),
             "prices": _get_airbnb_prices(details),
             "highlights": _get_airbnb_highlights(details),
             "house_rules": _get_airbnb_house_rules(details),

@@ -1,9 +1,14 @@
 import logging
 import multiprocessing
-from functools import partial
+import json
 import re
 import requests
+from pathlib import Path
 
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
+
+from .storage_backends import private_storage
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +33,7 @@ def partition_list(lst, n):
     for part_size in [
         len(lst) // n + min(max((len(lst) % n - i), 0), 1) for i in range(n)
     ]:
-        partitions.append(lst[pos : pos + part_size])
+        partitions.append(lst[pos: pos + part_size])
         pos += part_size
     return partitions
 
@@ -67,34 +72,49 @@ def get_filename_from_url(url):
     return url.split("?")[0].split("/")[-1]
 
 
-def download_media_file(file_info, root_dir):
+def get_extension_from_url(url):
     """
-    download a media file into the folder `root_dir`
+    extract the filename extension from an URL
     """
-    url, filename = file_info
-    filepath = root_dir / filename
+    filename = get_filename_from_url(url)
+    return Path(filename).suffix
 
+
+def download_media_file(data):
+    """
+    download a media file from `url` and store it in the `media_field` of
+    the `parent`.
+    """
+    url, filename, media_field, parent = data
     try:
         response = requests.get(url)
         if response.status_code != 200:
             logger.warning("Unable to download the media file at '%s'", url)
             return
-
-        if not filepath.parent.exists():
-            filepath.parent.mkdir(parents=True)
-
-        with open(filepath, "wb") as f:
-            f.write(response.content)
     except Exception as e:
         logger.error("Unable to download the media file (error: %s)", str(e))
 
+    media_file = NamedTemporaryFile(delete=True)
+    media_file.write(response.content)
+    media_file.flush()
 
-def download_media_files(root_dir, files_info):
+    media_field.save(filename, File(media_file))
+    parent.save()
+
+
+def download_media_files(files_info):
     """
-    download all media files from `files_info` into the folder `root_dir`
+    download all media files from `files_info`.
     """
     pool = multiprocessing.Pool()
-    download_func = partial(download_media_file, root_dir=root_dir)
-    pool.map(download_func, files_info)
+    pool.map(download_media_file, files_info)
     pool.close()
     pool.join()
+
+
+def save_debug_data(filename, data):
+    """ save debug data in a `filename` in the private media storage """
+    file = NamedTemporaryFile(mode="w+", delete=True)
+    json.dump(data, file, indent=2)
+    file.flush()
+    private_storage.save(f"private/debug/{filename}", File(file))
