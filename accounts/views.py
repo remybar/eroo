@@ -15,5 +15,5 @@ class DeleteAccountView(LoginRequiredMixin, TemplateView):
         if account is not None:
             account.delete()
             logout(request)
-            return HttpResponseRedirect("/")  # TODO : use a const/view name ?
+            return HttpResponseRedirect("/")
         return render(request, self.template_name)

@@ -1,4 +1,5 @@
 Finalisation:
+    - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
     - deploiement
         - Amazon S3 => à tester!
 
@@ -10,34 +11,36 @@ Finalisation:
             - SSL & https
         - test de déploiement avec poney-checkup
 
-    - dashboard
-        - nettoyer les fichiers html et compléter les TODO (<head>)
-        - nettoyer le repo en supprimant tout ce qui ne sert à rien (js, images, ...)
-
-    - template 1
-        - rendu du footer dans le template website
-
     - sécurité
+        - manage.py check --deploy
         - django-honeypot
         - django-2fa (pour l'admin)
 
+    - tests
+        - ajouter des tests unitaires pour la CI
 
 Questions:
-    - comment vais-je gérer/tester les mises à jour ? (migrations de db, ...)
+    - comment gérer proprement les migrations avec Django ?
+        - comment les tester avant de les appliquer réellement ?
+        - comment revenir en arrière en cas d'erreur ?
+    - quelle procédure pour mettre à jour la production ?
+        - faut-il couper le service pendant le déploiement ?
+        - faut-il prévoir une rotation de 2 serveurs pour switcher sur la nouvelle prod une fois vérifiée que tout va bien ?
     - comment récolter du feedback utilisateur ?
-    - quel espace disque ?
+    - quel espace disque par utilisateur ? => calcul du coût d'un utilisateur
+    - quelle stratégie SEO ?
 
-Marketing
-    - valider le problème via Facebook groups
-    - mettre en place un lieu d'échange/de feedback
-    - quels keywords dans <head> ?
+Futures améliorations de l'infra
+    - utiliser un CDN pour les assets statiques (amazon S3 ? cdn cloudfare ?)
+    - utiliser celery pour gérer la génération du site web ?
+    - penser à utiliser un cache
 
-
-
-
-
-- futur
+Futures features
+    - réservation
+    - paiement
+    - customisation du site
+    - customisation des textes
+    - SEO
+    - partage pub (facebook, instagram, ...)
     - avoir la possibilité de proposer des features (boite à idée) + envoi d'un mail aux gens qui ont proposé l'idée quand elle est implémentée.
-    - possibilité d'éditer les données avant génération ?
-    - améliorer la sécurité du panel d'admin
-        https://hackernoon.com/5-ways-to-make-django-admin-safer-eb7753698ac8
+    - bon panel d'admin pour assurer un support efficace
