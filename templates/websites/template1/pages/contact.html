@@ -32,6 +32,22 @@
 
             <h5 class="title is-5 pt-6">Nous contacter</h5>
 
+
+            <!-- "to-be-done" modal -->
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Contact</p>
+                        <button id="btn-modal-close" class="delete" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <p> Cette fonctionnalité n'est pas encore disponible. </p>
+                    </section>
+                </div>
+            </div>
+
+            <!-- contact form -->
             <div class="columns">
                 <div class="form column is-half is-offset-one-quarter">
                     <div class="field">
@@ -69,7 +85,7 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                            <button class="button is-primary">
+                            <button id="btn-modal" class="button is-primary">
                                 Envoyer
                             </button>
                         </div>
@@ -79,6 +95,7 @@
         </main>
     </div>
     {% include "websites/template1/components/footer.html" %}
+    {% include "websites/template1/components/scripts.html" %}
 </body>
 
 </html>

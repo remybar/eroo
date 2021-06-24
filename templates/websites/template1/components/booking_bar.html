@@ -1,3 +1,18 @@
+<!-- "to-be-done" modal -->
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Réservation</p>
+            <button id="btn-modal-close" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <p> Cette fonctionnalité n'est pas encore disponible. </p>
+        </section>
+    </div>
+</div>
+
+<!-- booking bar -->
 <div class="booking-bar-container p-4">
     <div id="booking-bar" class="field has-addons">
         <!-- start date -->
@@ -32,7 +47,7 @@
             </span>
         </div>
         <div class="control is-expanded">
-            <div class="button is-primary is-large">Réserver</div>
+            <button id="btn-modal" type="button" data-target="tbd-modal" class="button is-primary is-large">Réserver</button>
         </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 Finalisation:
     - deploiement
-        - gestion des medias sur Amazon S3 => à tester!
-        - conserver les données scrappées sur Amazon S3 aussi ?
+        - Amazon S3 => à tester!
 
         - besoin d'une carte de crédit acceptée par Heroku pour:
             - gestion des emails avec SendGrid
@@ -13,12 +12,10 @@ Finalisation:
 
     - dashboard
         - nettoyer les fichiers html et compléter les TODO (<head>)
-        - quels keywords dans <head> ?
         - nettoyer le repo en supprimant tout ce qui ne sert à rien (js, images, ...)
 
     - template 1
         - rendu du footer dans le template website
-        - booking bar avec calendriers + pop-up "to be implemented"
 
     - sécurité
         - django-honeypot
@@ -33,6 +30,7 @@ Questions:
 Marketing
     - valider le problème via Facebook groups
     - mettre en place un lieu d'échange/de feedback
+    - quels keywords dans <head> ?
 
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% include "websites/template1/components/head.html" with map_enabled=True %}
-
+{% load static %}
 <body>
     <div class='body-content'>
         <header>
@@ -101,7 +101,7 @@
         </main>
     </div>
     {% include "websites/template1/components/footer.html" %}
-    {% include "websites/map.html" %}
+    {% include "websites/template1/components/scripts.html" with map_enabled=True %}
 </body>
 
 </html>
