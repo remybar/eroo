@@ -52,8 +52,6 @@ if not IS_ENV_DEV:
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-
-
 # ------------ Account/Allauth configurations ------------
 
 LOGIN_REDIRECT_URL = "dashboard"
@@ -202,14 +200,14 @@ if USE_S3:
 
     # S3 static settings
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'website.storage_backends.StaticStorage'
+    STATICFILES_STORAGE = 'websites.storage_backends.StaticStorage'
 
     # S3 public media settings
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'website.storage_backends.PublicMediaStorage'
+    DEFAULT_FILE_STORAGE = 'websites.storage_backends.PublicMediaStorage'
 
     # S3 private media settings
-    PRIVATE_FILE_STORAGE = 'website.storage_backends.PrivateMediaStorage'
+    PRIVATE_FILE_STORAGE = 'websites.storage_backends.PrivateMediaStorage'
 else:
     # local static settings
     STATIC_URL = "/static/"
