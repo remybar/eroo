@@ -1,28 +1,34 @@
 Finalisation:
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
+    - ajouter des tests unitaires pour la CI
+
     - deploiement
         - Amazon S3 => à tester!
+            https://devcenter.heroku.com/articles/s3
 
         - besoin d'une carte de crédit acceptée par Heroku pour:
             - gestion des emails avec SendGrid
+                https://devcenter.heroku.com/articles/sendgrid
+                https://docs.sendgrid.com/for-developers/sending-email/django
+
             - gestion des logs/exceptions avec Sentry
-            - configurer le domaine eroo.fr pour pointer vers la prod
-            - configurer le domaine staging.eroo.fr pour pointer vers la staging
+                https://devcenter.heroku.com/articles/sentry#integrating-with-python-or-django
+
+            - configurer le domaine eroo.fr (prod) et staging.eroo.fr (staging)
             - SSL & https
+
         - test de déploiement avec poney-checkup
 
-    - sécurité
-        - manage.py check --deploy
-        - django-honeypot
-        - django-2fa (pour l'admin)
-
-    - tests
-        - ajouter des tests unitaires pour la CI
 
 Questions:
     - comment gérer proprement les migrations avec Django ?
         - comment les tester avant de les appliquer réellement ?
         - comment revenir en arrière en cas d'erreur ?
+
+        https://sobolevn.me/2019/10/testing-django-migrations
+        https://github.com/wemake-services/django-test-migrations#credits
+
+
     - quelle procédure pour mettre à jour la production ?
         - faut-il couper le service pendant le déploiement ?
         - faut-il prévoir une rotation de 2 serveurs pour switcher sur la nouvelle prod une fois vérifiée que tout va bien ?

@@ -19,9 +19,17 @@ IS_ENV_DEV = (ENVIRONMENT == "development")
 DEBUG = IS_ENV_DEV
 
 USE_S3 = env.bool("USE_S3", default=False)
-USE_SENDGRID = env.bool("USE_SENDGRID", default=False)
+USE_MAIL_SERVICE = env.bool("USE_MAIL_SERVICE", default=False)
 
 SITE_ID = 1
+
+# ------------ logging/exception handling configurations ------------
+
+if not IS_ENV_DEV:
+    SENTRY_DSN = env.str("SENTRY_DSN")
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
 
 # ------------ Keys configuration ------------
 
@@ -44,6 +52,8 @@ if not IS_ENV_DEV:
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+
+
 # ------------ Account/Allauth configurations ------------
 
 LOGIN_REDIRECT_URL = "dashboard"
@@ -65,12 +75,11 @@ if not IS_ENV_DEV:
 
 # ------------ Mail configuration ------------
 
-if USE_SENDGRID:
-    SENDGRID_API_KEY = env.str('SENDGRID_API_KEY')
-    EMAIL_HOST = 'smtp.sendgrid.net'
-    EMAIL_HOST_USER = 'apikey'
-    EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-    EMAIL_PORT = 587
+if USE_MAIL_SERVICE:
+    EMAIL_HOST = env.str('MAILGUN_SMTP_SERVER')
+    EMAIL_HOST_USER = env.str('MAILGUN_SMTP_LOGIN')
+    EMAIL_HOST_PASSWORD = env.str('MAILGUN_SMTP_PASSWORD')
+    EMAIL_PORT = env.str('MAILGUN_SMTP_PORT')
     EMAIL_USE_TLS = True
 else:
     # use mailhog

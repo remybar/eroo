@@ -13,6 +13,7 @@ test:
     - pip install pipenv
     - pipenv install --ignore-pipfile
     - pipenv run python manage.py migrate
+    - pipenv run python manage.py check --deploy
     - pipenv run python manage.py test
 
 # TODO: add more high level tests in the future
