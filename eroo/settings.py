@@ -11,21 +11,28 @@ env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Global configuration
+# ------------ Global configuration ------------
 
 ENVIRONMENT = env.str("ENVIRONMENT", default="development")
-DEBUG = (ENVIRONMENT == "development")
+IS_ENV_DEV = (ENVIRONMENT == "development")
 
-# Keys configuration
+DEBUG = IS_ENV_DEV
+
+USE_S3 = env.bool("USE_S3", default=False)
+USE_SENDGRID = env.bool("USE_SENDGRID", default=False)
+
+SITE_ID = 1
+
+# ------------ Keys configuration ------------
 
 SECRET_KEY = env.str("SECRET_KEY")
 GOOGLE_MAP_API_KEY = env.str("GOOGLE_MAP_API_KEY")
 
-# Safety configuration
+# ------------ Safety configuration ------------
 
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
-if ENVIRONMENT == "production":
+if not IS_ENV_DEV:
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = "DENY"
     SECURE_SSL_REDIRECT = True
@@ -37,7 +44,7 @@ if ENVIRONMENT == "production":
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Account/Allauth configurations
+# ------------ Account/Allauth configurations ------------
 
 LOGIN_REDIRECT_URL = "dashboard"
 
@@ -51,19 +58,27 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
-# TODO: ACCOUNT_DEFAULT_HTTP_PROTOCOL to use with https
+AUTH_USER_MODEL = "accounts.CustomUser"
 
-# Mail configuration
-if ENVIRONMENT == "development":
+if not IS_ENV_DEV:
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
+# ------------ Mail configuration ------------
+
+if USE_SENDGRID:
+    SENDGRID_API_KEY = env.str('SENDGRID_API_KEY')
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = 'apikey'
+    EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+else:
     # use mailhog
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = "127.0.0.1"
     EMAIL_PORT = 1025
-else:
-    # TODO: use an external mail tool
-    pass
 
-# Application definition
+# ------------ Application definition ------------
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -84,7 +99,6 @@ INSTALLED_APPS = [
     "scrapper",
     "websites",
 ]
-AUTH_USER_MODEL = "accounts.CustomUser"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -126,13 +140,11 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = "eroo.wsgi.application"
 
-
-# Database
+# ------------ Database ------------
 
 DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+# ------------ Password validation ------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -150,8 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
+# ------------ i18n ------------
 
 LANGUAGE_CODE = "fr-fr"
 
@@ -163,11 +174,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SITE_ID = 1
-
-USE_S3 = env.bool("USE_S3", default=False)
-
-# Static & Media files
+# ------------ Static & Media files ------------
 
 STATIC_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
@@ -207,8 +214,3 @@ else:
 
     # local private media settings
     PRIVATE_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
-
-# local apps config
-
-SCRAPPER_USE_FAKE_FILES = False

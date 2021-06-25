@@ -7,13 +7,15 @@ from websites.utils import save_debug_data
 
 REVIEWS_COUNT = 5
 
+SCRAPPER_USE_FAKE_FILES = False
+
 # ---------------------------------------------------------------
 # AIRBNB provider
 # ---------------------------------------------------------------
 
 
 def _scrap_airbnb_data(id):
-    if settings.SCRAPPER_USE_FAKE_FILES:
+    if SCRAPPER_USE_FAKE_FILES:
         fake_data_path = settings.BASE_DIR / "scrapper" / "fake_data"
         with open(fake_data_path / "details.json") as f:
             details = json.load(f)
