@@ -10,7 +10,7 @@ from django.core.files.temp import NamedTemporaryFile
 
 from .storage_backends import private_storage
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger("utils")
 
 
 def is_ajax(request):
@@ -89,10 +89,10 @@ def download_media_file(data):
     try:
         response = requests.get(url)
         if response.status_code != 200:
-            logger.warning("Unable to download the media file at '%s'", url)
+            _logger.warning("Unable to download the media file at '%s'", url)
             return
     except Exception as e:
-        logger.error("Unable to download the media file (error: %s)", str(e))
+        _logger.error("Unable to download the media file (error: %s)", str(e))
 
     media_file = NamedTemporaryFile(delete=True)
     media_file.write(response.content)
@@ -114,6 +114,7 @@ def download_media_files(files_info):
 
 def save_debug_data(filename, data):
     """ save debug data in a `filename` in the private media storage """
+    _logger.info("save debug data {'filename': %s}", filename)
     file = NamedTemporaryFile(mode="w+", delete=True)
     json.dump(data, file, indent=2)
     file.flush()

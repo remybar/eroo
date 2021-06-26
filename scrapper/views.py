@@ -34,11 +34,8 @@ def _scrap_airbnb_data(id):
             country="fr",
             language="fr-fr",
         )
-        _logger.info("api instanciated!")
         details = api.get_listing_details(id)
-        _logger.info("details retrieved!")
         reviews = api.get_reviews(id)
-        _logger.info("review retrieved!")
 
         # backup received data for debugging purpose
         if settings.USE_DEBUG_DATA_STORAGE:

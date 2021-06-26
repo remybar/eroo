@@ -71,6 +71,10 @@ LOGGING = {
         'websites': {
             'handlers': ['console'],
             'level': 'INFO',
+        },
+        'utils': {
+            'handlers': ['console'],
+            'level': 'INFO',
         }
     }
 }
