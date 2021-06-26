@@ -1,4 +1,4 @@
-import requests
+import logging
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
@@ -13,11 +13,16 @@ from websites.models import Website
 from scrapper.views import scrap_airbnb_data
 
 
+_logger = logging.getLogger('websites')
+
+
 def _user_error(msg):
+    _logger.error("user error {'msg': %s}", msg)
     return HttpResponse(reason=msg, status=400)
 
 
 def _internal_error(msg):
+    _logger.error("internal error {'msg': %s}", msg)
     return HttpResponse(reason=msg, status=500)
 
 
@@ -28,6 +33,8 @@ def api_website_create(request):
 
     if not request.POST["rental_url"]:
         return _internal_error("URL de l'annonce non fournie")
+
+    _logger.info("website create {'url': %s}", request.POST["rental_url"])
 
     rental_base_url, airbnb_id = explode_airbnb_url(request.POST["rental_url"])
     if not rental_base_url or not airbnb_id:
@@ -60,6 +67,8 @@ def api_website_create(request):
 
 @login_required
 def api_website_delete(request, key):
+    _logger.info("delete website {'id': %s}", key)
+
     if not is_ajax(request):
         return _internal_error("mauvaise requête")
 

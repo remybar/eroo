@@ -1,13 +1,15 @@
 import airbnb
 import json
+import logging
 
 from django.conf import settings
 
 from websites.utils import save_debug_data
 
 REVIEWS_COUNT = 5
-
 SCRAPPER_USE_FAKE_FILES = False
+
+_logger = logging.getLogger('scrapper')
 
 # ---------------------------------------------------------------
 # AIRBNB provider
@@ -41,7 +43,8 @@ def _scrap_airbnb_data(id):
         save_debug_data(f"scrapper/{id}/reviews.json", reviews)
 
         return (details, reviews)
-    except Exception:
+    except Exception as e:
+        _logger.error("Unable to scrap data {'exception': %s}", str(e))
         pass
 
     return False
@@ -185,11 +188,13 @@ def _convert_airbnb_data(data):
             "house_rules": _get_airbnb_house_rules(details),
             "rooms": _get_airbnb_rooms(details),
         }
-    except Exception:
+    except Exception as e:
+        _logger.error("Unable to convert scrapped data {'exception': %s}", str(e))
         return False
 
 
 def scrap_airbnb_data(airbnb_id):
+    _logger.info("scrap airbnb data {'id': %s}", airbnb_id)
     airbnb_data = _scrap_airbnb_data(airbnb_id)
     if not airbnb_data:
         return False

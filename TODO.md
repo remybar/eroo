@@ -1,13 +1,16 @@
 Finalisation:
-    - ajouter un domaine à mailgun pour voir mg.eroo.fr
+    - résoudre error unicode
+    - ajouter logging propre sur Heroku pour voir un peu plus ce qu'il se passe
+    - ajuster les droits sur amazon S3
     - gérer eroo.fr => app prod
-
+    - Amazon S3 => à tester pour media files
+    - ajouter de pages correctes pour les erreurs 404, 500, ...
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
-    - ajouter des tests unitaires pour la CI
 
-    - deploiement
-        - Amazon S3 => à tester pour media files
-        - test de déploiement avec poney-checkup
+    - ajouter un domaine à mailgun pour voir mg.eroo.fr
+    - mettre en place un coffre-fort de mots de passe pro
+    - ajouter des tests unitaires pour la CI
+    - comprendre le fonctionnement des domaines, DNS, etc ...
 
 
 Questions:
@@ -27,7 +30,6 @@ Questions:
     - quelle stratégie SEO ?
 
 Futures améliorations de l'infra
-    - utiliser un CDN pour les assets statiques (amazon S3 ? cdn cloudfare ?)
     - utiliser celery pour gérer la génération du site web ?
     - penser à utiliser un cache
 
