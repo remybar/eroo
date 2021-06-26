@@ -7,7 +7,6 @@ from django.conf import settings
 from websites.utils import save_debug_data
 
 REVIEWS_COUNT = 5
-SCRAPPER_USE_FAKE_FILES = False
 
 _logger = logging.getLogger('scrapper')
 
@@ -17,7 +16,7 @@ _logger = logging.getLogger('scrapper')
 
 
 def _scrap_airbnb_data(id):
-    if SCRAPPER_USE_FAKE_FILES:
+    if settings.SCRAPPER_USE_FAKE_FILES:
         fake_data_path = settings.BASE_DIR / "scrapper" / "fake_data"
         with open(fake_data_path / "details.json") as f:
             details = json.load(f)
@@ -29,18 +28,22 @@ def _scrap_airbnb_data(id):
         # TODO: update the API token regularly ?
         api = airbnb.Api(
             randomize=True,
-            api_key="d306zoyjsyarp7ifhu67rjxn52tv0t20",
+            api_key=settings.AIRBNB_API_KEY,
             currency="EUR",
             locale="fr",
             country="fr",
             language="fr-fr",
         )
+        _logger.info("api instanciated!")
         details = api.get_listing_details(id)
+        _logger.info("details retrieved!")
         reviews = api.get_reviews(id)
+        _logger.info("review retrieved!")
 
         # backup received data for debugging purpose
-        save_debug_data(f"scrapper/{id}/details.json", details)
-        save_debug_data(f"scrapper/{id}/reviews.json", reviews)
+        if settings.USE_DEBUG_DATA_STORAGE:
+            save_debug_data(f"scrapper/{id}/details.json", details)
+            save_debug_data(f"scrapper/{id}/reviews.json", reviews)
 
         return (details, reviews)
     except Exception as e:

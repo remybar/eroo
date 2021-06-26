@@ -21,7 +21,14 @@ DEBUG = IS_ENV_DEV
 USE_S3 = env.bool("USE_S3", default=False)
 USE_MAIL_SERVICE = env.bool("USE_MAIL_SERVICE", default=False)
 
+USE_DEBUG_DATA_STORAGE = env.bool("USE_DEBUG_DATA_STORAGE", default=False)
+
 SITE_ID = 1
+
+# ------------ scrapper configurations ------------
+
+SCRAPPER_USE_FAKE_FILES = env.bool("SCRAPPER_USE_FAKE_FILES", default=False)
+AIRBNB_API_KEY = env.str("AIRBNB_API_KEY")
 
 # ------------ logging/exception handling configurations ------------
 

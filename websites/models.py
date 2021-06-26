@@ -1,4 +1,3 @@
-import json
 import logging
 from shortuuid import ShortUUID
 
@@ -204,7 +203,8 @@ class Website(models.Model):
         website._create_rooms(data["rooms"])
 
         # for debugging purpose, store data received from the scrapper
-        save_debug_data(f"api/{website.key}/api_data.json", data)
+        if settings.USE_DEBUG_DATA_STORAGE:
+            save_debug_data(f"api/{website.key}/api_data.json", data)
 
         return website
 
