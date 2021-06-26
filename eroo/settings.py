@@ -38,7 +38,7 @@ GOOGLE_MAP_API_KEY = env.str("GOOGLE_MAP_API_KEY")
 
 # ------------ Safety configuration ------------
 
-ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".eroo.fr", ".herokuapp.com", "localhost", "127.0.0.1"]
 
 if not IS_ENV_DEV:
     SECURE_BROWSER_XSS_FILTER = True
@@ -79,6 +79,7 @@ if USE_MAIL_SERVICE:
     EMAIL_HOST_PASSWORD = env.str('MAILGUN_SMTP_PASSWORD')
     EMAIL_PORT = env.str('MAILGUN_SMTP_PORT')
     EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = 'contact@eroo.fr'
 else:
     # use mailhog
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

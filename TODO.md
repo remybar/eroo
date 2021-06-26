@@ -3,17 +3,10 @@ Finalisation:
     - ajouter des tests unitaires pour la CI
 
     - deploiement
-        - Amazon S3 => à tester!
-            https://devcenter.heroku.com/articles/s3
+        - Amazon S3 => à tester pour media files
 
         - besoin d'une carte de crédit acceptée par Heroku pour:
-            - gestion des emails avec SendGrid
-                https://devcenter.heroku.com/articles/sendgrid
-                https://docs.sendgrid.com/for-developers/sending-email/django
-
-            - gestion des logs/exceptions avec Sentry
-                https://devcenter.heroku.com/articles/sentry#integrating-with-python-or-django
-
+            - gestion des emails avec MailGun
             - configurer le domaine eroo.fr (prod) et staging.eroo.fr (staging)
             - SSL & https
 
