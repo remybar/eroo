@@ -1,15 +1,12 @@
 Finalisation:
+    - ajouter un domaine à mailgun pour voir mg.eroo.fr
+    - gérer eroo.fr => app prod
+
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
     - ajouter des tests unitaires pour la CI
 
     - deploiement
         - Amazon S3 => à tester pour media files
-
-        - besoin d'une carte de crédit acceptée par Heroku pour:
-            - gestion des emails avec MailGun
-            - configurer le domaine eroo.fr (prod) et staging.eroo.fr (staging)
-            - SSL & https
-
         - test de déploiement avec poney-checkup
 
 
