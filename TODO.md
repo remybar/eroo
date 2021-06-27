@@ -1,4 +1,5 @@
 Finalisation:
+    - améliorer CSS email
     - résoudre error unicode
     - ajouter logging propre sur Heroku pour voir un peu plus ce qu'il se passe
     - ajuster les droits sur amazon S3

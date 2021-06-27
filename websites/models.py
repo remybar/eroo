@@ -1,15 +1,16 @@
 import logging
+
 from shortuuid import ShortUUID
 
 from django.conf import settings
 from django.db import models
 from django.utils import html
+from django.core.files import File
 
 from allauth.utils import get_user_model
 
 from .utils import (
     get_filename_from_url,
-    download_media_files,
     download_media_file,
     save_debug_data
 )
@@ -94,31 +95,30 @@ class Website(models.Model):
         )
 
     def _create_photos(self, photos):
-        photos_infos = []
         for p in photos:
-            photo = WebsitePhoto(caption=p["caption"], website=self)
-            photo.save()
-            photos_infos.append((p["url"], get_filename_from_url(p["url"]), photo.image, photo))
-        download_media_files(photos_infos)
+            filename = get_filename_from_url(p["url"])
+            media_file = download_media_file(p["url"], filename)
+            if media_file:
+                photo = WebsitePhoto(caption=p["caption"], website=self)
+                photo.save()
+                photo.image.save(filename, File(media_file))
+                photo.save()
 
     def _create_reviews(self, reviews):
-        review_infos = []
         for r in reviews:
-            review = Review(
-                author_name=r["author_name"],
-                review=r["review"],
-                date=r["date"],
-                language=r["language"],
-                website=self
-            )
-            review.save()
-            review_infos.append((
-                r["author_picture_url"],
-                get_filename_from_url(r["author_picture_url"]),
-                review.author_picture,
-                review
-            ))
-        download_media_files(review_infos)
+            filename = get_filename_from_url(r["author_picture_url"])
+            media_file = download_media_file(r["author_picture_url"], filename)
+            if media_file:
+                review = Review(
+                    author_name=r["author_name"],
+                    review=r["review"],
+                    date=r["date"],
+                    language=r["language"],
+                    website=self
+                )
+                review.save()
+                review.author_picture.save(filename, File(media_file))
+                review.save()
 
     def _create_location(location_data):
         location = WebsiteLocation(
@@ -130,15 +130,16 @@ class Website(models.Model):
         return location
 
     def _create_host(self, host_data):
-        host = WebsiteHost(
-            name=host_data["name"],
-            description=host_data["description"],
-            languages=",".join(host_data["languages"]),
-            website=self,
-        )
-        host.save()
-        logger.info("VALUE OF USE_S3: %s", settings.USE_S3)
-        download_media_file((host_data["picture_url"], HOST_PICTURE_FILENAME, host.picture, host))
+        media_file = download_media_file(host_data["picture_url"], HOST_PICTURE_FILENAME)
+        if media_file:
+            host = WebsiteHost(
+                name=host_data["name"],
+                description=host_data["description"],
+                languages=",".join(host_data["languages"]),
+                website=self,
+            )
+            host.save()
+            host.picture.save(HOST_PICTURE_FILENAME, File(media_file))
 
     def _create_equipments(self, equipment_data):
         # create equipments

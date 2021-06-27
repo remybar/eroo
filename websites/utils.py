@@ -1,5 +1,4 @@
 import logging
-import multiprocessing
 import json
 import re
 import requests
@@ -80,36 +79,24 @@ def get_extension_from_url(url):
     return Path(filename).suffix
 
 
-def download_media_file(data):
+def download_media_file(url, filename):
     """
-    download a media file from `url` and store it in the `media_field` of
-    the `parent`.
+    download a media file from `url`.
     """
-    url, filename, media_field, parent = data
     try:
         response = requests.get(url)
         if response.status_code != 200:
             _logger.warning("Unable to download the media file at '%s'", url)
-            return
+            return None
     except Exception as e:
         _logger.error("Unable to download the media file (error: %s)", str(e))
+        return None
 
     media_file = NamedTemporaryFile(delete=True)
     media_file.write(response.content)
     media_file.flush()
 
-    media_field.save(filename, File(media_file))
-    parent.save()
-
-
-def download_media_files(files_info):
-    """
-    download all media files from `files_info`.
-    """
-    pool = multiprocessing.Pool()
-    pool.map(download_media_file, files_info)
-    pool.close()
-    pool.join()
+    return media_file
 
 
 def save_debug_data(filename, data):
