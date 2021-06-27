@@ -1,0 +1,31 @@
+{% extends "dashboard/layouts/base.html" %}
+{% load static %}
+{% block title %} Erreur 403 - Accès refusé{% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<main>
+    <section class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center d-flex align-items-center justify-content-center">
+                    <div>
+                        <img class="img-fluid w-75" src="{% static "images/404.svg" %}" alt="accès refusé">
+                        <h1 class="mt-5">
+                            Accès <span class="fw-bolder text-primary">refusé</span>
+                        </h1>
+                        <p class="lead my-4">
+                            Veuillez contacter le <a href='mailto:contact@eroo.fr'><span class="fw-bolder text-secondary">support</span></a> ou vous authentifiez
+                        </p>
+                        <a class="btn btn-dark animate-hover" href="{% url 'accounts/login' %}">
+                            <i class="fas fa-chevron-left me-3 ps-2 animate-left-3"></i>Se connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}
+{% block javascripts %}{% endblock javascripts %}

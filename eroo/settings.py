@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ENVIRONMENT = env.str("ENVIRONMENT", default="development")
 IS_ENV_DEV = (ENVIRONMENT == "development")
 
-DEBUG = IS_ENV_DEV
+DEBUG = False  # IS_ENV_DEV
 
 USE_S3 = env.bool("USE_S3", default=False)
 USE_MAIL_SERVICE = env.bool("USE_MAIL_SERVICE", default=False)

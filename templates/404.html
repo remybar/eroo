@@ -1,0 +1,28 @@
+{% extends "dashboard/layouts/base.html" %}
+{% load static %}
+{% block title %} Erreur 404 - page non trouvée {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<main>
+    <section class="vh-100 d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center d-flex align-items-center justify-content-center">
+                    <div>
+                        <img class="img-fluid w-75" src={% static "images/404.svg" %} alt="page non trouvée">
+                        <h1 class="mt-5">Page non <span class="fw-bolder text-primary">trouvée</span></h1>
+                        <p class="lead my-4">Oups! La page que vous avez demandé n'existe pas ou plus. Si vous pensez que c'est un problème, veuillez contacter le <a href='mailto:contact@eroo.fr'><span class="fw-bolder text-secondary">support</span>.</a></p>
+                        <a class="btn btn-dark animate-hover" href="/">
+                            <i class="fas fa-chevron-left me-3 ps-2 animate-left-3"></i>Retour à l'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}
+{% block javascripts %}{% endblock javascripts %}

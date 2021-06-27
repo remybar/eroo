@@ -1,12 +1,8 @@
 Finalisation:
     - améliorer CSS email
-    - popup non dispo pour le bouton réserver en haut à droite
-    - résoudre error unicode
-    - ajouter logging propre sur Heroku pour voir un peu plus ce qu'il se passe
+    - résoudre le souci de sauvegarde données debug
     - ajuster les droits sur amazon S3
     - gérer eroo.fr => app prod
-    - Amazon S3 => à tester pour media files
-    - ajouter de pages correctes pour les erreurs 404, 500, ...
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
 
     - ajouter un domaine à mailgun pour voir mg.eroo.fr
