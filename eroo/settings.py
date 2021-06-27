@@ -122,10 +122,10 @@ if not IS_ENV_DEV:
 # ------------ Mail configuration ------------
 
 if USE_MAIL_SERVICE:
-    EMAIL_HOST = env.str('MAILGUN_SMTP_SERVER')
-    EMAIL_HOST_USER = env.str('MAILGUN_SMTP_LOGIN')
-    EMAIL_HOST_PASSWORD = env.str('MAILGUN_SMTP_PASSWORD')
-    EMAIL_PORT = env.str('MAILGUN_SMTP_PORT')
+    EMAIL_HOST = env.str('SMTP_SERVER')
+    EMAIL_HOST_USER = env.str('SMTP_LOGIN')
+    EMAIL_HOST_PASSWORD = env.str('SMTP_PASSWORD')
+    EMAIL_PORT = env.str('SMTP_PORT')
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = 'contact@eroo.fr'
 else:

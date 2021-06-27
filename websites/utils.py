@@ -102,7 +102,7 @@ def download_media_file(url, filename):
 def save_debug_data(filename, data):
     """ save debug data in a `filename` in the private media storage """
     _logger.info("save debug data {'filename': %s}", filename)
-    file = NamedTemporaryFile(mode="w+", delete=True, encoding='utf-8')
+    file = NamedTemporaryFile(mode="w+", delete=True, encoding="utf-8")
     json.dump(data, file, indent=2, ensure_ascii=False)
     file.flush()
     private_storage.save(f"private/debug/{filename}", File(file))
