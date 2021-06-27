@@ -1,3 +1,4 @@
+import codecs
 import logging
 import json
 import re
@@ -103,6 +104,7 @@ def save_debug_data(filename, data):
     """ save debug data in a `filename` in the private media storage """
     _logger.info("save debug data {'filename': %s}", filename)
     file = NamedTemporaryFile(mode="w+", delete=True, encoding="utf-8")
-    json.dump(data, file, indent=2, ensure_ascii=False)
+    json.dump(data, file, indent=2)
     file.flush()
+    _logger.info("debug data written")
     private_storage.save(f"private/debug/{filename}", File(file))

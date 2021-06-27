@@ -1,16 +1,16 @@
 Finalisation:
     - Amazon S3
-        - pricing !!!!!
+        - pricing => devrait-être bon, à calculer ?
         - ajuster les droits sur amazon S3
-    - ajouter un domaine à mailgun pour voir mg.eroo.fr
     - améliorer CSS email
     - résoudre le souci de sauvegarde données debug
-    - gérer eroo.fr => app prod
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
 
     - mettre en place un coffre-fort de mots de passe pro
     - ajouter des tests unitaires pour la CI
     - comprendre le fonctionnement des domaines, DNS, etc ...
+
+    - gérer eroo.fr => app prod
 
 
 Questions:
