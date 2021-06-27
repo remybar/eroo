@@ -1,5 +1,6 @@
 Finalisation:
     - améliorer CSS email
+    - popup non dispo pour le bouton réserver en haut à droite
     - résoudre error unicode
     - ajouter logging propre sur Heroku pour voir un peu plus ce qu'il se passe
     - ajuster les droits sur amazon S3
