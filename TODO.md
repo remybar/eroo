@@ -1,13 +1,12 @@
 Finalisation:
     - améliorer CSS email
+    - title de certaines pages (confirm email)
     - résoudre le souci de sauvegarde données debug
-    - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
 
-    - mettre en place un coffre-fort de mots de passe pro
+    - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
     - ajouter des tests unitaires pour la CI
 
     - gérer eroo.fr => app prod
-
 
 Questions:
     - comment gérer proprement les migrations avec Django ?
@@ -28,6 +27,7 @@ Questions:
 Futures améliorations de l'infra
     - utiliser celery pour gérer la génération du site web ?
     - penser à utiliser un cache
+    - mettre en place un coffre-fort de mots de passe pro
 
 Futures features
     - réservation
