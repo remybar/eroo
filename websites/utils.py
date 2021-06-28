@@ -51,18 +51,18 @@ def explode_airbnb_url(url):
         return None, None
 
     try:
-        res = _explode(url)
-        if not res:
+        base_url, airbnb_id = _explode(url)
+        if not airbnb_id:
             # the provided url main be a shortcut of the real airbnb URL
             # in this case, just access to the URL to retrieve the real URL
             response = requests.get(url)
             if response.status_code != 200:
                 return None, None
-            res = _explode(response.url)
+            base_url, airbnb_id = _explode(response.url)
     except Exception:
-        res = None, None
+        return None, None
 
-    return res
+    return base_url, airbnb_id
 
 
 def get_filename_from_url(url):
