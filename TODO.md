@@ -1,14 +1,10 @@
 Finalisation:
-    - Amazon S3
-        - pricing => devrait-être bon, à calculer ?
-        - ajuster les droits sur amazon S3
     - améliorer CSS email
     - résoudre le souci de sauvegarde données debug
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
 
     - mettre en place un coffre-fort de mots de passe pro
     - ajouter des tests unitaires pour la CI
-    - comprendre le fonctionnement des domaines, DNS, etc ...
 
     - gérer eroo.fr => app prod
 
