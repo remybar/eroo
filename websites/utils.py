@@ -1,4 +1,3 @@
-import codecs
 import logging
 import json
 import re
@@ -89,8 +88,7 @@ def download_media_file(url, filename):
         if response.status_code != 200:
             _logger.warning("Unable to download the media file at '%s'", url)
             return None
-    except Exception as e:
-        _logger.error("Unable to download the media file (error: %s)", str(e))
+    except Exception:
         return None
 
     media_file = NamedTemporaryFile(delete=True)
@@ -104,11 +102,9 @@ def save_debug_data(filename, data):
     """ save debug data in a `filename` in the private media storage """
     _logger.info("save debug data {'filename': %s}", filename)
     file = NamedTemporaryFile(mode="wb+", delete=True)
-    encodedData = json.dumps(data, indent=2).encode('utf-8')
     try:
-        file.write(encodedData)
+        file.write(json.dumps(data, indent=2).encode('utf-8'))
         file.flush()
         private_storage.save(f"private/debug/{filename}", File(file))
-        _logger.info("debug data written")
     except Exception as e:
         _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
