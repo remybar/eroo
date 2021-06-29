@@ -54,7 +54,7 @@ def explode_airbnb_url(url):
         if not airbnb_id:
             # the provided url main be a shortcut of the real airbnb URL
             # in this case, just access to the URL to retrieve the real URL
-            response = requests.get(url)
+            response = requests.get(url, timeout=1)
             if response.status_code != 200:
                 return None, None
             base_url, airbnb_id = _explode(response.url)

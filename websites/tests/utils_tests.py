@@ -1,4 +1,6 @@
 from unittest.mock import patch
+import requests
+
 from django.test import TestCase
 
 from websites.utils import explode_airbnb_url
@@ -56,6 +58,20 @@ class UtilsTestCase(TestCase):
         shortcut_url = "https://myshortcuturl.be"
         mock_get.return_value.status_code = 404
         mock_get.return_value.url = shortcut_url
+
+        base_url, airbnb_id = explode_airbnb_url(shortcut_url)
+
+        self.assertEqual(base_url, None)
+        self.assertEqual(airbnb_id, None)
+
+
+    @patch("websites.utils.requests.get")
+    def test_get_airnb_id_but_requests_timeout(self, mock_get):
+        """
+        When the airbnb shortcut URL access timeout
+        """
+        shortcut_url = "https://myshortcuturl.be"
+        mock_get.side_effect = requests.exceptions.Timeout()
 
         base_url, airbnb_id = explode_airbnb_url(shortcut_url)
 
