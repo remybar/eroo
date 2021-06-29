@@ -105,6 +105,6 @@ def save_debug_data(filename, data):
     try:
         file.write(json.dumps(data, indent=2).encode('utf-8'))
         file.flush()
-        private_storage.save(f"private/debug/{filename}", File(file))
+        private_storage.save(f"debug/{filename}", File(file))
     except Exception as e:
         _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)

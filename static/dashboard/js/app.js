@@ -50,8 +50,10 @@ function deleteWebsite(action_url, csrftoken) {
   .then((data) => {
     // remove the website in the table
     let el = document.getElementById(`website_${data.key}`);
-    el.remove();
-
+    if (el) {
+      el.remove();
+    }
+    
     // if the table is empty, hide it
     let tableContainer = document.getElementById("websites-table-container");
     let table = document.getElementById("websites-table");
@@ -99,7 +101,7 @@ function generateWebsite(action_url, csrftoken, rental_url) {
     let tbody = table.getElementsByTagName('tbody')[0];
     
     newRow = tbody.insertRow()
-    newRow.setAttribute("id", `ẁebsite_${data.key}`);
+    newRow.setAttribute("id", `website_${data.key}`);
     newRow.innerHTML = `
       <td class="border-0"><a target="_blank" href='${data.url}'>${data.name}</a></td>
       <td class="border-0">${data.key}</td>

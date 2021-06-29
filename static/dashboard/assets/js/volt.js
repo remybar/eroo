@@ -305,10 +305,10 @@ d.addEventListener("DOMContentLoaded", function(event) {
         });
     }
 
-    var scroll = new SmoothScroll('a[href*="#"]', {
-        speed: 500,
-        speedAsDuration: true
-    });
+    // var scroll = new SmoothScroll('a[href*="#"]', {
+    //     speed: 500,
+    //     speedAsDuration: true
+    // });
 
     if(d.querySelector('.current-year')){
         d.querySelector('.current-year').textContent = new Date().getFullYear();
