@@ -17,12 +17,10 @@ _logger = logging.getLogger('websites')
 
 
 def _user_error(msg):
-    _logger.error("user error {'msg': %s}", msg)
     return HttpResponse(reason=msg, status=400)
 
 
 def _internal_error(msg):
-    _logger.error("internal error {'msg': %s}", msg)
     return HttpResponse(reason=msg, status=500)
 
 
