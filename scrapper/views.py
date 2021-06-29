@@ -25,7 +25,6 @@ def _scrap_airbnb_data(id):
         return (details, reviews)
 
     try:
-        # TODO: update the API token regularly ?
         api = airbnb.Api(
             randomize=True,
             api_key=settings.AIRBNB_API_KEY,

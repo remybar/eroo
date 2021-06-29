@@ -1,8 +1,6 @@
 Finalisation:
     - améliorer CSS email
-    - erreur d'encoding lié au HttpResponse ?
     - rotation de l'api key airbnb
-    - title de certaines pages (confirm email)
 
     - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
     - ajouter des tests unitaires pour la CI
