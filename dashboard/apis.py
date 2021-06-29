@@ -17,11 +17,11 @@ _logger = logging.getLogger('websites')
 
 
 def _user_error(msg):
-    return HttpResponse(reason=msg, status=400)
+    return JsonResponse({"error": msg}, status=400)
 
 
 def _internal_error(msg):
-    return HttpResponse(reason=msg, status=500)
+    return JsonResponse({"error": msg}, status=500)
 
 
 @login_required
@@ -46,9 +46,6 @@ def api_website_create(request):
     try:
         data = scrap_airbnb_data(airbnb_id)
     except Exception:
-        data = False
-
-    if not data:
         return _internal_error("Impossible d'accéder à votre annonce Airbnb")
 
     # generate the website and get the redirect page

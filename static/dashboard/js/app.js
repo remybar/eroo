@@ -3,10 +3,9 @@
 //========================================================
 
 function handleErrors(response) {
-  if (!response.ok) {
-      throw Error(response.statusText);
-  }
-  return response.json();
+  return response.json().then(json => {
+    return response.ok ? json : Promise.reject(json)
+  });
 }
 
 function uuidv4() {
@@ -49,7 +48,6 @@ function deleteWebsite(action_url, csrftoken) {
   fetch(request)
   .then(handleErrors)
   .then((data) => {
-
     // remove the website in the table
     let el = document.getElementById(`website_${data.key}`);
     el.remove();
@@ -61,9 +59,11 @@ function deleteWebsite(action_url, csrftoken) {
     if (table.rows.length <= 1) {
       tableContainer.style.display = "none";
     }
+
+    addMessage("success", "Votre site web a été supprimé!");
   })
-  .catch((error) => {
-    addMessage("danger", `${error}`.replace("Error: ", ""));
+  .catch((data) => {
+    addMessage("danger", `${data.error}`.replace("Error: ", ""));
   });
 }
 
@@ -92,45 +92,42 @@ function generateWebsite(action_url, csrftoken, rental_url) {
 
   fetch(request)
   .then(handleErrors)
-    .then((data) => {
+  .then((data) => {
+    // refresh the table
+    let tableContainer = document.getElementById("websites-table-container");
+    let table = document.getElementById("websites-table");
+    let tbody = table.getElementsByTagName('tbody')[0];
+    
+    newRow = tbody.insertRow()
+    newRow.setAttribute("id", `ẁebsite_${data.key}`);
+    newRow.innerHTML = `
+      <td class="border-0"><a target="_blank" href='${data.url}'>${data.name}</a></td>
+      <td class="border-0">${data.key}</td>
+      <td class="border-0">${data.generated_date}</td>
+      <td class="border-0">
+          <a data-url='${data.delete_url}' class='website-delete-btn text-tertiary'>
+            <span class="fas fa-trash-alt me-2"></span>
+            Supprimer
+          </a>
+      </td>
+    `;
+    if (table.rows.length > 1) {
+      tableContainer.style.display = "block";
+    }
 
-      // TODO: display a success message
+    addMessage("success", "Votre site web a été généré avec succès!");
 
-      // refresh the table
-      let tableContainer = document.getElementById("websites-table-container");
-      let table = document.getElementById("websites-table");
-      let tbody = table.getElementsByTagName('tbody')[0];
-      
-      newRow = tbody.insertRow()
-      newRow.setAttribute("id", `ẁebsite_${data.key}`);
-      newRow.innerHTML = `
-        <td class="border-0"><a target="_blank" href='${data.url}'>${data.name}</a></td>
-        <td class="border-0">${data.key}</td>
-        <td class="border-0">${data.generated_date}</td>
-        <td class="border-0">
-            <a data-url='${data.delete_url}' class='website-delete-btn text-tertiary'>
-              <span class="fas fa-trash-alt me-2"></span>
-              Supprimer
-            </a>
-        </td>
-      `;
-      if (table.rows.length > 1) {
-        tableContainer.style.display = "block";
-      }
-
-      // TODO: handle the generation limit
-
-      document.getElementById("id_rental_url").value = "";
-      generateBtn.innerHTML = origInnerHTML;
-      generateBtn.disabled = false;
-    })
-    .catch((error) => {
-      console.log(error);
-      addMessage("danger", `${error}`.replace("Error: ", ""));
-      document.getElementById("id_rental_url").value = "";
-      generateBtn.innerHTML = origInnerHTML;
-      generateBtn.disabled = false;
-    });
+    document.getElementById("id_rental_url").value = "";
+    generateBtn.innerHTML = origInnerHTML;
+    generateBtn.disabled = false;
+  })
+  .catch((data) => {
+    console.log(data.error);
+    addMessage("danger", `${data.error}`.replace("Error: ", ""));
+    document.getElementById("id_rental_url").value = "";
+    generateBtn.innerHTML = origInnerHTML;
+    generateBtn.disabled = false;
+  });
 }
 
 //========================================================
