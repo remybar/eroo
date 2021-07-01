@@ -2,6 +2,7 @@
 Django settings for eroo project.
 """
 
+import sys
 from environs import Env
 from pathlib import Path
 
@@ -14,16 +15,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ------------ Global configuration ------------
 
 ENVIRONMENT = env.str("ENVIRONMENT", default="development")
-IS_ENV_DEV = (ENVIRONMENT == "development")
-
-DEBUG = False  # IS_ENV_DEV
+IS_ENV_DEV = DEBUG = (ENVIRONMENT == "development")
+IS_TESTS_IN_PROGRESS = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 USE_S3 = env.bool("USE_S3", default=False)
 USE_MAIL_SERVICE = env.bool("USE_MAIL_SERVICE", default=False)
-
 USE_DEBUG_DATA_STORAGE = env.bool("USE_DEBUG_DATA_STORAGE", default=False)
 
 SITE_ID = 1
+
+# ------------ i18n ------------
+
+LANGUAGE_CODE = "fr-fr"
+
+TIME_ZONE = "Europe/Paris"
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
 
 # ------------ scrapper configurations ------------
 
@@ -38,46 +49,47 @@ if not IS_ENV_DEV:
     from sentry_sdk.integrations.django import DjangoIntegration
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
-                       'pathname=%(pathname)s lineno=%(lineno)s ' +
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
+if not IS_TESTS_IN_PROGRESS:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                        'pathname=%(pathname)s lineno=%(lineno)s ' +
+                        'funcname=%(funcName)s %(message)s'),
+                'datefmt': '%Y-%m-%d %H:%M:%S'
+            },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+            }
         },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
+        'handlers': {
+            'null': {
+                'level': 'DEBUG',
+                'class': 'logging.NullHandler',
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'scrapper': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        'websites': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        'utils': {
-            'handlers': ['console'],
-            'level': 'INFO',
+        'loggers': {
+            'scrapper': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'websites': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'utils': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            }
         }
     }
-}
 
 # ------------ Keys configuration ------------
 
@@ -133,6 +145,18 @@ else:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = "127.0.0.1"
     EMAIL_PORT = 1025
+
+# ------------ Celery/Redis configurations ------------
+
+if IS_ENV_DEV:
+    BROKER_URL = 'redis://localhost:6379'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+    CELERY_ACCEPT_CONTENT = ['application/json']
+    CELERY_TASK_SERIALIZER = 'json'
+    CELERY_RESULT_SERIALIZER = 'json'
+    CELERY_TIMEZONE = TIME_ZONE
+else:
+    pass  # TODO: configure heroku redis/celery
 
 # ------------ Application definition ------------
 
@@ -216,19 +240,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
-
-# ------------ i18n ------------
-
-LANGUAGE_CODE = "fr-fr"
-
-TIME_ZONE = "Europe/Paris"
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
 
 # ------------ Static & Media files ------------
 

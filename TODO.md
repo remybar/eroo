@@ -1,11 +1,15 @@
 Finalisation:
+    - utiliser Celery pour générer le site web (scrap + download images + création data)
+    - ajouter des tests pour le coeur de l'app
+        - scrap des données
+        - download des données
+        - création des données
+        - suppression des données
+    - ajouter rapport coverage et essayer de faire grimper le % au fur et à mesure du projet
+
     - améliorer CSS email
     - rotation de l'api key airbnb
 
-    - bien tout tester! (erreur JS qui apparaissent de temps en temps ...)
-    - ajouter des tests unitaires pour la CI
-
-    - gérer eroo.fr => app prod
 
 Questions:
     - comment gérer proprement les migrations avec Django ?

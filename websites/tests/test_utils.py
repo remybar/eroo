@@ -1,7 +1,6 @@
 from unittest.mock import patch
+from unittest import TestCase
 import requests
-
-from django.test import TestCase
 
 from websites.utils import explode_airbnb_url
 
@@ -63,7 +62,6 @@ class UtilsTestCase(TestCase):
 
         self.assertEqual(base_url, None)
         self.assertEqual(airbnb_id, None)
-
 
     @patch("websites.utils.requests.get")
     def test_get_airnb_id_but_requests_timeout(self, mock_get):

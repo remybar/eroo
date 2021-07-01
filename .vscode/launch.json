@@ -19,7 +19,7 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "websites"
+                "dashboard"
             ],
             "django": true,
             "justMyCode": false,

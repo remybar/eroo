@@ -9,6 +9,7 @@ from django.core.files import File
 
 from allauth.utils import get_user_model
 
+from .config import MAX_WEBSITES_COUNT
 from .utils import (
     get_filename_from_url,
     download_media_file,
@@ -208,6 +209,17 @@ class Website(models.Model):
             save_debug_data(f"api/{website.key}/api_data.json", data)
 
         return website
+
+    def get_website(self, key):
+        """ get the website record identified by `key` """
+        try:
+            return Website.objects.get(key=key)
+        except Website.DoesNotExist:
+            return None
+
+    def has_reached_resource_limits(self, user):
+        """ indicates if resource limits have been reached for the `user` """
+        return Website.objects.filter(user=user).count() >= MAX_WEBSITES_COUNT
 
 
 class WebsiteHost(models.Model):
