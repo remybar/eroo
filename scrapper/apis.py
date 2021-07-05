@@ -1,6 +1,6 @@
 import airbnb
-import json
 import logging
+import re
 
 from django.conf import settings
 
@@ -15,15 +15,7 @@ _logger = logging.getLogger('scrapper')
 # ---------------------------------------------------------------
 
 
-def _scrap_airbnb_data(id):
-    if settings.SCRAPPER_USE_FAKE_FILES:
-        fake_data_path = settings.BASE_DIR / "scrapper" / "fake_data"
-        with open(fake_data_path / "details.json") as f:
-            details = json.load(f)
-        with open(fake_data_path / "reviews.json") as f:
-            reviews = json.load(f)
-        return (details, reviews)
-
+def scrap_airbnb_data(id):
     try:
         api = airbnb.Api(
             randomize=True,
@@ -43,74 +35,97 @@ def _scrap_airbnb_data(id):
 
         return (details, reviews)
     except Exception:
-        pass
-
-    return False
+        return None
 
 
 def _get_airbnb_name(data):
-    return data["p3_summary_title"]
+    return data.get("p3_summary_title") if data else None
 
 
 def _get_airbnb_host_info(data):
+    if not data or "primary_host" not in data:
+        return None
+
     host_data = data["primary_host"]
     return {
-        "name": host_data["name"],
-        "picture_url": host_data["picture_large_url"],
-        "description": host_data["about"],
-        "languages": host_data["languages"],
+        "name": host_data.get("name"),
+        "picture_url": host_data.get("picture_large_url"),
+        "description": host_data.get("about"),
+        "languages": host_data.get("languages"),
     }
 
 
 def _get_airbnb_general_info(data):
     def _extract_count(value):
-        return int(value.split()[0].split(",")[0].split(".")[0])
+        v = re.split(r"\D+", value)[0] if value else None
+        return v if v and v.isnumeric() else None
 
     return {
-        "bathroom_count": _extract_count(data["bathroom_label"]),
-        "bed_count": _extract_count(data["bed_label"]),
-        "bedroom_count": _extract_count(data["bedroom_label"]),
-        "guest_count": _extract_count(data["guest_label"]),
-    }
+        "bathroom_count": _extract_count(data.get("bathroom_label")),
+        "bed_count": _extract_count(data.get("bed_label")),
+        "bedroom_count": _extract_count(data.get("bedroom_label")),
+        "guest_count": _extract_count(data.get("guest_label")),
+    } if data is not None else None
 
 
 def _get_airbnb_location(data):
     return {
-        "title": data["location_title"],
+        "title": data.get("location_title"),
         "coords": {
-            "lat": data["lat"],
-            "lng": data["lng"],
+            "lat": data.get("lat"),
+            "lng": data.get("lng"),
         },
-    }
+    } if data is not None else None
 
 
 def _get_airbnb_photos(data):
+    if not data or "photos" not in data:
+        return None
     return [
-        {"url": photo["large"].split("?")[0], "caption": photo["caption"]}
+        {
+            "url": photo["large"].split("?")[0] if "large" in photo else None,
+            "caption": photo.get("caption")
+        }
         for photo in data["photos"]
     ]
 
 
 def _get_airbnb_description(data):
+    if not data or "sectioned_description" not in data or "description" not in data["sectioned_description"]:
+        return None
+
     return data["sectioned_description"]["description"].split("\n")
+
+
+def _get_airbnb_equipment_areas(data):
+    return [
+        {
+            "name": area["title"],
+            "equipments": [str(e) for e in area.get("amenity_ids", [])]
+        }
+        for area in data
+        if all(x in area for x in ["title", "amenity_ids"]) and area["amenity_ids"]
+    ] if data else []
 
 
 def _get_airbnb_equipments(data):
     return {
-        "equipments": {
-            equipment["id"]: {
-                "name": equipment["name"],
-                "description": equipment["description"],
-            }
-            for equipment in data["listing_amenities"]
-        },
-        "areas": [
-            {
-                "name": area["title"],
-                "equipments": [str(id) for id in area["amenity_ids"]],
-            }
-            for area in data["see_all_amenity_sections"]
-        ],
+        str(eq["id"]): {
+            "name": eq["name"],
+            "description": eq["description"]
+        }
+        for eq in data
+        if all(x in eq for x in ["id", "name", "description"])
+    } if data else {}
+
+
+def _get_airbnb_equipments_per_area(data):
+    if not data or any(x not in data or not data[x] for x in ["see_all_amenity_sections", "listing_amenities"]):
+        return {}
+
+    return {
+        "areas": _get_airbnb_equipment_areas(data["see_all_amenity_sections"]),
+        "equipments": _get_airbnb_equipments(data["listing_amenities"]),
     }
 
 
@@ -141,19 +156,26 @@ def _get_airbnb_prices(data):
             "label": price["label"],
             "value": price["value"],
         }
-        for price in data["price_details"]
-    ]
+        for price in data.get("price_details", [])
+        if all(x in price for x in ["label", "value"])
+    ] if data else []
 
 
 def _get_airbnb_highlights(data):
     return [
-        {"headline": highlight["headline"], "message": highlight["message"]}
-        for highlight in data["highlights"]
-    ]
+        {
+            "headline": highlight["headline"],
+            "message": highlight["message"]
+        }
+        for highlight in data.get("highlights", [])
+        if all(x in highlight for x in ["headline", "message"])
+    ] if data else []
 
 
 def _get_airbnb_house_rules(data):
-    return data["guest_controls"]["structured_house_rules"]
+    if data and "guest_controls" in data and "structured_house_rules" in data["guest_controls"]:
+        return data["guest_controls"]["structured_house_rules"]
+    return []
 
 
 def _get_airbnb_rooms(data):
@@ -162,11 +184,12 @@ def _get_airbnb_rooms(data):
             "name": room["name_with_type"],
             "details": room["highlights_hometour"],
         }
-        for room in data["hometour_rooms"]
-    ]
+        for room in data.get("hometour_rooms", [])
+        if all(x in room for x in ["name_with_type", "highlights_hometour"])
+    ] if data else []
 
 
-def _convert_airbnb_data(data):
+def convert_airbnb_data(data):
     try:
         details, reviews = data
         details = details["pdp_listing_detail"]
@@ -179,7 +202,7 @@ def _convert_airbnb_data(data):
             "location": _get_airbnb_location(details),
             "photos": _get_airbnb_photos(details),
             "description": _get_airbnb_description(details),
-            "equipments": _get_airbnb_equipments(details),
+            "equipments": _get_airbnb_equipments_per_area(details),
             "reviews": _get_airbnb_reviews(reviews),
             "prices": _get_airbnb_prices(details),
             "highlights": _get_airbnb_highlights(details),
@@ -187,17 +210,13 @@ def _convert_airbnb_data(data):
             "rooms": _get_airbnb_rooms(details),
         }
     except Exception:
-        return False
+        return None
 
 
-def scrap_airbnb_data(airbnb_id):
+def scrap_and_convert(airbnb_id):
     _logger.info("scrap airbnb data {'id': %s}", airbnb_id)
-    airbnb_data = _scrap_airbnb_data(airbnb_id)
+    airbnb_data = scrap_airbnb_data(airbnb_id)
     if not airbnb_data:
-        return False
+        return None
 
-    api_data = _convert_airbnb_data(airbnb_data)
-    if not api_data:
-        return False
-
-    return api_data
+    return convert_airbnb_data(airbnb_data)

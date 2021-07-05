@@ -23,6 +23,7 @@ coverage = "*"
 [dev-packages]
 black = "==21.6b0"
 flake8 = "==3.9.2"
+parameterized = "0.8.1"
 
 [requires]
 python_version = "3.9"

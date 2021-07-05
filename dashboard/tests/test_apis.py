@@ -68,8 +68,8 @@ class ApiTestCase(TestCase):
         self.assertEqual(response.status_code, 500)
         self._check_response(response.content, {"error": "URL de l'annonce non fournie"})
 
-    @patch("dashboard.apis.explode_airbnb_url", Mock(return_value=(None, None)))
-    def test_api_website_create_invalid_rental_url(self):
+    @patch("dashboard.apis.explode_airbnb_url")
+    def test_api_website_create_invalid_rental_url(self, mock_explode):
         """
         User error (400) if the request contains an invalid 'rental_url' parameter
         """
@@ -77,20 +77,27 @@ class ApiTestCase(TestCase):
         request.headers = {"x-requested-with": "XMLHttpRequest"}
         request.POST = {"rental_url": "https://toto.fr"}
 
+        mock_explode.return_value = (None, None)
+
         response = api_website_create(request)
 
         self.assertEqual(response.status_code, 400)
         self._check_response(response.content, {"error": "L'URL fournie n'est pas une URL Airbnb valide"})
+        mock_explode.assert_called_with(request.POST["rental_url"])
 
-    @patch("dashboard.apis.Website.has_reached_resource_limits", Mock(return_value=True))
-    @patch("dashboard.apis.explode_airbnb_url", Mock(return_value=("https://airbnb.fr", "1234")))
-    def test_api_website_create_number_of_websites_exceeded(self):
+    @patch("dashboard.apis.Website.has_reached_resource_limits")
+    @patch("dashboard.apis.explode_airbnb_url")
+    def test_api_website_create_number_of_websites_exceeded(self, mock_explode, mock_resource):
         """
         User error (400) if too many websites have been generated for the current user
         """
         request = Mock()
         request.headers = {"x-requested-with": "XMLHttpRequest"}
         request.POST = {"rental_url": "https://airbnb.fr/1234"}
+        request.user = Mock()
+
+        mock_explode.return_value = ("https://airbnb.fr", "1234")
+        mock_resource.return_value = True
 
         response = api_website_create(request)
 
@@ -101,23 +108,37 @@ class ApiTestCase(TestCase):
                 "error": "Limite de nombre de sites atteinte. Supprimez-en un pour pouvoir en créer un nouveau."
             }
         )
+        mock_explode.assert_called_with(request.POST["rental_url"])
+        mock_resource.assert_called_with(request.user)
 
     @patch("dashboard.apis.scrap_and_create_website")
-    @patch("dashboard.apis.Website.has_reached_resource_limits", Mock(return_value=False))
-    @patch("dashboard.apis.explode_airbnb_url", Mock(return_value=("https://airbnb.fr", "1234")))
-    def test_api_website_create_nominal_case(self, mock_celery):
+    @patch("dashboard.apis.Website.has_reached_resource_limits")
+    @patch("dashboard.apis.explode_airbnb_url")
+    def test_api_website_create_nominal_case(self, mock_explode, mock_resource, mock_celery):
         """
         Nominal case: start a background task
         """
-        mock_celery.delay().id = 121
+        rental_url = "https://airbnb.fr"
+        rental_id = "1234"
+        task_id = 121
+
+        mock_celery.delay().id = task_id
         request = Mock()
         request.headers = {"x-requested-with": "XMLHttpRequest"}
-        request.POST = {"rental_url": "https://airbnb.fr/1234"}
+        request.POST = {"rental_url": f"{rental_url}{rental_id}"}
+        request.user = Mock()
+        request.user.id = 123
+
+        mock_explode.return_value = (rental_url, rental_id)
+        mock_resource.return_value = False
 
         response = api_website_create(request)
 
         self.assertEqual(response.status_code, 202)
-        self._check_response(response.content, {"task_id": mock_celery.delay().id})
+        self._check_response(response.content, {"task_id": task_id})
+        mock_explode.assert_called_with(request.POST["rental_url"])
+        mock_resource.assert_called_with(request.user)
+        mock_celery.delay.assert_called_with(request.user.id, rental_url, rental_id)
 
     # ---------------------------------------------------------
     # api_website_delete

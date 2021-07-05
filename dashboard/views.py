@@ -11,6 +11,7 @@ def homepage(request):
         redirect("dashboard")
     return redirect("account_signup")
 
+
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard/dashboard.html"
 

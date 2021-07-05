@@ -38,7 +38,6 @@ USE_TZ = True
 
 # ------------ scrapper configurations ------------
 
-SCRAPPER_USE_FAKE_FILES = env.bool("SCRAPPER_USE_FAKE_FILES", default=False)
 AIRBNB_API_KEY = env.str("AIRBNB_API_KEY")
 
 # ------------ logging/exception handling configurations ------------

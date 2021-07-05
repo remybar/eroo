@@ -1,0 +1,15 @@
+[run]
+branch = True
+source = .
+omit =
+    */apps.py
+    */migrations/*.py
+    eroo/*
+    manage.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+
+[html]
+directory = reports/coverage

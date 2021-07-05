@@ -16,6 +16,7 @@ from .utils import (
     save_debug_data
 )
 
+User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
@@ -70,7 +71,7 @@ class Website(models.Model):
     bathroom_count = models.IntegerField()
     guest_count = models.IntegerField()
 
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(WebsiteLocation, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -174,7 +175,7 @@ class Website(models.Model):
             for d in r["details"]:
                 RoomDetail(detail=d, room=new_room).save()
 
-    def create(user, url, data):
+    def create(user_id, url, data):
         """create a new website based on data received from the scrapper"""
 
         # sanity checks
@@ -185,7 +186,7 @@ class Website(models.Model):
         location = Website._create_location(data["location"])
         website = Website(
             key=Website._generate_key(),
-            user=user,
+            user=User.objects.get(user_id),
             rental_url=url,
             name=data["name"],
             description=Website._generate_description(data["description"]),
@@ -217,7 +218,7 @@ class Website(models.Model):
         except Website.DoesNotExist:
             return None
 
-    def has_reached_resource_limits(self, user):
+    def has_reached_resource_limits(user):
         """ indicates if resource limits have been reached for the `user` """
         return Website.objects.filter(user=user).count() >= MAX_WEBSITES_COUNT
 

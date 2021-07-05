@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
 from websites.utils import is_ajax, explode_airbnb_url
-from websites.config import MAX_WEBSITES_COUNT
 from websites.models import Website
 
 from .tasks import scrap_and_create_website
@@ -41,7 +40,7 @@ def api_website_create(request):
 
     # scrap and create the website in background.
     # the task id is provided to allow the client to poll task result
-    task = scrap_and_create_website.delay(request.user, rental_base_url, airbnb_id)
+    task = scrap_and_create_website.delay(request.user.id, rental_base_url, airbnb_id)
 
     return JsonResponse({"task_id": task.id}, status=202)
 
