@@ -29,7 +29,7 @@ def scrap_airbnb_data(id):
         reviews = api.get_reviews(id)
 
         # backup received data for debugging purpose
-        if settings.USE_DEBUG_DATA_STORAGE:
+        if settings.USE_DEBUG_DATA_STORAGE:  # pragma: no cover
             save_debug_data(f"scrapper/{id}/details.json", details)
             save_debug_data(f"scrapper/{id}/reviews.json", reviews)
 
@@ -143,11 +143,13 @@ def _get_airbnb_reviews(data):
                 "language": review["language"],
             }
             for review in data
-            if review["author"]["has_profile_pic"] and review["rating"] == 5
+            if all(x in review for x in ["author", "rating", "comments", "created_at", "language"])
+            and all(x in review["author"] for x in ["has_profile_pic", "first_name", "picture_url"])
+            and review["rating"] == 5
         ],
         key=lambda r: r["date"],
         reverse=True,
-    )[:REVIEWS_COUNT]
+    )[:REVIEWS_COUNT] if data else []
 
 
 def _get_airbnb_prices(data):
@@ -189,13 +191,18 @@ def _get_airbnb_rooms(data):
     ] if data else []
 
 
+def _validate_data(data):
+    mandatory_fields = ["name", "description"]
+    return data if data and all(data.get(f) for f in mandatory_fields) else None
+
+
 def convert_airbnb_data(data):
     try:
         details, reviews = data
         details = details["pdp_listing_detail"]
         reviews = reviews["reviews"]
 
-        return {
+        data = {
             "name": _get_airbnb_name(details),
             "general_info": _get_airbnb_general_info(details),
             "host": _get_airbnb_host_info(details),
@@ -209,6 +216,7 @@ def convert_airbnb_data(data):
             "house_rules": _get_airbnb_house_rules(details),
             "rooms": _get_airbnb_rooms(details),
         }
+        return _validate_data(data)
     except Exception:
         return None
 

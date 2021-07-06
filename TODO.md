@@ -2,7 +2,6 @@ Finalisation:
     - utiliser Celery pour générer le site web (scrap + download images + création data)
         - mise à jour du JS pour poller le state de la task celery
     - ajouter des tests pour le coeur de l'app
-        - scrap des données
         - download des données
         - création des données
         - suppression des données

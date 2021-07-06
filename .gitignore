@@ -6,4 +6,4 @@ db.sqlite3
 staticfiles/**
 !staticfiles/.gitkeep
 .coverage
-htmlcov
+reports
