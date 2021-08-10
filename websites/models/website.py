@@ -1,5 +1,3 @@
-import logging
-
 from shortuuid import ShortUUID
 
 from django.conf import settings
@@ -9,54 +7,28 @@ from django.core.files import File
 
 from allauth.utils import get_user_model
 
-from .config import MAX_WEBSITES_COUNT
-from .utils import (
+from websites.config import MAX_WEBSITES_COUNT
+from websites.utils import (
     get_filename_from_url,
     download_media_file,
-    save_debug_data
+    save_debug_data,
 )
+from .location import WebsiteLocation
+from .photo import WebsitePhoto
+from .review import Review
+from .host import WebsiteHost
+from .highlight import Highlight
+from .room import Room, RoomDetail
+from .rule import Rule
+from .equipment import Equipment, EquipmentArea
 
 User = get_user_model()
-logger = logging.getLogger(__name__)
-
 
 KEY_LENGTH = 16
 NAME_LENGTH = 255
-PHOTO_FILENAME_LENGTH = 128
-LOCATION_TITLE_LENGTH = 255
-AUTHOR_NAME_LENGTH = 64
-AUTHOR_PICTURE_FILENAME_LENGTH = 128
-LANGUAGE_LENGTH = 8
-CAPTION_LENGTH = 255
-EQUIPMENT_NAME_LENGTH = 128
-EQUIPMENT_AREA_NAME_LENGTH = 128
-HIGHLIGHT_TITLE_LENGTH = 255
-RULE_NAME_LENGTH = 255
-
-HOST_NAME_LENGTH = 64
-HOST_PICTURE_FILENAME_LENGTH = 128
-HOST_LANGUAGES_LENGTH = 255
 
 HOST_PICTURE_FILENAME = "host.jpg"
-
 EXPECTED_DATA_KEYS = ["name", "description", "photos"]
-
-
-def _get_photo_dir_path(instance, filename):
-    return f"websites/{instance.website.key}/photos/{filename}"
-
-
-def _get_review_dir_path(instance, filename):
-    return f"websites/{instance.website.key}/reviews/{filename}"
-
-
-class WebsiteLocation(models.Model):
-    title = models.CharField(max_length=LOCATION_TITLE_LENGTH)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-
-    def __str__(self):
-        return self.title
 
 
 class Website(models.Model):
@@ -96,15 +68,18 @@ class Website(models.Model):
             [f"<p>{html.escape(line)}</p>" if line else "<br />" for line in desc_lines]
         )
 
+    def _create_photo(self, filename, content, caption):
+        photo = WebsitePhoto.objects.create(caption=caption, website=self)
+        photo.image.save(filename, File(content))
+        photo.save()
+
     def _create_photos(self, photos):
         for p in photos:
-            filename = get_filename_from_url(p["url"])
-            media_file = download_media_file(p["url"], filename)
-            if media_file:
-                photo = WebsitePhoto(caption=p["caption"], website=self)
-                photo.save()
-                photo.image.save(filename, File(media_file))
-                photo.save()
+            if all(f in p for f in ["url", "caption"]):
+                filename = get_filename_from_url(p["url"])
+                photo_content = download_media_file(p["url"], filename)
+                if photo_content:
+                    self._create_photo(filename, photo_content, p["caption"])
 
     def _create_reviews(self, reviews):
         for r in reviews:
@@ -211,7 +186,7 @@ class Website(models.Model):
 
         return website
 
-    def get_website(self, key):
+    def get_website(key):
         """ get the website record identified by `key` """
         try:
             return Website.objects.get(key=key)
@@ -221,94 +196,3 @@ class Website(models.Model):
     def has_reached_resource_limits(user):
         """ indicates if resource limits have been reached for the `user` """
         return Website.objects.filter(user=user).count() >= MAX_WEBSITES_COUNT
-
-
-class WebsiteHost(models.Model):
-    name = models.CharField(max_length=HOST_NAME_LENGTH)
-    description = models.TextField()
-    languages = models.CharField(max_length=HOST_LANGUAGES_LENGTH)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to=_get_photo_dir_path)
-
-    def __str__(self):
-        return self.name
-
-    def picture_url(self):
-        return self.picture.url
-
-
-class WebsitePhoto(models.Model):
-    image = models.ImageField(upload_to=_get_photo_dir_path)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-    caption = models.CharField(max_length=CAPTION_LENGTH)
-
-    def __str__(self):
-        return self.image.name
-
-    def url(self):
-        return self.image.url
-
-
-class Review(models.Model):
-    author_name = models.CharField(max_length=AUTHOR_NAME_LENGTH)
-    author_picture = models.ImageField(upload_to=_get_review_dir_path)
-    review = models.TextField()
-    date = models.DateField()
-    language = models.CharField(max_length=LANGUAGE_LENGTH)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.author_name} ({self.date})"
-
-    def picture_url(self):
-        return self.author_picture.url
-
-
-class Equipment(models.Model):
-    name = models.CharField(max_length=EQUIPMENT_NAME_LENGTH)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-
-class EquipmentArea(models.Model):
-    name = models.CharField(max_length=EQUIPMENT_AREA_NAME_LENGTH)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-    equipments = models.ManyToManyField(Equipment)
-
-    def __str__(self):
-        return self.name
-
-
-class Highlight(models.Model):
-    title = models.CharField(max_length=HIGHLIGHT_TITLE_LENGTH)
-    message = models.TextField()
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title
-
-
-class Rule(models.Model):
-    name = models.CharField(max_length=RULE_NAME_LENGTH)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class Room(models.Model):
-    name = models.CharField(max_length=RULE_NAME_LENGTH)
-    website = models.ForeignKey(Website, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-
-class RoomDetail(models.Model):
-    detail = models.TextField()
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"detail of {self.room.name}"

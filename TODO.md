@@ -31,6 +31,7 @@ Futures améliorations de l'infra
     - utiliser celery pour gérer la génération du site web ?
     - penser à utiliser un cache
     - mettre en place un coffre-fort de mots de passe pro
+    - envoi de mail avec Celery
 
 Futures features
     - réservation
