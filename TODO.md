@@ -1,6 +1,8 @@
 Finalisation:
+    - debugger task Celery avec VS Code
     - utiliser Celery pour générer le site web (scrap + download images + création data)
-        - mise à jour du JS pour poller le state de la task celery
+
+    
     - ajouter des tests pour le coeur de l'app
         - download des données
         - création des données
@@ -9,6 +11,8 @@ Finalisation:
 
     - améliorer CSS email
     - rotation de l'api key airbnb
+
+
 
 
 Questions:

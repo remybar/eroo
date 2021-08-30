@@ -148,7 +148,8 @@ else:
 # ------------ Celery/Redis configurations ------------
 
 if IS_ENV_DEV:
-    BROKER_URL = 'redis://localhost:6379'
+    CELERY_RESULT_BACKEND = 'django-cache'
+    CELERY_BROKER_URL = 'redis://localhost:6379'
     CELERY_RESULT_BACKEND = 'redis://localhost:6379'
     CELERY_ACCEPT_CONTENT = ['application/json']
     CELERY_TASK_SERIALIZER = 'json'
@@ -172,6 +173,7 @@ INSTALLED_APPS = [
     # third-party apps
     "allauth",
     "allauth.account",
+    "django_celery_results",
     # local apps
     "accounts",
     "dashboard",

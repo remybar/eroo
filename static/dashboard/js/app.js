@@ -95,33 +95,85 @@ function generateWebsite(action_url, csrftoken, rental_url) {
   fetch(request)
   .then(handleErrors)
   .then((data) => {
-    // refresh the table
-    let tableContainer = document.getElementById("websites-table-container");
-    let table = document.getElementById("websites-table");
-    let tbody = table.getElementsByTagName('tbody')[0];
-    
-    newRow = tbody.insertRow()
-    newRow.setAttribute("id", `website_${data.key}`);
-    newRow.innerHTML = `
-      <td class="border-0"><a target="_blank" href='${data.url}'>${data.name}</a></td>
-      <td class="border-0">${data.key}</td>
-      <td class="border-0">${data.generated_date}</td>
-      <td class="border-0">
-          <a data-url='${data.delete_url}' class='website-delete-btn text-tertiary'>
-            <span class="fas fa-trash-alt me-2"></span>
-            Supprimer
-          </a>
-      </td>
-    `;
-    if (table.rows.length > 1) {
-      tableContainer.style.display = "block";
-    }
-
-    addMessage("success", "Votre site web a été généré avec succès!");
-
+    getTaskStatus(data.task_id);
+  })
+  .catch((data) => {
+    console.log(data.error);
+    addMessage("danger", `${data.error}`.replace("Error: ", ""));
     document.getElementById("id_rental_url").value = "";
     generateBtn.innerHTML = origInnerHTML;
     generateBtn.disabled = false;
+  });
+}
+
+function getTaskStatus(taskID) {
+  const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+  const request = new Request(`/dashboard/task/${taskID}/`, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": csrftoken,
+    },
+  });
+
+  fetch(request)
+  .then(handleErrors)
+  .then((res) => {
+    const taskStatus = res.task_status;
+
+    if (taskStatus === 'SUCCESS') {
+      const data = res.data;
+      let generateBtn = document.getElementById("generate-btn")
+
+      if (data.result === "success") {
+        // refresh the table
+        let tableContainer = document.getElementById("websites-table-container");
+        let table = document.getElementById("websites-table");
+        let tbody = table.getElementsByTagName('tbody')[0];
+        
+        newRow = tbody.insertRow()
+        newRow.setAttribute("id", `website_${data.key}`);
+        newRow.innerHTML = `
+          <td class="border-0"><a target="_blank" href='${data.url}'>${data.name}</a></td>
+          <td class="border-0">${data.key}</td>
+          <td class="border-0">${data.generated_date}</td>
+          <td class="border-0">
+              <a data-url='${data.delete_url}' class='website-delete-btn text-tertiary'>
+                <span class="fas fa-trash-alt me-2"></span>
+                Supprimer
+              </a>
+          </td>
+        `;
+        if (table.rows.length > 1) {
+          tableContainer.style.display = "block";
+        }
+
+        addMessage("success", "Votre site web a été généré avec succès!");
+
+        document.getElementById("id_rental_url").value = "";
+        generateBtn.innerHTML = "Ajouter";
+        generateBtn.disabled = false;
+      }
+      else {
+        console.log(data.msg);
+        addMessage("danger", `${data.msg}`.replace("Error: ", ""));
+        document.getElementById("id_rental_url").value = "";
+        generateBtn.innerHTML = "Ajouter";
+        generateBtn.disabled = false;
+      }
+      return false;
+    }
+
+    if (taskStatus === 'FAILURE') {
+      /* TODO */
+      return false;
+    }
+
+    setTimeout(function() {
+      getTaskStatus(res.task_id);
+    }, 1000);
   })
   .catch((data) => {
     console.log(data.error);

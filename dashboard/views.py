@@ -1,7 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import redirect
+from django.views import View
 from django.views.generic import TemplateView
 
+from celery import current_app
 from websites.config import MAX_WEBSITES_COUNT, WEBSITE_URL
 from websites.models import Website
 
@@ -30,3 +33,14 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             ],
         }
         return context
+
+
+class TaskView(View):
+    def get(self, request, task_id):
+        task = current_app.AsyncResult(task_id)
+        response_data = {'task_status': task.status, 'task_id': task.id}
+
+        if task.status == 'SUCCESS':
+            response_data['data'] = task.get()
+
+        return JsonResponse(response_data)

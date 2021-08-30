@@ -161,7 +161,7 @@ class Website(models.Model):
         location = Website._create_location(data["location"])
         website = Website(
             key=Website._generate_key(),
-            user=User.objects.get(user_id),
+            user=User.objects.get(id=user_id),
             rental_url=url,
             name=data["name"],
             description=Website._generate_description(data["description"]),

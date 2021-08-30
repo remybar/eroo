@@ -23,7 +23,22 @@
             ],
             "django": true,
             "justMyCode": false,
+        },
+        {
+            "name": "Eroo Celery",
+            "type": "python",
+            "request": "launch",
+            "module": "celery",
+            "console": "integratedTerminal",
+            "args": [
+                "-A",
+                "eroo",
+                "worker",
+                "-l",
+                "info",
+                "-P",
+                "solo",
+            ]
         }
-
     ]
 }
