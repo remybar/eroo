@@ -1,5 +1,4 @@
 Finalisation:
-    - debugger task Celery avec VS Code
     - utiliser Celery pour générer le site web (scrap + download images + création data)
 
     

@@ -147,16 +147,18 @@ else:
 
 # ------------ Celery/Redis configurations ------------
 
+CELERY_RESULT_BACKEND = 'django-cache'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+
 if IS_ENV_DEV:
-    CELERY_RESULT_BACKEND = 'django-cache'
     CELERY_BROKER_URL = 'redis://localhost:6379'
     CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-    CELERY_ACCEPT_CONTENT = ['application/json']
-    CELERY_TASK_SERIALIZER = 'json'
-    CELERY_RESULT_SERIALIZER = 'json'
-    CELERY_TIMEZONE = TIME_ZONE
 else:
-    pass  # TODO: configure heroku redis/celery
+    CELERY_BROKER_URL = env.str('REDIS_URL')
+    CELERY_RESULT_BACKEND = env.str('REDIS_URL')
 
 # ------------ Application definition ------------
 
