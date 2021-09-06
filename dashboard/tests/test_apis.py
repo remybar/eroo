@@ -10,6 +10,17 @@ from ..apis import api_website_create, api_website_delete
 
 class ApiTestCase(TestCase):
 
+    def assertStatusCode(self, category, value):
+        statusCodeChecking = {
+            'info': (100, 199),
+            'success': (200, 299),
+            'redirection': (300, 399),
+            'client_error': (400, 499),
+            'server_error': (500, 599),
+        }
+        low, high = statusCodeChecking[category]
+        self.assertIn(value, range(low, high + 1))
+
     def _check_response(self, response, expected):
         """ verify that a JSON `response` matches with the expected dictionary """
         self.assertEqual(json.loads(response), expected)
@@ -27,7 +38,7 @@ class ApiTestCase(TestCase):
         login_url = reverse("account_login")
         response = client.post(url)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertStatusCode('redirection', response.status_code)
         self.assertEqual(response.url, f"{login_url}?next={url}")
 
     def test_api_website_create_is_not_ajax_request(self):
@@ -39,7 +50,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 500)
+        self.assertStatusCode('server_error', response.status_code)
         self._check_response(response.content, {"error": "mauvaise requête"})
 
     def test_api_website_create_has_not_rental_url(self):
@@ -52,7 +63,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 500)
+        self.assertStatusCode('server_error', response.status_code)
         self._check_response(response.content, {"error": "mauvaise requête"})
 
     def test_api_website_create_empty_rental_url(self):
@@ -65,7 +76,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 500)
+        self.assertStatusCode('server_error', response.status_code)
         self._check_response(response.content, {"error": "URL de l'annonce non fournie"})
 
     @patch("dashboard.apis.explode_airbnb_url")
@@ -81,7 +92,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 400)
+        self.assertStatusCode('client_error', response.status_code)
         self._check_response(response.content, {"error": "L'URL fournie n'est pas une URL Airbnb valide"})
         mock_explode.assert_called_with(request.POST["rental_url"])
 
@@ -101,7 +112,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 400)
+        self.assertStatusCode('client_error', response.status_code)
         self._check_response(
             response.content,
             {
@@ -134,7 +145,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_create(request)
 
-        self.assertEqual(response.status_code, 202)
+        self.assertStatusCode('success', response.status_code)
         self._check_response(response.content, {"task_id": task_id})
         mock_explode.assert_called_with(request.POST["rental_url"])
         mock_resource.assert_called_with(request.user)
@@ -152,7 +163,7 @@ class ApiTestCase(TestCase):
         url = reverse("api_website_delete", args=["abcd"])
         response = client.post(url)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertStatusCode('redirection', response.status_code)
         self.assertEqual(response.url, f"/accounts/login/?next={url}")
 
     def test_api_website_delete_is_not_ajax_request(self):
@@ -164,7 +175,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_delete(request, "1234")
 
-        self.assertEqual(response.status_code, 500)
+        self.assertStatusCode('server_error', response.status_code)
         self._check_response(response.content, {"error": "mauvaise requête"})
 
     @patch("dashboard.apis.Website.get_website", Mock(return_value=None))
@@ -177,7 +188,7 @@ class ApiTestCase(TestCase):
 
         response = api_website_delete(request, "1234")
 
-        self.assertEqual(response.status_code, 400)
+        self.assertStatusCode('client_error', response.status_code)
         self._check_response(response.content, {"error": "Ce site n'existe pas"})
 
 
@@ -193,5 +204,5 @@ class ApiTestCase(TestCase):
         response = api_website_delete(request, key)
 
         mock_website.return_value.delete.assert_called()
-        self.assertEqual(response.status_code, 200)
+        self.assertStatusCode('success', response.status_code)
         self._check_response(response.content, {"key": key})
