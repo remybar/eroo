@@ -31,7 +31,7 @@ class ViewTestCase(TestCase):
 
         self.assertStatusCode('redirection', response.status_code)
 
-TODO RBA: to fix
+# TODO RBA: to fix
 #        self.assertEqual(response.url, f"{login_url}?next={url}")
 
     @patch("accounts.views.User.objects.get", Mock(return_value=None))
