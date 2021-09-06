@@ -15,7 +15,7 @@ from ..tasks import scrap_and_create_website
 
 class TaskTestCase(TestCase):
 
-    @patch("dashboard.tasks.scrap_airbnb_data")
+    @patch("dashboard.tasks.scrap_and_convert")
     def test_scrap_and_create_website_scrap_exception(self, mock_scrap):
         """
         Data scrapping raises an exception
@@ -28,10 +28,10 @@ class TaskTestCase(TestCase):
 
         response = scrap_and_create_website(user_id, base_url, airbnb_id)
 
-        self.assertEqual(response, {"error": "Impossible d'accéder à votre annonce Airbnb"})
+        self.assertEqual(response, {"result": "error", "msg": "Impossible d'accéder à votre annonce Airbnb"})
         mock_scrap.assert_called_with(airbnb_id)
 
-    @patch("dashboard.tasks.scrap_airbnb_data")
+    @patch("dashboard.tasks.scrap_and_convert")
     def test_scrap_and_create_website_scrap_error(self, mock_scrap):
         """
         Data scraping returns an error
@@ -44,11 +44,11 @@ class TaskTestCase(TestCase):
 
         response = scrap_and_create_website(user_id, base_url, airbnb_id)
 
-        self.assertEqual(response, {"error": "Impossible d'accéder à votre annonce Airbnb"})
+        self.assertEqual(response, {"result": "error", "msg": "Impossible d'accéder à votre annonce Airbnb"})
         mock_scrap.assert_called_with(airbnb_id)
 
     @patch("dashboard.tasks.Website.create")
-    @patch("dashboard.tasks.scrap_airbnb_data")
+    @patch("dashboard.tasks.scrap_and_convert")
     def test_scrap_and_create_website_create_raise_exception(self, mock_scrap, mock_create):
         """
         Website creation raises an exception
@@ -63,12 +63,12 @@ class TaskTestCase(TestCase):
 
         response = scrap_and_create_website(user_id, base_url, airbnb_id)
 
-        self.assertEqual(response, {"error": "Impossible de créer le site web à partir des données de votre annonce"})
+        self.assertEqual(response, {"result": "error", "msg": "Impossible de créer le site web à partir des données de votre annonce"})
         mock_scrap.assert_called_with(airbnb_id)
         mock_create.assert_called_with(user_id, base_url, scrapped_data)
 
     @patch("dashboard.tasks.Website.create")
-    @patch("dashboard.tasks.scrap_airbnb_data")
+    @patch("dashboard.tasks.scrap_and_convert")
     def test_scrap_and_create_website_create_error(self, mock_scrap, mock_create):
         """
         Website creation returns an error
@@ -83,12 +83,12 @@ class TaskTestCase(TestCase):
 
         response = scrap_and_create_website(user_id, base_url, airbnb_id)
 
-        self.assertEqual(response, {"error": "Impossible de créer le site web à partir des données de votre annonce"})
+        self.assertEqual(response, {"result": "error", "msg": "Impossible de créer le site web à partir des données de votre annonce"})
         mock_scrap.assert_called_with(airbnb_id)
         mock_create.assert_called_with(user_id, base_url, scrapped_data)
 
     @patch("dashboard.tasks.Website.create")
-    @patch("dashboard.tasks.scrap_airbnb_data")
+    @patch("dashboard.tasks.scrap_and_convert")
     def test_scrap_and_create_website_nominal_case(self, mock_scrap, mock_create):
         """
         Website creation returns an error
@@ -111,6 +111,7 @@ class TaskTestCase(TestCase):
         self.assertEqual(
             response,
             {
+                "result": "success",
                 "key": website_data["key"],
                 "name": website_data["name"],
                 "url": WEBSITE_URL % website_data["key"],

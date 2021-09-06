@@ -11,7 +11,7 @@ test:
     DATABASE_URL: "postgresql://$POSTGRES_USER:$POSGRES_PASSWORD@postgres:5432/$POSTGRES_DB"
   script:
     - pip install pipenv
-    - pipenv install --ignore-pipfile
+    - pipenv install --ignore-pipfile --dev
     - pipenv run python manage.py migrate
     - pipenv run python manage.py check --deploy
     - pipenv run python manage.py test

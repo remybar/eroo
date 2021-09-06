@@ -1,7 +1,10 @@
 Finalisation:
-    - utiliser Celery pour générer le site web (scrap + download images + création data)
+    Faire passer tous les tests pour pouvoir déployer sur gitlab
+    Dockeriser le projet pour:
+        + déploiement facile (redis, postgres, celery, ...)
+        + ressemblance local/remote
 
-    
+   
     - ajouter des tests pour le coeur de l'app
         - download des données
         - création des données
