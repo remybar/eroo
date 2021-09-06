@@ -9,6 +9,17 @@ from ..views import DeleteAccountView
 
 class ViewTestCase(TestCase):
 
+    def assertStatusCode(self, category, value):
+        statusCodeChecking = {
+            'info': (100, 199),
+            'success': (200, 299),
+            'redirection': (300, 399),
+            'client_error': (400, 499),
+            'server_error': (500, 599),
+        }
+        low, high = statusCodeChecking[category]
+        self.assertIn(value, range(low, high + 1))
+
     def test_delete_account_not_logged(self):
         """
         Try to delete an account without being logged
@@ -18,7 +29,7 @@ class ViewTestCase(TestCase):
         login_url = reverse("account_login")
         response = client.post(url)
 
-        self.assertEqual(response.status_code, 302)
+        self.assertStatusCode('redirection', response.status_code)
         self.assertEqual(response.url, f"{login_url}?next={url}")
 
     @patch("accounts.views.User.objects.get", Mock(return_value=None))
@@ -32,7 +43,7 @@ class ViewTestCase(TestCase):
         request.META = {"CSRF_COOKIE": "XXX"}
         response = view.post(request)
 
-        self.assertEqual(response.status_code, 200)
+        self.assertStatusCode('success', response.status_code)
 
     @patch("accounts.views.User.objects.get")
     @patch("accounts.views.logout")
@@ -48,5 +59,5 @@ class ViewTestCase(TestCase):
 
         mock_get.return_value.delete.assert_called()
         mock_logout.assert_called()
-        self.assertEqual(response.status_code, 302)
+        self.assertStatusCode('redirection', response.status_code)
         self.assertEqual(response.url, "/")
