@@ -1,5 +1,4 @@
 Finalisation:
-    Faire passer tous les tests pour pouvoir déployer sur gitlab
     Dockeriser le projet pour:
         + déploiement facile (redis, postgres, celery, ...)
         + ressemblance local/remote

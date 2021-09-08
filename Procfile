@@ -1,3 +1,3 @@
 release: python3 manage.py migrate
 web: gunicorn eroo.wsgi --preload --log-file -
-celery: celery worker -A eroo -l info -c 4
+worker: celery -A eroo worker -l info -B

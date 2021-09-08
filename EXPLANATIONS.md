@@ -10,3 +10,11 @@
     `celery -A eroo beat -l info`
 
 - use `django-celery-results` to store tasks results in the database (backend)
+
+# Heroku
+
+- voir les apps: `heroku apps`
+
+- sélectionner une app: `heroku git:remote -a YOUR_APP`
+
+- voir les logs `heroku logs [-d dynoname]` 
