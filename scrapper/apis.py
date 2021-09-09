@@ -34,7 +34,8 @@ def scrap_airbnb_data(id):
             save_debug_data(f"scrapper/{id}/reviews.json", reviews)
 
         return (details, reviews)
-    except Exception:
+    except Exception as e:
+        _logger.exception(str(e))
         return None
 
 

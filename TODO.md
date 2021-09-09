@@ -1,9 +1,6 @@
 Finalisation:
-    Dockeriser le projet pour:
-        + déploiement facile (redis, postgres, celery, ...)
-        + ressemblance local/remote
+    - mettre un timeout sur la génération du site (2 minutes ?)
 
-   
     - ajouter des tests pour le coeur de l'app
         - download des données
         - création des données
@@ -12,9 +9,6 @@ Finalisation:
 
     - améliorer CSS email
     - rotation de l'api key airbnb
-
-
-
 
 Questions:
     - comment gérer proprement les migrations avec Django ?
@@ -33,7 +27,9 @@ Questions:
     - quelle stratégie SEO ?
 
 Futures améliorations de l'infra
-    - utiliser celery pour gérer la génération du site web ?
+    Dockeriser le projet pour:
+        + déploiement facile (redis, postgres, celery, ...)
+        + ressemblance local/remote
     - penser à utiliser un cache
     - mettre en place un coffre-fort de mots de passe pro
     - envoi de mail avec Celery

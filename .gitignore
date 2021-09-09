@@ -7,3 +7,4 @@ staticfiles/**
 !staticfiles/.gitkeep
 .coverage
 reports
+celerybeat-schedule.db
