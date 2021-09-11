@@ -1,4 +1,6 @@
+import logging
 from shortuuid import ShortUUID
+import time
 
 from django.conf import settings
 from django.db import models
@@ -33,6 +35,8 @@ NAME_LENGTH = 255
 
 HOST_PICTURE_FILENAME = "host.jpg"
 EXPECTED_DATA_KEYS = ["name", "description", "photos"]
+
+_logger = logging.getLogger('websites')
 
 
 class Website(models.Model):
@@ -177,7 +181,12 @@ class Website(models.Model):
         )
         website.save()
         website._create_host(data["host"])
+
+        start = time.time()
         website._create_photos(data["photos"])
+        end = time.time()
+        _logger.info("create_photo: %s", end - start)
+
         website._create_reviews(data["reviews"])
         website._create_equipments(data["equipments"])
         website._create_highlights(data["highlights"])

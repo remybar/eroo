@@ -1,3 +1,5 @@
+import time
+
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
@@ -19,7 +21,10 @@ def scrap_and_create_website(user_id, base_url, airbnb_id):
     logger.info("scrap and create website for {'airbnb_id': %s}", airbnb_id)
 
     try:
+        start = time.time()
         data = scrap_and_convert(airbnb_id)
+        end = time.time()
+        logger.info("scrapping: %s", end - start)
     except Exception:
         data = None
 
@@ -31,7 +36,10 @@ def scrap_and_create_website(user_id, base_url, airbnb_id):
 
     # generate the website and get the redirect page
     try:
+        start = time.time()
         website = Website.create(user_id, base_url, data)
+        end = time.time()
+        logger.info("full create: %s", end - start)
     except Exception as e:
         logger.exception(str(e))
         website = None
