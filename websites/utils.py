@@ -110,6 +110,13 @@ def save_debug_data(filename, data):
         _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
 
 
+def delete_debug_data(filename):
+    try:
+        private_storage.delete(filename)
+    except Exception as e:
+        _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
+
+
 def get_photo_dir_path(instance, filename):
     return f"websites/{instance.website.key}/photos/{filename}"
 

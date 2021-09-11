@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 from websites.utils import get_photo_dir_path
 
@@ -19,3 +21,9 @@ class WebsiteHost(models.Model):
 
     def picture_url(self):
         return self.picture.url
+
+
+@receiver(pre_delete, sender=WebsiteHost)
+def delete_host(sender, instance, **kwargs):
+    if instance.picture:
+        instance.picture.delete(save=False)

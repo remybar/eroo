@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 from websites.utils import get_photo_dir_path
 
@@ -15,3 +17,8 @@ class WebsitePhoto(models.Model):
 
     def url(self):
         return self.image.url
+
+@receiver(pre_delete, sender=WebsitePhoto)
+def delete_photo(sender, instance, **kwargs):
+    if instance.image:
+        instance.image.delete(save=False)

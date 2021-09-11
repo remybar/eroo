@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 from websites.utils import get_review_dir_path
 
@@ -19,3 +21,9 @@ class Review(models.Model):
 
     def picture_url(self):
         return self.author_picture.url
+
+
+@receiver(pre_delete, sender=Review)
+def delete_review(sender, instance, **kwargs):
+    if instance.author_picture:
+        instance.author_picture.delete(save=False)

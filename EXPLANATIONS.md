@@ -31,3 +31,5 @@
 - voir les logs: `heroku logs [-d dynoname]` 
 
 - voir l'état des dynos: `heroku ps`
+
+- pour créer le superuser sur heroku: `heroku run -a eroo-app-staging python manage.py createsuperuser`

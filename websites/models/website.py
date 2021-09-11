@@ -2,6 +2,8 @@ from shortuuid import ShortUUID
 
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from django.utils import html
 from django.core.files import File
 
@@ -21,6 +23,8 @@ from .highlight import Highlight
 from .room import Room, RoomDetail
 from .rule import Rule
 from .equipment import Equipment, EquipmentArea
+
+from ..utils import delete_debug_data
 
 User = get_user_model()
 
@@ -196,3 +200,21 @@ class Website(models.Model):
     def has_reached_resource_limits(user):
         """ indicates if resource limits have been reached for the `user` """
         return Website.objects.filter(user=user).count() >= MAX_WEBSITES_COUNT
+
+@receiver(pre_delete, sender=Website)
+def delete_website(sender, instance, **kwargs):
+
+    # remove website.key folder
+    # try:
+    #     private_storage.delete(filename)
+    # except Exception as e:
+    #     _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
+
+    # remove debug data if any
+    if settings.USE_DEBUG_DATA_STORAGE:
+        id = instance.rental_url.split('/')[-1]
+        delete_debug_data(f"scrapper/{id}/details.json")
+        delete_debug_data(f"scrapper/{id}/reviews.json")
+        delete_debug_data(f"api/{instance.key}/api_data.json")
+        delete_debug_data(f"scrapper/{id}")
+        delete_debug_data(f"api/{instance.key}")
