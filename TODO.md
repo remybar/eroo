@@ -1,10 +1,12 @@
 Finalisation:
-    - supprimer les données de debug quand on supprimer un site (settings sur le private storage ?)
-
+    - reset db sur heroku pour partir d'une db clean
     - monitorer les taches celery: 
         dyno flower: problème de nombre de connexions à Redis
     - créer un compte "maker" pour tester sur indie maker
-
+ 
+ Améliorations:
+    - supprimer les données de debug quand on supprimer un site (settings sur le private storage ?)
+ 
     - ajouter des tests pour le coeur de l'app
         - download des données
         - création des données
