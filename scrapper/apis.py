@@ -58,8 +58,8 @@ def _get_airbnb_host_info(data):
 
 def _get_airbnb_general_info(data):
     def _extract_count(value):
-        v = re.split(r"\D+", value)[0] if value else None
-        return v if v and v.isnumeric() else None
+        v = re.split(r"\D+", value)[0] if value else 0
+        return v if v and v.isnumeric() else 0
 
     return {
         "bathroom_count": _extract_count(data.get("bathroom_label")),
