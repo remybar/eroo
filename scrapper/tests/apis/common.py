@@ -29,7 +29,7 @@ def _in_general_info(**kwargs):
     return kwargs
 
 
-def _out_general_info(bathroom=None, bed=None, bedroom=None, guest=None):
+def _out_general_info(bathroom=0, bed=0, bedroom=0, guest=0):
     return {
         "bathroom_count": bathroom,
         "bed_count": bed,
