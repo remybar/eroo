@@ -16,8 +16,7 @@ test:
     - pipenv run python manage.py check --deploy
     - pipenv run python manage.py test
   environment:
-    name: staging
-    url: https://staging.eroo.fr
+    name: test
 
 # TODO: add more high level tests in the future
 
@@ -31,7 +30,6 @@ staging:
   - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --skip-cleanup
   environment:
     name: staging
-    url: https://staging.eroo.fr
   only:
   - staging
 
@@ -45,6 +43,5 @@ production:
   - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY --skip-cleanup
   environment:
     name: production
-    url: https://eroo.fr
   only:
   - master
