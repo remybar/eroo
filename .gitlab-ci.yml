@@ -10,14 +10,14 @@ test:
     POSTGRES_HOST_AUTH_METHOD: trust
     DATABASE_URL: "postgresql://$POSTGRES_USER:$POSGRES_PASSWORD@postgres:5432/$POSTGRES_DB"
   script:
+    - echo "environment: $ENVIRONMENT"
     - pip install pipenv
     - pipenv install --ignore-pipfile --dev
     - pipenv run python manage.py migrate
     - pipenv run python manage.py check --deploy
     - pipenv run python manage.py test
   environment:
-    name: staging
-    url: https://staging.eroo.fr
+    name: test
 
 # TODO: add more high level tests in the future
 
@@ -25,13 +25,13 @@ test:
 staging:
   type: deploy
   script:
+  - echo "environment: $ENVIRONMENT"
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --skip-cleanup
   environment:
     name: staging
-    url: https://staging.eroo.fr
   only:
   - staging
 
@@ -39,12 +39,12 @@ staging:
 production:
   type: deploy
   script:
+  - echo "environment: $ENVIRONMENT"
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY --skip-cleanup
   environment:
     name: production
-    url: https://eroo.fr
   only:
   - master
