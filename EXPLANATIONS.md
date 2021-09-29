@@ -35,3 +35,7 @@
 - pour créer le superuser sur heroku: `heroku run -a eroo-app-staging python manage.py createsuperuser`
 
 - pour activer le mode maintenance : `heroku maintenance:on` (`heroku maintenance:off` pour désactiver)
+
+# CI/CD
+
+- définir des environnements séparés pour avoir plusieurs jeux de variables d'environnements (https://docs.gitlab.com/ee/ci/environments/index.html)
