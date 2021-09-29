@@ -40,6 +40,9 @@ USE_TZ = True
 
 AIRBNB_API_KEY = env.str("AIRBNB_API_KEY")
 
+SCRAPING_PROXY_ENABLED = env.bool("SCRAPING_PROXY_ENABLED", False)
+SCRAPING_PROXY = env.str("SCRAPING_PROXY") if SCRAPING_PROXY_ENABLED else None
+
 # ------------ logging/exception handling configurations ------------
 
 if not IS_ENV_DEV:

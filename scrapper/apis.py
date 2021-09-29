@@ -24,6 +24,7 @@ def scrap_airbnb_data(id):
             locale="fr",
             country="fr",
             language="fr-fr",
+            proxy=settings.SCRAPING_PROXY,
         )
         details = api.get_listing_details(id)
         reviews = api.get_reviews(id)
