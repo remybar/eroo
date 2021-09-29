@@ -45,7 +45,7 @@ SCRAPING_PROXY = env.str("SCRAPING_PROXY") if SCRAPING_PROXY_ENABLED else None
 
 # ------------ logging/exception handling configurations ------------
 
-if not IS_ENV_DEV:
+if ENVIRONMENT not in ("development", "test"):
     SENTRY_DSN = env.str("SENTRY_DSN")
     import sentry_sdk
     from sentry_sdk.integrations.django import DjangoIntegration
