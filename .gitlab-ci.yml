@@ -26,6 +26,9 @@ staging:
   - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY --skip-cleanup
+  environment:
+    name: staging
+    url: https://staging.eroo.fr
   only:
   - staging
 
@@ -37,5 +40,8 @@ production:
   - apt-get install -y ruby-dev
   - gem install dpl
   - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY --skip-cleanup
+  environment:
+    name: production
+    url: https://eroo.fr
   only:
   - master
