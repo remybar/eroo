@@ -1,3 +1,4 @@
+import logging
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -10,6 +11,8 @@ class ScrapTestCase(TestCase):
 
     @patch("scrapper.apis.airbnb.Api")
     def test_returns_none_when_airbnb_api_exception(self, mock_api):
+        logging.disable(logging.CRITICAL)
+        
         airbnb_id = "1234"
         mock_api.side_effect = Exception()
 
@@ -22,7 +25,8 @@ class ScrapTestCase(TestCase):
             currency="EUR",
             locale="fr",
             country="fr",
-            language="fr-fr"
+            language="fr-fr",
+            proxy=None,
         )
 
     @patch("scrapper.apis.airbnb.Api")
@@ -43,7 +47,8 @@ class ScrapTestCase(TestCase):
             currency="EUR",
             locale="fr",
             country="fr",
-            language="fr-fr"
+            language="fr-fr",
+            proxy=None,
         )
         mock_api.return_value.get_listing_details.assert_called_with(airbnb_id)
         mock_api.return_value.get_reviews.assert_called_with(airbnb_id)

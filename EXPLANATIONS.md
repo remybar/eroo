@@ -33,3 +33,5 @@
 - voir l'état des dynos: `heroku ps`
 
 - pour créer le superuser sur heroku: `heroku run -a eroo-app-staging python manage.py createsuperuser`
+
+- pour activer le mode maintenance : `heroku maintenance:on` (`heroku maintenance:off` pour désactiver)
