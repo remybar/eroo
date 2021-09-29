@@ -7,7 +7,7 @@
 - database: postgres
 - storage des assets : Amazon S3
 - logging: logentries
-- google map: via gcp remy.baranx@gmail.com (Map Javascript API)
+- google map: via gcp (Map Javascript API)
 
 # Celery
 
