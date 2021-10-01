@@ -15,6 +15,7 @@ test:
     - pipenv install --ignore-pipfile --dev
     - pipenv run python manage.py migrate
     - pipenv run python manage.py check --deploy
+    - pipenv run python manage.py collectstatic --clear --noinput
     - pipenv run python manage.py test
   environment:
     name: test
