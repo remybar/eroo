@@ -176,6 +176,7 @@ INSTALLED_APPS = [
     "django_celery_results",
     # local apps
     "accounts",
+    "bookings",
     "dashboard",
     "scrapper",
     "websites",
