@@ -9,7 +9,7 @@ from django.dispatch import receiver
 from django.utils import html
 from django.core.files import File
 
-from allauth.utils import get_user_model
+#from allauth.utils import get_user_model
 
 from websites.config import MAX_WEBSITES_COUNT
 from websites.utils import (
@@ -28,7 +28,7 @@ from .equipment import Equipment, EquipmentArea
 
 from ..utils import delete_debug_data
 
-User = get_user_model()
+#User = get_user_model()
 
 KEY_LENGTH = 16
 NAME_LENGTH = 255
@@ -51,7 +51,7 @@ class Website(models.Model):
     bathroom_count = models.IntegerField()
     guest_count = models.IntegerField()
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+#    user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(WebsiteLocation, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -169,7 +169,7 @@ class Website(models.Model):
         location = Website._create_location(data["location"])
         website = Website(
             key=Website._generate_key(),
-            user=User.objects.get(id=user_id),
+#            user=User.objects.get(id=user_id),
             rental_url=url,
             name=data["name"],
             description=Website._generate_description(data["description"]),

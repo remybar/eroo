@@ -62,17 +62,8 @@
                             {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                             {% endif %}
+                            <input type="hidden" name="is_owner" value="1"/>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Prénom <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" placeholder="Votre nom"
-                                                name="username" required="">
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Email <span class="text-danger">*</span></label>
@@ -101,6 +92,26 @@
                                             <input type="password" class="form-control ps-5"
                                                 placeholder="Confirmation de votre mot de passe" name="password2"
                                                 required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nom d'utilisateur <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="Votre nom"
+                                                name="username" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Sous-domaine <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" placeholder="Votre sous-domaine"
+                                                name="spacename" required="">
                                         </div>
                                     </div>
                                 </div>

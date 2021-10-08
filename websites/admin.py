@@ -17,7 +17,7 @@ from .models import (
 
 class WebsiteAdmin(admin.ModelAdmin):
     readonly_fields = ('generated_date',)
-    list_display = ('user', 'name', 'rental_url', 'key', 'generated_date')
+    list_display = ('name', 'rental_url', 'key', 'generated_date')
 
 
 admin.site.register(Website, WebsiteAdmin)

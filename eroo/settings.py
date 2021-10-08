@@ -16,13 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ENVIRONMENT = env.str("ENVIRONMENT", default="development")
 IS_ENV_DEV = DEBUG = (ENVIRONMENT == "development")
-IS_TESTS_IN_PROGRESS = len(sys.argv) > 1 and sys.argv[1] == 'test'
+IS_TESTS_IN_PROGRESS = len(sys.argv) > 1 and sys.argv[1] == "test"
 
 USE_S3 = env.bool("USE_S3", default=False)
 USE_MAIL_SERVICE = env.bool("USE_MAIL_SERVICE", default=False)
 USE_DEBUG_DATA_STORAGE = env.bool("USE_DEBUG_DATA_STORAGE", default=False)
-
-SITE_ID = 1
 
 # ------------ i18n ------------
 
@@ -53,42 +51,42 @@ if ENVIRONMENT not in ("development", "test"):
 
 if not IS_TESTS_IN_PROGRESS:
     LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'verbose': {
-                'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
-                        'pathname=%(pathname)s lineno=%(lineno)s ' +
-                        'funcname=%(funcName)s %(message)s'),
-                'datefmt': '%Y-%m-%d %H:%M:%S'
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": ("%(asctime)s [%(process)d] [%(levelname)s] " +
+                        "pathname=%(pathname)s lineno=%(lineno)s " +
+                        "funcname=%(funcName)s %(message)s"),
+                "datefmt": "%Y-%m-%d %H:%M:%S"
             },
-            'simple': {
-                'format': '%(levelname)s %(message)s'
+            "simple": {
+                "format": "%(levelname)s %(message)s"
             }
         },
-        'handlers': {
-            'null': {
-                'level': 'DEBUG',
-                'class': 'logging.NullHandler',
+        "handlers": {
+            "null": {
+                "level": "DEBUG",
+                "class": "logging.NullHandler",
             },
-            'console': {
-                'level': 'DEBUG',
-                'class': 'logging.StreamHandler',
-                'formatter': 'verbose'
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "verbose"
             }
         },
-        'loggers': {
-            'scrapper': {
-                'handlers': ['console'],
-                'level': 'INFO',
+        "loggers": {
+            "scrapper": {
+                "handlers": ["console"],
+                "level": "INFO",
             },
-            'websites': {
-                'handlers': ['console'],
-                'level': 'INFO',
+            "websites": {
+                "handlers": ["console"],
+                "level": "INFO",
             },
-            'utils': {
-                'handlers': ['console'],
-                'level': 'INFO',
+            "utils": {
+                "handlers": ["console"],
+                "level": "INFO",
             }
         }
     }
@@ -100,7 +98,15 @@ GOOGLE_MAP_API_KEY = env.str("GOOGLE_MAP_API_KEY")
 
 # ------------ Safety configuration ------------
 
-ALLOWED_HOSTS = [".eroo.fr", ".herokuapp.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    ".eroo.fr",
+    ".herokuapp.com",
+    "localhost",
+    ".localhost",
+    "127.0.0.1",
+    "fakedomain.com",
+    ".fakedomain.com",
+    ]
 
 if not IS_ENV_DEV:
     SECURE_BROWSER_XSS_FILTER = True
@@ -116,7 +122,7 @@ if not IS_ENV_DEV:
 
 # ------------ Account/Allauth configurations ------------
 
-LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_REDIRECT_URL = "/"
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -128,7 +134,9 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
-AUTH_USER_MODEL = "accounts.CustomUser"
+ACCOUNT_FORMS = {'signup': 'accounts.forms.ErooUserSignUpForm'}
+AUTH_USER_MODEL = "accounts.ErooUser"
+
 
 if not IS_ENV_DEV:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
@@ -136,12 +144,12 @@ if not IS_ENV_DEV:
 # ------------ Mail configuration ------------
 
 if USE_MAIL_SERVICE:
-    EMAIL_HOST = env.str('SMTP_SERVER')
-    EMAIL_HOST_USER = env.str('SMTP_LOGIN')
-    EMAIL_HOST_PASSWORD = env.str('SMTP_PASSWORD')
-    EMAIL_PORT = env.str('SMTP_PORT')
+    EMAIL_HOST = env.str("SMTP_SERVER")
+    EMAIL_HOST_USER = env.str("SMTP_LOGIN")
+    EMAIL_HOST_PASSWORD = env.str("SMTP_PASSWORD")
+    EMAIL_PORT = env.str("SMTP_PORT")
     EMAIL_USE_TLS = True
-    DEFAULT_FROM_EMAIL = 'contact@eroo.fr'
+    DEFAULT_FROM_EMAIL = "contact@eroo.fr"
 else:
     # use mailhog
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -150,17 +158,18 @@ else:
 
 # ------------ Celery/Redis configurations ------------
 
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
-CELERY_TASK_TIME_LIMIT = env.int('CELERY_TASK_TIME_LIMIT')
-CELERY_BROKER_URL = env.str('REDIS_URL')
-CELERY_RESULT_BACKEND = env.str('REDIS_URL')
+CELERY_TASK_TIME_LIMIT = env.int("CELERY_TASK_TIME_LIMIT")
+CELERY_BROKER_URL = env.str("REDIS_URL")
+CELERY_RESULT_BACKEND = env.str("REDIS_URL")
 
 # ------------ Application definition ------------
 
-INSTALLED_APPS = [
+SHARED_APPS = (
+    "django_tenants",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -169,19 +178,38 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "storages",
+
     # third-party apps
+    "tenant_users.permissions",
+    "tenant_users.tenants",
     "allauth",
     "allauth.account",
     "django_celery_results",
+    "storages",
+
     # local apps
     "accounts",
-    "dashboard",
+    "customers",
     "scrapper",
+    "saas_management",
+)
+
+TENANT_APPS = (
+#    "django.contrib.auth",
+    "django.contrib.contenttypes",
+
+    # third-party apps
+    "tenant_users.permissions",
+
+    # local apps
+    "dashboard",
     "websites",
-]
+)
+
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
+    "django_tenants.middleware.main.TenantMainMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -193,6 +221,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "eroo.urls"
+PUBLIC_SCHEMA_URLCONF = 'eroo.urls_public'
 
 TEMPLATES = [
     {
@@ -217,13 +246,23 @@ TEMPLATES = [
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    "tenant_users.permissions.backend.UserBackend",
 ]
 
 WSGI_APPLICATION = "eroo.wsgi.application"
 
-# ------------ Database ------------
+# ------------ Database & Multi-tenants management ------------
 
-DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
+DATABASE_ENGINE = "django_tenants.postgresql_backend"
+DATABASES = {"default": dict(env.dj_db_url("DATABASE_URL"), ENGINE=DATABASE_ENGINE)}
+DATABASE_ROUTERS = ("django_tenants.routers.TenantSyncRouter",)
+
+TENANT_MODEL = "customers.CustomerSpace"
+TENANT_DOMAIN_MODEL = "customers.Domain"
+
+#TENANT_USERS_DOMAIN = env.str("TENANT_USERS_DOMAIN", "localhost")
+TENANT_USERS_DOMAIN = env.str("TENANT_USERS_DOMAIN", "fakedomain.com")
+SESSION_COOKIE_DOMAIN = f".{TENANT_USERS_DOMAIN}"
 
 # ------------ Password validation ------------
 
@@ -244,31 +283,31 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # ------------ Static & Media files ------------
 
-STATIC_LOCATION = 'static'
-PUBLIC_MEDIA_LOCATION = 'media'
-PRIVATE_MEDIA_LOCATION = 'private'
+STATIC_LOCATION = "static"
+PUBLIC_MEDIA_LOCATION = "media"
+PRIVATE_MEDIA_LOCATION = "private"
 
 STATICFILES_DIRS = [str(BASE_DIR / "static")]
 
 if USE_S3:
     # AWS settings
-    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME')
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
     # S3 static settings
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'websites.storage_backends.StaticStorage'
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+    STATICFILES_STORAGE = "websites.storage_backends.StaticStorage"
 
     # S3 public media settings
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'websites.storage_backends.PublicMediaStorage'
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "websites.storage_backends.PublicMediaStorage"
 
     # S3 private media settings
-    PRIVATE_FILE_STORAGE = 'websites.storage_backends.PrivateMediaStorage'
+    PRIVATE_FILE_STORAGE = "websites.storage_backends.PrivateMediaStorage"
 else:
     # local static settings
     STATIC_URL = "/static/"
@@ -278,7 +317,13 @@ else:
     # local public media settings
     MEDIA_URL = "/media/"
     MEDIA_ROOT = str(BASE_DIR / "mediafiles")
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 
     # local private media settings
-    PRIVATE_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+    PRIVATE_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+
+# ------------ Site configuration ------------
+
+SITE_ID = 1
+SITE_DOMAIN = TENANT_USERS_DOMAIN
+SITE_NAME = TENANT_USERS_DOMAIN
