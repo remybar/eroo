@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from .forms import ErooUserCreationForm, ErooUserChangeForm
+from .models import ErooUser
 
 
-class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
-    model = CustomUser
+class ErooUserAdmin(UserAdmin):
+    add_form = ErooUserCreationForm
+    form = ErooUserChangeForm
+    model = ErooUser
     list_display = ['email', 'username', ]
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(ErooUser, ErooUserAdmin)

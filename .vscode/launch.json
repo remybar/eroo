@@ -19,7 +19,7 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "scrapper"
+                "bookings"
             ],
             "django": true,
             "justMyCode": false,

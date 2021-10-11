@@ -1,16 +1,30 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+
+from allauth.account.forms import SignupForm
+
+from .models import ErooUser
 
 
-class CustomUserCreationForm(UserCreationForm):
+class ErooUserCreationForm(UserCreationForm):
 
     class Meta:
-        model = CustomUser
+        model = ErooUser
         fields = ('username', 'email')
 
 
-class CustomUserChangeForm(UserChangeForm):
+class ErooUserChangeForm(UserChangeForm):
 
     class Meta:
-        model = CustomUser
+        model = ErooUser
         fields = ('username', 'email')
+
+class ErooUserSignUpForm(SignupForm):
+    is_owner = forms.BooleanField(required=False)
+
+    def save(self, request):
+        user = super(ErooUserSignUpForm, self).save(request)
+        user.is_owner = self.cleaned_data['is_owner']
+        user.save()
+
+        return user
