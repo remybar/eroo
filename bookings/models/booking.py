@@ -1,4 +1,53 @@
+from collections import namedtuple
+from datetime import date, timedelta
+from typing import TypeVar
+
 from django.db import models
+from django.core.exceptions import ValidationError
+
+Weekdays = namedtuple('Weekdays', ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'], defaults=7 * [True])
+
+DEFAULT_YEAR = 2021
+
+T = TypeVar('T', bound='PeriodOfYear')
+class PeriodOfYear(namedtuple('PeriodOfYear', ['day', 'month'])):
+    def from_date(d: date):
+        return PeriodOfYear(day=d.day, month=d.month)
+
+    def to_date(self) -> date:
+        return date(day=self.day, month=self.month, year=DEFAULT_YEAR)
+
+    def __eq__(self, other):
+        return self.day == other.day and self.month == other.month
+
+    def __ne__(self, other):
+        return not (self == other)
+
+    def __lt__(self, other):
+        return self.month < other.month or (self.month == other.month and self.day < other.day)
+
+    def __le__(self, other):
+        return self < other or self == other
+
+    def __gt__(self, other):
+        return not (self <= other)
+
+    def __ge__(self, other):
+        return self > other or self == other
+
+    def __add__(self, days: int) -> T:
+        return PeriodOfYear.from_date(self.to_date() + timedelta(days=days))
+
+    def __sub__(self, days: int) -> T:
+        return PeriodOfYear.from_date(self.to_date() - timedelta(days=days))
+
+    def check_range(start_period: T, end_period: T):
+        """
+        Check start/end period consistency.
+        A period in defined with a day and a month. The year is not used.
+        """
+        if end_period < start_period:
+            raise ValidationError("The end period must be after the start period")
 
 class Housing(models.Model):
     """
@@ -13,6 +62,7 @@ class BookingSeason(models.Model):
     """
     housing = models.ForeignKey(Housing, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
+    base_price = models.DecimalField(max_digits=7, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -23,20 +73,81 @@ class BookingPeriod(models.Model):
     """
     season = models.ForeignKey(BookingSeason, on_delete=models.CASCADE)
 
-    start_date = models.DateField()
-    end_date = models.DateField()
+    _start_date = models.DateField()
+    _end_date = models.DateField()
 
     def __str__(self):
-        return "f{self.start_date.strftime('%d-%m-%Y')} - {self.end_date.strftime('%d-%m-%Y')}"
+        start = self._start_date.strftime("%d/%m")
+        end = self._end_date.strftime("%d/%m")
+        return "f{start} - {end}"
+
+    @property
+    def start_period(self) -> PeriodOfYear:
+        return PeriodOfYear.from_date(self._start_date)
+
+    @start_period.setter
+    def start_period(self, period: PeriodOfYear) -> None:
+        self._start_date = period.to_date()
+
+    @property
+    def end_period(self) -> PeriodOfYear:
+        return PeriodOfYear.from_date(self._end_date)
+
+    @end_period.setter
+    def end_period(self, period: PeriodOfYear) -> None:
+        self._end_date = period.to_date()
+
+class BookingRateModifier(models.Model):
+    """
+    Discount/Increase of booking rate applied on season base price, according to some conditions.
+    Example: +20% on weekends (2 days in [saturday, sunday]).
+    """
+    season = models.ForeignKey(BookingSeason, on_delete=models.CASCADE)
+
+    name = models.CharField(max_length=32)
+    value = models.DecimalField(max_digits=7, decimal_places=2)
+    is_percent = models.BooleanField(default=True)
+    is_discount = models.BooleanField(default=True)
+    minimal_number_of_days = models.IntegerField()
+    monday = models.BooleanField(default=True)
+    tuesday = models.BooleanField(default=True)
+    wednesday = models.BooleanField(default=True)
+    thursday = models.BooleanField(default=True)
+    friday = models.BooleanField(default=True)
+    saturday = models.BooleanField(default=True)
+    sunday = models.BooleanField(default=True)
+
+    @property
+    def weekdays(self) -> Weekdays:
+        return Weekdays(
+            mon=self.monday,
+            tue=self.tuesday,
+            wed=self.wednesday,
+            thu=self.thursday,
+            fri=self.friday,
+            sat=self.saturday,
+            sun=self.sunday,
+        )
+
+    @weekdays.setter
+    def weekdays(self, weekdays: Weekdays) -> None:
+        self.monday = weekdays.mon
+        self.tuesday = weekdays.tue
+        self.wednesday = weekdays.wed
+        self.thursday = weekdays.thu
+        self.friday = weekdays.fri
+        self.saturday = weekdays.sat
+        self.sunday = weekdays.sun
 
 class BookingPriceCategory(models.Model):
     """
     A price category such as 'adult', 'child', 'baby'.
     """
     housing = models.ForeignKey(Housing, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=128)
-    description = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
 
 class BookingPrice(models.Model):
     """

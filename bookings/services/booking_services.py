@@ -1,40 +1,32 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 from accounts.models import ErooUser
-from bookings.models import Housing, Booking
+from bookings.exceptions import (
+    BookingSeasonNoMatchFound,
+)
+from bookings.models import (
+    Housing,
+    Booking,
+)
 
 class BookingAlreadyExists(Exception):
     pass
 
-def _check_dates(start_date: datetime, end_date: datetime):
+def compute_price(*, start_date: date, end_date: date) -> int:
     """
-    Check start/end dates consistency.
+    Compute the price for a given period of time
     """
-    if start_date < timezone.now():
-        raise ValidationError("The start date cannot be before today")
+    _check_period_range(start_date=start_date, end_date=end_date)
 
-    if end_date < start_date:
-        raise ValidationError("The end date must be after the start date")
-
-def add_booking_season(*, housing: Housing, name: str, start_date: datetime, end_date: datetime) -> bool:
-    """
-    Add a new booking season.
-    """
-    _check_dates(start_date=start_date, end_date=end_date)
-
-
-def compute_price(*, start_date: datetime, end_date: datetime, travelers_count: int) -> int:
-    """
-    Compute the price for a given period of time and a number of travelers
-    """
-    _check_dates(start_date=start_date, end_date=end_date)
-
-    # TODO return a price
-    return travelers_count * 10
-
+    raise BookingSeasonNoMatchFound(
+        "No season matches the period of time (%s - %s) " % (
+            start_date.strftime("%d-%m-%Y"),
+            end_date.strftime("%d-%m-%Y"),
+        )
+    )
 
 def book(*, user: ErooUser, start_date: datetime, end_date: datetime, travelers_count: int) -> str:
     """
