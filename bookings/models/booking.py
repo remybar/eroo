@@ -9,6 +9,9 @@ Weekdays = namedtuple('Weekdays', ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'su
 
 DEFAULT_YEAR = 2021
 
+BookingDate = namedtuple('BookingDate', ['start', 'end'])
+BookingDateSet = namedtuple('BookingDateSet', ['season', 'nb_of_nights', 'dates'])
+
 T = TypeVar('T', bound='PeriodOfYear')
 class PeriodOfYear(namedtuple('PeriodOfYear', ['day', 'month'])):
     def from_date(d: date):

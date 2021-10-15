@@ -19,7 +19,7 @@ from bookings.models import (
     PeriodOfYear,
 )
 from bookings.selectors import (
-    _is_period_overlaps_another_one,
+    is_period_overlaps_another_one,
     get_booking_season,
     get_booking_rate_modifier,
     get_booking_period,
@@ -114,7 +114,7 @@ def add_booking_season_period(*, season_id: int, start_period: PeriodOfYear, end
     PeriodOfYear.check_range(start_period, end_period)
 
     season = get_booking_season(season_id=season_id)
-    if _is_period_overlaps_another_one(housing=season.housing, start_period=start_period, end_period=end_period):
+    if is_period_overlaps_another_one(housing=season.housing, start_period=start_period, end_period=end_period):
         raise BookingPeriodOverlapping("the new period overlaps at least another existing period.")
 
     return BookingPeriod.objects.create(
@@ -130,7 +130,7 @@ def update_booking_season_period(
     PeriodOfYear.check_range(start_period, end_period)
 
     period = get_booking_period(period_id=period_id)
-    if _is_period_overlaps_another_one(
+    if is_period_overlaps_another_one(
         housing=period.season.housing, start_period=start_period, end_period=end_period, exclude_ids=[period.id]
     ):
         raise BookingPeriodOverlapping("the new period overlaps at least another existing period.")

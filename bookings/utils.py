@@ -6,6 +6,8 @@ from typing import Union
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
+from bookings.models import BookingDate
+
 Range = namedtuple("Range", ["start", "end"])
 
 def _intersect_two_ranges(range1: Range, range2: Range) -> Union[Range, None]:
@@ -21,12 +23,12 @@ def _intersect_all(input_range: Range, ranges: Sequence[Range]) -> bool:
         for r in ranges
     )
 
-def _check_dates(start_date: date, end_date: date):
+def _check_dates(booking_date: BookingDate):
     """
     Check start/end dates consistency.
     """
-    if start_date < timezone.now().date():
+    if booking_date.start < timezone.now().date():
         raise ValidationError("The start date cannot be before today")
 
-    if end_date < start_date:
+    if booking_date.end < booking_date.start:
         raise ValidationError("The end date must be after the start date")

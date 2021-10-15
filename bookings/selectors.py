@@ -8,14 +8,21 @@ from bookings.models.booking import (
     BookingPeriod,
     BookingPriceCategory,
     PeriodOfYear,
+    BookingDate,
+    BookingDateSet,
 )
 from bookings.exceptions import (
+    BookingSeasonNoMatchFound,
     UnexistingBookingSeason,
     UnexistingBookingPeriod,
     UnexistingBookingRateModifier,
     UnexistingBookingPriceCategory,
 )
-from bookings.utils import Range, _intersect_all
+from bookings.utils import (
+    Range,
+    _intersect_two_ranges,
+    _intersect_all,
+)
 
 def get_booking_season(*, season_id: int) -> BookingSeason:
     """
@@ -53,7 +60,7 @@ def get_booking_price_category(*, category_id: int) -> BookingPriceCategory:
         raise UnexistingBookingPriceCategory(f"The category {category_id} does not exist")
     return qs.first()
 
-def _is_period_overlaps_another_one(
+def is_period_overlaps_another_one(
     *, housing: Housing, start_period: PeriodOfYear, end_period: PeriodOfYear, exclude_ids: Sequence[int] = None
 ) -> bool:
     """
@@ -68,3 +75,39 @@ def _is_period_overlaps_another_one(
         input_range=Range(start=start_period, end=end_period),
         ranges=[Range(start=p.start_period, end=p.end_period) for p in periods]
     )
+
+def explode_booking_dates_in_season_periods(*, housing: Housing, booking_date: BookingDate) -> dict:
+    """
+    As booking dates may overlap several seasons, this function split the period defined by booking dates into
+    a dictionary of booking period per season.
+    """
+    seasons = BookingSeason.objects.filter(housing=housing)
+    periods = BookingPeriod.objects.filter(season__in=seasons)
+
+    result = {}
+    for p in periods:
+        dates_in_period = _intersect_two_ranges(
+            range1=Range(booking_date.start, booking_date.end),
+            range2=Range(p.start_period.to_date(), p.end_period.to_date())
+        )
+        if dates_in_period:
+            if p.season.id in result:
+                existing_dates = result[p.season.id].dates
+                existing_nb_of_nights = result[p.season.id].nb_of_nights
+            else:
+                existing_dates = []
+                existing_nb_of_nights = 0
+
+            new_date = BookingDate(start=dates_in_period.start, end=dates_in_period.end)
+
+            # compute the number of nights (by taking into account the fact that the end date is not
+            # a real night but the date when travelers leave the place
+            nb_of_nights = (new_date.end - new_date.start).days + (1 if new_date.end != booking_date.end else 0)
+
+            result[p.season.id] = BookingDateSet(
+                season=p.season,
+                nb_of_nights=existing_nb_of_nights + nb_of_nights,
+                dates=(*existing_dates, new_date)
+            )
+
+    return result
