@@ -1,0 +1,57 @@
+{
+  "status": "done",
+  "assets": {
+    "static/frontend/img/logo.svg": {
+      "name": "static/frontend/img/logo.svg",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/logo.svg",
+      "publicPath": "/static/frontend/img/logo.svg"
+    },
+    "static/frontend/img/knowledge-base-bg-dark.png": {
+      "name": "static/frontend/img/knowledge-base-bg-dark.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/knowledge-base-bg-dark.png",
+      "publicPath": "/static/frontend/img/knowledge-base-bg-dark.png"
+    },
+    "static/frontend/img/1.png": {
+      "name": "static/frontend/img/1.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/1.png",
+      "publicPath": "/static/frontend/img/1.png"
+    },
+    "static/frontend/css/app.css": {
+      "name": "static/frontend/css/app.css",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/app.css",
+      "publicPath": "/static/frontend/css/app.css"
+    },
+    "static/frontend/js/app.js": {
+      "name": "static/frontend/js/app.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/app.js",
+      "publicPath": "/static/frontend/js/app.js"
+    },
+    "static/frontend/css/chunk-d5df0e2c.css": {
+      "name": "static/frontend/css/chunk-d5df0e2c.css",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/chunk-d5df0e2c.css",
+      "publicPath": "/static/frontend/css/chunk-d5df0e2c.css"
+    },
+    "static/frontend/js/chunk-d5df0e2c.js": {
+      "name": "static/frontend/js/chunk-d5df0e2c.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-d5df0e2c.js",
+      "publicPath": "/static/frontend/js/chunk-d5df0e2c.js"
+    },
+    "index.html": {
+      "name": "index.html",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/index.html",
+      "publicPath": "/index.html"
+    },
+    "favicon.ico": {
+      "name": "favicon.ico",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/favicon.ico",
+      "publicPath": "/favicon.ico"
+    }
+  },
+  "chunks": {
+    "app": [
+      "static/frontend/css/app.css",
+      "static/frontend/js/app.js"
+    ]
+  },
+  "publicPath": "/"
+}

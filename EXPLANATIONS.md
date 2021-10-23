@@ -39,3 +39,18 @@
 # CI/CD
 
 - définir des environnements séparés pour avoir plusieurs jeux de variables d'environnements (https://docs.gitlab.com/ee/ci/environments/index.html)
+
+# Front-end
+
+## materio vuejs theme
+
+- pour désactiver toutes les erreurs de tri des imports, modifier .eslintrc.js avec:
+```javascript
+    // ignore import sorting
+    "sort-imports": ["error", {
+      "ignoreDeclarationSort": true,
+      "ignoreDeclarationSort": true,
+      "ignoreMemberSort": true,
+      "allowSeparatedGroups": true,
+    }],
+```

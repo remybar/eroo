@@ -174,6 +174,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_celery_results",
+    'webpack_loader',
     # local apps
     "accounts",
     "bookings",
@@ -243,13 +244,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# ------------ Front-end files ------------
+
+FRONTEND_DIR = BASE_DIR / 'dashboard-frontend'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': DEBUG,
+        'BUNDLE_DIR_NAME': '/bundles/',  # must end with slash
+        'STATS_FILE': str(FRONTEND_DIR / 'webpack-stats.json'),
+    }
+}
+
 # ------------ Static & Media files ------------
 
 STATIC_LOCATION = 'static'
 PUBLIC_MEDIA_LOCATION = 'media'
 PRIVATE_MEDIA_LOCATION = 'private'
 
-STATICFILES_DIRS = [str(BASE_DIR / "static")]
+STATICFILES_DIRS = [
+    str(FRONTEND_DIR / "dist" / "static"),
+    str(BASE_DIR / "static"),
+]
 
 if USE_S3:
     # AWS settings

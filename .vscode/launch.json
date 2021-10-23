@@ -13,6 +13,18 @@
             "justMyCode": false,
         },
         {
+            "name": "Collect static",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "collectstatic",
+                "--no-input"
+            ],
+            "django": true,
+            "justMyCode": false,
+        },
+        {
             "name": "Eroo tests",
             "type": "python",
             "request": "launch",
