@@ -71,6 +71,9 @@ class BookServiceTests(TestCase):
             end_period=PeriodOfYear(31, 8)
         )
 
+    def _create_rate_modifiers_for_tests(self):
+        pass
+
     @patch("bookings.services.booking_services._check_dates", Mock(side_effect=ValidationError("error")))
     def test_compute_price_with_invalid_dates(self):
         with self.assertRaises(ValidationError):
@@ -147,6 +150,12 @@ class BookServiceTests(TestCase):
                 )
             )
         )
+
+    def test_compute_price_for_one_night_with_one_rate_modifier(self):
+        pass
+
+    def test_compute_price_for_one_night_with_several_rate_modifiers(self):
+        pass
 
     # def test_booking_creates_a_new_booking_object(self):
 
