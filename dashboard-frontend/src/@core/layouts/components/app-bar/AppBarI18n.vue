@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import useAppConfig from '@core/@app-config/useAppConfig'
 import { loadLanguageAsync } from '@/plugins/i18n'
+import useAppConfig from '@core/@app-config/useAppConfig'
 
 export default {
   setup() {

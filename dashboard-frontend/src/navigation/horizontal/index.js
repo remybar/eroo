@@ -4,11 +4,11 @@ export default [
   {
     title: 'Home',
     icon: mdiHomeOutline,
-    to: 'home',
+    to: 'dashboard',
   },
   {
     title: 'Second Page',
     icon: mdiFileOutline,
-    to: 'second-page',
+    to: 'add-housing',
   },
 ]

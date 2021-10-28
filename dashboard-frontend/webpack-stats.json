@@ -1,55 +1,75 @@
 {
   "status": "done",
   "assets": {
-    "static/frontend/img/logo.svg": {
-      "name": "static/frontend/img/logo.svg",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/logo.svg",
-      "publicPath": "/static/frontend/img/logo.svg"
+    "static/frontend/img/group-dark.b632498a.png": {
+      "name": "static/frontend/img/group-dark.b632498a.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/group-dark.b632498a.png",
+      "publicPath": "/static/frontend/img/group-dark.b632498a.png"
     },
-    "static/frontend/img/knowledge-base-bg-dark.png": {
-      "name": "static/frontend/img/knowledge-base-bg-dark.png",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/knowledge-base-bg-dark.png",
-      "publicPath": "/static/frontend/img/knowledge-base-bg-dark.png"
+    "static/frontend/img/group-light.24472a63.png": {
+      "name": "static/frontend/img/group-light.24472a63.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/group-light.24472a63.png",
+      "publicPath": "/static/frontend/img/group-light.24472a63.png"
     },
-    "static/frontend/img/1.png": {
-      "name": "static/frontend/img/1.png",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/1.png",
-      "publicPath": "/static/frontend/img/1.png"
+    "static/frontend/img/1.e2938115.png": {
+      "name": "static/frontend/img/1.e2938115.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/1.e2938115.png",
+      "publicPath": "/static/frontend/img/1.e2938115.png"
     },
-    "static/frontend/css/app.css": {
-      "name": "static/frontend/css/app.css",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/app.css",
-      "publicPath": "/static/frontend/css/app.css"
+    "static/frontend/img/logo.6e20e9e4.png": {
+      "name": "static/frontend/img/logo.6e20e9e4.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/logo.6e20e9e4.png",
+      "publicPath": "/static/frontend/img/logo.6e20e9e4.png"
+    },
+    "static/frontend/img/knowledge-base-bg-dark.3c12b193.png": {
+      "name": "static/frontend/img/knowledge-base-bg-dark.3c12b193.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/knowledge-base-bg-dark.3c12b193.png",
+      "publicPath": "/static/frontend/img/knowledge-base-bg-dark.3c12b193.png"
+    },
+    "static/frontend/js/0.js": {
+      "name": "static/frontend/js/0.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/0.js",
+      "publicPath": "/static/frontend/js/0.js"
+    },
+    "static/frontend/js/1.js": {
+      "name": "static/frontend/js/1.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/1.js",
+      "publicPath": "/static/frontend/js/1.js"
+    },
+    "static/frontend/js/2.js": {
+      "name": "static/frontend/js/2.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/2.js",
+      "publicPath": "/static/frontend/js/2.js"
+    },
+    "static/frontend/js/3.js": {
+      "name": "static/frontend/js/3.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/3.js",
+      "publicPath": "/static/frontend/js/3.js"
+    },
+    "static/frontend/js/4.js": {
+      "name": "static/frontend/js/4.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/4.js",
+      "publicPath": "/static/frontend/js/4.js"
     },
     "static/frontend/js/app.js": {
       "name": "static/frontend/js/app.js",
       "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/app.js",
       "publicPath": "/static/frontend/js/app.js"
     },
-    "static/frontend/css/chunk-d5df0e2c.css": {
-      "name": "static/frontend/css/chunk-d5df0e2c.css",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/chunk-d5df0e2c.css",
-      "publicPath": "/static/frontend/css/chunk-d5df0e2c.css"
-    },
-    "static/frontend/js/chunk-d5df0e2c.js": {
-      "name": "static/frontend/js/chunk-d5df0e2c.js",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-d5df0e2c.js",
-      "publicPath": "/static/frontend/js/chunk-d5df0e2c.js"
+    "static/frontend/js/chunk-vendors.js": {
+      "name": "static/frontend/js/chunk-vendors.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-vendors.js",
+      "publicPath": "/static/frontend/js/chunk-vendors.js"
     },
     "index.html": {
       "name": "index.html",
       "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/index.html",
       "publicPath": "/index.html"
-    },
-    "favicon.ico": {
-      "name": "favicon.ico",
-      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/favicon.ico",
-      "publicPath": "/favicon.ico"
     }
   },
   "chunks": {
     "app": [
-      "static/frontend/css/app.css",
+      "static/frontend/js/chunk-vendors.js",
       "static/frontend/js/app.js"
     ]
   },

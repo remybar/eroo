@@ -6,11 +6,15 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+/* Vue.config.productionTip = false */
+Vue.config.devtools = true
 
 new Vue({
   router,
   store,
   vuetify,
   render: h => h(App),
+  created() {
+    this.$store.dispatch('getCurrentUserName')
+  },
 }).$mount('#app')

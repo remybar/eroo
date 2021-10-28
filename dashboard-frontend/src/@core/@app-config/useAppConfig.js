@@ -1,6 +1,6 @@
+import store from '@/store'
 import { getVuetify } from '@core/utils'
 import { computed } from '@vue/composition-api'
-import store from '@/store'
 
 export default function useAppConfig() {
   const $vuetify = getVuetify()

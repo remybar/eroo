@@ -79,20 +79,20 @@
 <script>
 import LayoutContentHorizontalNav from '@core/layouts/variants/content/horizontal-nav/LayoutContentHorizontalNav.vue'
 import AppCustomizer from '@core/layouts/components/app-customizer/AppCustomizer.vue'
+import navMenuItems from '@/navigation/horizontal'
 
 // App Bar Components
 import AppBarSearch from '@core/layouts/components/app-bar/AppBarSearch.vue'
 import AppBarThemeSwitcher from '@core/layouts/components/app-bar/AppBarThemeSwitcher.vue'
+import AppBarUserMenu from '@/components/AppBarUserMenu.vue'
 
 // Search Data
+import appBarSearchData from '@/assets/app-bar-search-data'
 
 import { ref, watch } from '@vue/composition-api'
 
 import themeConfig from '@themeConfig'
 import { mdiHeartOutline } from '@mdi/js'
-import appBarSearchData from '@/assets/app-bar-search-data'
-import AppBarUserMenu from '@/components/AppBarUserMenu.vue'
-import navMenuItems from '@/navigation/horizontal'
 
 export default {
   components: {

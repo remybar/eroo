@@ -2,8 +2,8 @@ import { mdiCheckboxBlankCircleOutline } from '@mdi/js'
 
 const themeConfig = {
   app: {
-    name: 'MATERIO',
-    logo: require('@/assets/images/svg/logo.svg'),
+    name: 'Eroo',
+    logo: require('@/assets/images//logo.png'),
     isDark: false,
     isRtl: false,
     contentLayoutNav: 'vertical', // vertical, horizontal
@@ -32,8 +32,8 @@ const themeConfig = {
   },
   themes: {
     light: {
-      primary: '#9155FD',
-      accent: '#0d6efd',
+      primary: '#FF5C6A', // one: ff5c6a tow: 4bb7c4
+      accent: '#OD6EFD',
       secondary: '#8A8D93',
       success: '#56CA00',
       info: '#16B1FF',
@@ -41,7 +41,7 @@ const themeConfig = {
       error: '#FF4C51',
     },
     dark: {
-      primary: '#9155FD',
+      primary: '#FF5C6A',
       accent: '#0d6efd',
       secondary: '#8A8D93',
       success: '#56CA00',

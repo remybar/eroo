@@ -75,10 +75,10 @@
 <script>
 import { ref, watch } from '@vue/composition-api'
 import AppContentContainer from '@core/layouts/components/app-content-container/AppContentContainer.vue'
+import { getVuetify } from '@/@core/utils'
 import useAppConfig from '@core/@app-config/useAppConfig'
 import VerticalNavMenu from '@core/layouts/components/vertical-nav-menu/VerticalNavMenu.vue'
 import { useWindowScroll } from '@vueuse/core'
-import { getVuetify } from '@/@core/utils'
 
 export default {
   components: {

@@ -44,8 +44,10 @@ import { computed, inject, ref, watch } from '@vue/composition-api'
 // SFCs
 import VerticalNavMenuSectionTitle from '@core/layouts/components/vertical-nav-menu/components/vertical-nav-menu-section-title/VerticalNavMenuSectionTitle.vue'
 import VerticalNavMenuLink from '@core/layouts/components/vertical-nav-menu/components/vertical-nav-menu-link/VerticalNavMenuLink.vue'
+import useVerticalNavMenu from '@/@core/layouts/composable/vertical-nav/useVerticalNavMenu'
 
 // Composable
+import useNav from '@/@core/layouts/composable/useNav'
 import useAppConfig from '@core/@app-config/useAppConfig'
 import useVerticalNavGroup from '@core/layouts/composable/vertical-nav/useVerticalNavGroup'
 import { useUtils } from '@core/libs/i18n'
@@ -53,8 +55,6 @@ import { useUtils as useAclUtils } from '@core/libs/acl'
 
 // Other
 import themeConfig from '@themeConfig'
-import useNav from '@/@core/layouts/composable/useNav'
-import useVerticalNavMenu from '@/@core/layouts/composable/vertical-nav/useVerticalNavMenu'
 
 export default {
   name: 'VerticalNavMenuGroup',

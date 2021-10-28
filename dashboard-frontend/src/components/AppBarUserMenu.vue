@@ -53,7 +53,6 @@
           <span class="text--primary font-weight-semibold mb-n1">
             John Doe
           </span>
-          <small class="text--disabled text-capitalize">Admin</small>
         </div>
       </div>
 
@@ -67,12 +66,12 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Profile</v-list-item-title>
+          <v-list-item-title>Profil</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <!-- Email -->
-      <v-list-item href="#">
+      <!-- <v-list-item href="#">
         <v-list-item-icon class="me-2">
           <v-icon size="22">
             {{ icons.mdiEmailOutline }}
@@ -81,10 +80,10 @@
         <v-list-item-content>
           <v-list-item-title>Inbox</v-list-item-title>
         </v-list-item-content>
-      </v-list-item>
+      </v-list-item> -->
 
       <!-- Chat -->
-      <v-list-item href="#">
+      <!-- <v-list-item href="#">
         <v-list-item-icon class="me-2">
           <v-icon size="22">
             {{ icons.mdiChatOutline }}
@@ -102,9 +101,9 @@
           >
           </v-badge>
         </v-list-item-action>
-      </v-list-item>
+      </v-list-item> -->
 
-      <v-divider class="my-2"></v-divider>
+      <!-- <v-divider class="my-2"></v-divider> -->
 
       <!-- Settings -->
       <v-list-item href="#">
@@ -114,12 +113,12 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Settings</v-list-item-title>
+          <v-list-item-title>Paramètres</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <!-- Pricing -->
-      <v-list-item href="#">
+      <!-- <v-list-item href="#">
         <v-list-item-icon class="me-2">
           <v-icon size="22">
             {{ icons.mdiCurrencyUsd }}
@@ -128,9 +127,9 @@
         <v-list-item-content>
           <v-list-item-title>Pricing</v-list-item-title>
         </v-list-item-content>
-      </v-list-item>
+      </v-list-item> -->
 
-      <!-- FAQ -->
+      <!-- Documentation -->
       <v-list-item href="#">
         <v-list-item-icon class="me-2">
           <v-icon size="22">
@@ -138,7 +137,7 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>FAQ</v-list-item-title>
+          <v-list-item-title>Documentation</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -152,7 +151,7 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Logout</v-list-item-title>
+          <v-list-item-title>Se déconnecter</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>

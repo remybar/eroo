@@ -6,9 +6,8 @@ from .apis import api_website_create, api_website_delete
 
 urlpatterns = [
     path("", homepage, name="homepage"),
-    path("dashboard", DashboardView.as_view(), name="dashboard"),
-    path('dashboard/vue/', TemplateView.as_view(template_name='dashboard/vue.html')),
-    path('dashboard/vue/<path:path>', TemplateView.as_view(template_name='dashboard/vue.html')),
+    path('dashboard', TemplateView.as_view(template_name='dashboard/vue.html'), name="dashboard",),
+    path('dashboard/<path:path>', TemplateView.as_view(template_name='dashboard/vue.html')),
     path('dashboard/task/<str:task_id>/', TaskView.as_view(), name='task'),
 
     # API

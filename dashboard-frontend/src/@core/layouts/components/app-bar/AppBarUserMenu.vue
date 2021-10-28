@@ -191,8 +191,8 @@ import {
   mdiLogoutVariant,
 } from '@mdi/js'
 import { useRouter } from '@core/utils'
-import { getCurrentInstance } from '@vue/composition-api'
 import { initialAbility } from '@/plugins/acl/config'
+import { getCurrentInstance } from '@vue/composition-api'
 
 export default {
   setup() {

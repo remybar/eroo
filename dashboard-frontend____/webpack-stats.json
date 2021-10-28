@@ -1,0 +1,88 @@
+{
+  "status": "done",
+  "assets": {
+    "static/frontend/img/logo.00580c88.svg": {
+      "name": "static/frontend/img/logo.00580c88.svg",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/logo.00580c88.svg",
+      "publicPath": "/static/frontend/img/logo.00580c88.svg"
+    },
+    "static/frontend/img/knowledge-base-bg-dark.3c12b193.png": {
+      "name": "static/frontend/img/knowledge-base-bg-dark.3c12b193.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/knowledge-base-bg-dark.3c12b193.png",
+      "publicPath": "/static/frontend/img/knowledge-base-bg-dark.3c12b193.png"
+    },
+    "static/frontend/img/1.e2938115.png": {
+      "name": "static/frontend/img/1.e2938115.png",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/img/1.e2938115.png",
+      "publicPath": "/static/frontend/img/1.e2938115.png"
+    },
+    "static/frontend/css/app.7a0fe6e4.css": {
+      "name": "static/frontend/css/app.7a0fe6e4.css",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/app.7a0fe6e4.css",
+      "publicPath": "/static/frontend/css/app.7a0fe6e4.css"
+    },
+    "static/frontend/js/app.9fe25313.js": {
+      "name": "static/frontend/js/app.9fe25313.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/app.9fe25313.js",
+      "publicPath": "/static/frontend/js/app.9fe25313.js"
+    },
+    "static/frontend/css/chunk-d5df0e2c.f6f7544d.css": {
+      "name": "static/frontend/css/chunk-d5df0e2c.f6f7544d.css",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/chunk-d5df0e2c.f6f7544d.css",
+      "publicPath": "/static/frontend/css/chunk-d5df0e2c.f6f7544d.css"
+    },
+    "static/frontend/js/chunk-d5df0e2c.e066ca21.js": {
+      "name": "static/frontend/js/chunk-d5df0e2c.e066ca21.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-d5df0e2c.e066ca21.js",
+      "publicPath": "/static/frontend/js/chunk-d5df0e2c.e066ca21.js"
+    },
+    "static/frontend/css/chunk-vendors.63a38969.css": {
+      "name": "static/frontend/css/chunk-vendors.63a38969.css",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/css/chunk-vendors.63a38969.css",
+      "publicPath": "/static/frontend/css/chunk-vendors.63a38969.css"
+    },
+    "static/frontend/js/chunk-vendors.79fc8ec0.js": {
+      "name": "static/frontend/js/chunk-vendors.79fc8ec0.js",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-vendors.79fc8ec0.js",
+      "publicPath": "/static/frontend/js/chunk-vendors.79fc8ec0.js"
+    },
+    "static/frontend/js/app.9fe25313.js.map": {
+      "name": "static/frontend/js/app.9fe25313.js.map",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/app.9fe25313.js.map",
+      "publicPath": "/static/frontend/js/app.9fe25313.js.map"
+    },
+    "static/frontend/js/chunk-d5df0e2c.e066ca21.js.map": {
+      "name": "static/frontend/js/chunk-d5df0e2c.e066ca21.js.map",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-d5df0e2c.e066ca21.js.map",
+      "publicPath": "/static/frontend/js/chunk-d5df0e2c.e066ca21.js.map"
+    },
+    "static/frontend/js/chunk-vendors.79fc8ec0.js.map": {
+      "name": "static/frontend/js/chunk-vendors.79fc8ec0.js.map",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/static/frontend/js/chunk-vendors.79fc8ec0.js.map",
+      "publicPath": "/static/frontend/js/chunk-vendors.79fc8ec0.js.map"
+    },
+    "index.html": {
+      "name": "index.html",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/index.html",
+      "publicPath": "/index.html"
+    },
+    "favicon.ico": {
+      "name": "favicon.ico",
+      "path": "/home/odoo/perso/projets/eroo/dashboard-frontend/dist/favicon.ico",
+      "publicPath": "/favicon.ico"
+    }
+  },
+  "chunks": {
+    "app": [
+      "static/frontend/css/chunk-vendors.63a38969.css",
+      "static/frontend/js/chunk-vendors.79fc8ec0.js",
+      "static/frontend/css/chunk-vendors.63a38969.css.map",
+      "static/frontend/js/chunk-vendors.79fc8ec0.js.map",
+      "static/frontend/css/app.7a0fe6e4.css",
+      "static/frontend/js/app.9fe25313.js",
+      "static/frontend/css/app.7a0fe6e4.css.map",
+      "static/frontend/js/app.9fe25313.js.map"
+    ]
+  },
+  "publicPath": "/"
+}

@@ -1,6 +1,6 @@
+import messages from '@/plugins/i18n/locales/en'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import messages from '@/plugins/i18n/locales/en'
 
 Vue.use(VueI18n)
 

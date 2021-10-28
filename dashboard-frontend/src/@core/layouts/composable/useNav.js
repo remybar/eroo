@@ -1,6 +1,6 @@
+import router from '@/router'
 import { isObject } from '@core/utils'
 import { computed } from '@vue/composition-api'
-import router from '@/router'
 
 export default () => {
   const navLinkProps = computed(() => item => {

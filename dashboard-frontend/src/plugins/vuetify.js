@@ -1,6 +1,6 @@
+import preset from '@/@core/preset/preset'
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib/framework'
-import preset from '@/@core/preset/preset'
 
 Vue.use(Vuetify)
 

@@ -6,10 +6,34 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/Home.vue'),
+    name: 'dashboard',
+    component: () => import('@/views/Dashboard.vue'),
     meta: {
       layout: 'content',
+    },
+  },
+  {
+    path: '/add-housing',
+    name: 'add-housing',
+    component: () => import('@/views/AddHousing.vue'),
+    meta: {
+      layout: 'content',
+    },
+  },
+  {
+    path: '/mon_logement_1',
+    name: 'mon_logement_1',
+    component: () => import('@/views/HousingView.vue'),
+    meta: {
+      layout: 'content',
+    },
+  },
+  {
+    path: '/login',
+    name: 'auth-login',
+    component: () => import('@/views/login/Login.vue'),
+    meta: {
+      layout: 'blank',
     },
   },
   {
@@ -20,7 +44,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: '/dashboard/vue',
+  base: '/dashboard',
   routes,
   scrollBehavior() {
     return { x: 0, y: 0 }
