@@ -33,7 +33,7 @@ const themeConfig = {
   themes: {
     light: {
       primary: '#FF5C6A', // one: ff5c6a tow: 4bb7c4
-      accent: '#OD6EFD',
+      accent: '#0D6EFD',
       secondary: '#8A8D93',
       success: '#56CA00',
       info: '#16B1FF',

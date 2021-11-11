@@ -14,6 +14,10 @@ BookingDateSet = namedtuple('BookingDateSet', ['season', 'nb_of_nights', 'dates'
 
 T = TypeVar('T', bound='PeriodOfYear')
 class PeriodOfYear(namedtuple('PeriodOfYear', ['day', 'month'])):
+
+    def __str__(self):
+        return f"{self.day}/{self.month}"
+
     def from_date(d: date):
         return PeriodOfYear(day=d.day, month=d.month)
 
@@ -74,7 +78,7 @@ class BookingPeriod(models.Model):
     """
     Period of time used to define a season
     """
-    season = models.ForeignKey(BookingSeason, on_delete=models.CASCADE)
+    season = models.ForeignKey(BookingSeason, on_delete=models.CASCADE, related_name="periods")
 
     _start_date = models.DateField()
     _end_date = models.DateField()
@@ -82,7 +86,11 @@ class BookingPeriod(models.Model):
     def __str__(self):
         start = self._start_date.strftime("%d/%m")
         end = self._end_date.strftime("%d/%m")
-        return "f{start} - {end}"
+        return f"{start} - {end}"
+
+    @property
+    def name(self) -> str:
+        return f"{str(self.start_period)} - {str(self.end_period)}"
 
     @property
     def start_period(self) -> PeriodOfYear:

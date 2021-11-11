@@ -5,7 +5,10 @@ from unittest.mock import Mock, patch
 from django.test import Client
 from django.urls import reverse
 
-from ..apis import api_website_create, api_website_delete
+from dashboard.apis import (
+    api_website_create,
+    api_website_delete,
+)
 
 
 class ApiTestCase(TestCase):

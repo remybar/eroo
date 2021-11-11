@@ -54,3 +54,20 @@
       "allowSeparatedGroups": true,
     }],
 ```
+
+## VueX / reactive property with arrays and objects
+
+- vueX avec vue 2 ne gère pas bien la réactivité des objets et tableaux. Pour les objets, il faut utiliser `Vue.set(state.housings, id, housing)` et pas directement modifier l'objet.
+- avec les tableaux il faut utiliser les méthodes et pas directement []
+
+## Transfert de donnée back-end / front-end
+
+### via Django template
+
+* passer les données via le contexte de la vue
+* utiliser la commande `json_script` de Django pour générer un bloc json dans le template (par exemple: `{{ config|json_script:'config' }}`)
+* récupérer cet objet json dans le store de l'app vue via `JSON.parse(document.getElementById('config').textContent)`
+
+=> top pour des données statiques pas trop volumineuse pour ne pas exploser le temps de chargement de la page.
+
+### via API

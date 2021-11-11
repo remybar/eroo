@@ -51,7 +51,7 @@
           style="vertical-align:middle"
         >
           <span class="text--primary font-weight-semibold mb-n1">
-            John Doe
+            {{ username }}
           </span>
         </div>
       </div>
@@ -184,6 +184,11 @@ export default {
         mdiLogoutVariant,
       },
     }
+  },
+  computed: {
+    username() {
+      return this.$store.state.config.username
+    },
   },
 }
 </script>

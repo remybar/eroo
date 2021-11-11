@@ -19,12 +19,16 @@ redis = "==3.5.3"
 coverage = "*"
 django-celery-results = "*"
 django-webpack-loader = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 black = "==21.6b0"
 flake8 = "==3.9.2"
 parameterized = "==0.8.1"
 flower = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.9"

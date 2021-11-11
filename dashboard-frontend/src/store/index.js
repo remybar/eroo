@@ -2,20 +2,25 @@ import appConfigStoreModule from '@core/@app-config/appConfigStoreModule'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './app'
-import erooHousing from './eroo/housing'
-import erooUser from './eroo/user'
+import housings from './eroo/housing'
+import seasons from './eroo/seasons'
 
 Vue.use(Vuex)
 Vue.config.devtools = true
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    config: JSON.parse(document.getElementById('config').textContent),
+  },
+  getters: {
+    urls: state => state.config.urls,
+  },
   mutations: {},
   actions: {},
   modules: {
     appConfig: appConfigStoreModule,
     app,
-    erooHousing,
-    erooUser,
+    housings,
+    seasons,
   },
 })

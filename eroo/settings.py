@@ -175,6 +175,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "django_celery_results",
     'webpack_loader',
+    'rest_framework',
     # local apps
     "accounts",
     "bookings",

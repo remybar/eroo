@@ -19,12 +19,26 @@ from bookings.models import (
     PeriodOfYear,
 )
 from bookings.selectors import (
+    get_housing,
     is_period_overlaps_another_one,
     get_booking_season,
     get_booking_rate_modifier,
     get_booking_period,
 )
 from bookings.utils import _check_dates
+
+def create_housing(*, name: str) -> Housing:
+    return Housing.objects.create(name=name)
+
+def update_housing(*, housing_id: int, name: str) -> Housing:
+    housing = get_housing(housing_id=housing_id)
+    housing.name = name
+    housing.save(update_fields=["name"])
+    return housing
+
+def delete_housing(*, housing_id: int) -> None:
+    housing = get_housing(housing_id=housing_id)
+    housing.delete()
 
 def create_booking_season(*, housing: Housing, name: str) -> BookingSeason:
     """

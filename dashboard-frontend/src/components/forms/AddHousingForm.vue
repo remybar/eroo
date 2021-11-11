@@ -1,11 +1,11 @@
 <template>
-  <v-form>
+  <v-form @submit.prevent="processForm">
     <v-row>
       <v-col
         cols="12"
         md="3"
       >
-        <label for="firstnameHorizontalIcons">Nom du logement</label>
+        <label for="housingname">Nom du logement</label>
       </v-col>
 
       <v-col
@@ -13,8 +13,9 @@
         md="9"
       >
         <v-text-field
-          id="firstnameHorizontalIcons"
+          id="housingname"
           v-model="housingname"
+          name="housingname"
           :prepend-inner-icon="icons.mdiHomeOutline"
           outlined
           dense
@@ -22,7 +23,7 @@
           hide-details
         ></v-text-field>
       </v-col>
-
+      <!--
       <v-col
         cols="12"
         md="3"
@@ -44,11 +45,15 @@
           hide-details
         ></v-text-field>
       </v-col>
+-->
       <v-col
         offset-md="3"
         cols="12"
       >
-        <v-btn color="primary">
+        <v-btn
+          color="primary"
+          type="submit"
+        >
           Ajouter
         </v-btn>
         <v-btn
@@ -71,11 +76,9 @@ import { ref } from '@vue/composition-api'
 export default {
   setup() {
     const housingname = ref('')
-    const airbnbUrl = ref('')
 
     return {
       housingname,
-      airbnbUrl,
 
       // icons
       icons: {
@@ -83,6 +86,12 @@ export default {
         mdiWeb,
       },
     }
+  },
+  methods: {
+    processForm() {
+      const housing = { name: this.housingname }
+      this.$store.dispatch('housings/create', housing)
+    },
   },
 }
 </script>

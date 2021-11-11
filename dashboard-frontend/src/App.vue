@@ -57,5 +57,8 @@ export default {
       appRouteTransition,
     }
   },
+  created() {
+    this.$store.dispatch('housings/list')
+  },
 }
 </script>

@@ -8,8 +8,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path("yaap/", admin.site.urls),
+    path('yaap-api/', include('rest_framework.urls')),
     path('accounts/', include('accounts.urls')),
     path("accounts/", include("allauth.urls")),
     path("websites/", include("websites.urls")),
+    path("bookings/", include("bookings.urls")),
     path("", include("dashboard.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

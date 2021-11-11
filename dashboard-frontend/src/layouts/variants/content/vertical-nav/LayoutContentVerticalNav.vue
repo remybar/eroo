@@ -6,7 +6,6 @@
     <template #navbar>
       <div
         class="navbar-content-container"
-        :class="{'expanded-search': shallShowFullSearch}"
       >
         <!-- Left Content: Search -->
         <div class="d-flex align-center">
@@ -37,12 +36,13 @@
 
 <script>
 import AppBarThemeSwitcher from '@core/layouts/components/app-bar/AppBarThemeSwitcher.vue'
-import { mdiMenu, mdiHeartOutline } from '@mdi/js'
+import { mdiMenu, mdiHeartOutline, mdiHomeOutline } from '@mdi/js'
 import LayoutContentVerticalNav from '@/@core/layouts/variants/content/vertical-nav/LayoutContentVerticalNav.vue'
 
 // App Bar Components
 import AppBarUserMenu from '@/components/AppBarUserMenu.vue'
-import navMenuItems from '@/navigation/vertical'
+import navMainMenuItems from '@/navigation/vertical/main-pages'
+import navHousingMenuItems from '@/navigation/vertical/housing-pages'
 
 export default {
   components: {
@@ -52,9 +52,37 @@ export default {
     AppBarThemeSwitcher,
     AppBarUserMenu,
   },
+  computed: {
+    navMenuItems() {
+      const housingMenuItems = []
+
+      Object.entries(this.$store.state.housings.housings).forEach(([id, housing]) => {
+        housingMenuItems.push({
+          title: housing.name,
+          icon: mdiHomeOutline,
+          to: 'second-page',
+          children: [
+            {
+              title: 'Réservations',
+              to: `page-${id}`,
+            },
+            {
+              title: 'Site Web',
+              to: '',
+            },
+          ],
+        })
+      })
+
+      return [
+        ...navMainMenuItems,
+        ...navHousingMenuItems,
+        ...housingMenuItems,
+      ]
+    },
+  },
   setup() {
     return {
-      navMenuItems,
       icons: {
         mdiMenu,
         mdiHeartOutline,

@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Sequence, Iterable
 from datetime import date
 
 from bookings.models.booking import (
@@ -12,6 +12,7 @@ from bookings.models.booking import (
     BookingDateSet,
 )
 from bookings.exceptions import (
+    UnexistingHousing,
     BookingSeasonNoMatchFound,
     UnexistingBookingSeason,
     UnexistingBookingPeriod,
@@ -23,6 +24,27 @@ from bookings.utils import (
     _intersect_two_ranges,
     _intersect_all,
 )
+
+def get_housing_list() -> Iterable[Housing]:
+    """
+    Get the list of available housings
+    """
+    return Housing.objects.all()
+
+def get_housing(*, housing_id: int) -> Housing:
+    """
+    Get a housing with its id.
+    """
+    qs = Housing.objects.filter(pk=housing_id)
+    if not qs:
+        raise UnexistingHousing(f"The housing {housing_id} does not exist")
+    return qs.first()
+
+def get_booking_season_list() -> Iterable[BookingSeason]:
+    """
+    Get the list of booking seasons
+    """
+    return BookingSeason.objects.all()
 
 def get_booking_season(*, season_id: int) -> BookingSeason:
     """
