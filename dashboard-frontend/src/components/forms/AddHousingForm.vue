@@ -1,5 +1,8 @@
 <template>
-  <v-form @submit.prevent="processForm">
+  <v-form
+    ref="form"
+    @submit.prevent="processForm"
+  >
     <v-row>
       <v-col
         cols="12"
@@ -20,7 +23,8 @@
           outlined
           dense
           placeholder="Nom du logement (max. 13 caractères)"
-          hide-details
+          :rules="nameRules"
+          required
         ></v-text-field>
       </v-col>
       <!--
@@ -74,6 +78,12 @@ import { mdiHomeOutline, mdiWeb } from '@mdi/js'
 import { ref } from '@vue/composition-api'
 
 export default {
+  data: () => ({
+    nameRules: [
+      v => !!v || 'Un nom est requis',
+      v => (v && v.length <= 13) || 'Le nom ne doit pas dépasser 13 caractères',
+    ],
+  }),
   setup() {
     const housingname = ref('')
 
@@ -88,9 +98,18 @@ export default {
     }
   },
   methods: {
-    processForm() {
+    createHousing() {
       const housing = { name: this.housingname }
       this.$store.dispatch('housings/create', housing)
+        .then(
+          housingId => this.$router.push({ name: 'housing-page', params: { id: housingId } }),
+          error => console.log(error),
+        )
+    },
+    processForm() {
+      if (this.$refs.form.validate()) {
+        this.createHousing()
+      }
     },
   },
 }

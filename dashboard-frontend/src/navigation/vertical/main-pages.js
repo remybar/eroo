@@ -6,8 +6,4 @@ export default [
     icon: mdiViewDashboardOutline,
     to: 'dashboard',
   },
-  {
-    title: 'Ajouter logement',
-    to: 'add-housing',
-  },
 ]

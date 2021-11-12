@@ -29,31 +29,33 @@ export default {
       http.get(rootState.config.urls.housings.list)
         .then(
           res => commit(INIT_HOUSING, res.data),
-          error => console.log(`erreur: ${error}`),
+          error => console.log(`TODO BAR erreur: ${error}`),
         )
     },
-    create({ commit, rootState }, housing) {
-      http.post(rootState.config.urls.housings.create, housing)
+    async create({ commit, rootState }, housing) {
+      return http.post(rootState.config.urls.housings.create, housing)
         .then(
           res => {
             const { id } = res.data
             commit(SET_HOUSING, { id, housing })
+
+            return id
           },
-          error => console.log(`erreur: ${error}`),
+          error => error,
         )
     },
     update({ commit, rootState }, id, housing) {
       http.post(`${rootState.config.urls.housings.update}/{id}`, housing)
         .then(
           () => commit(SET_HOUSING, { id, housing }),
-          error => console.log(`erreur: ${error}`),
+          error => console.log(`TODO BAR erreur: ${error}`),
         )
     },
     delete({ commit, rootState }, id) {
       http.post(`${rootState.config.urls.housings.delete}/{id}`)
         .then(
           () => commit(DELETE_HOUSING, { id }),
-          error => console.log(`erreur: ${error}`),
+          error => console.log(`TODO BAR erreur: ${error}`),
         )
     },
   },

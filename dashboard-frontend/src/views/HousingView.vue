@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Ceci est votre logement</v-card-title>
+    <v-card-title>{{ housingName }}</v-card-title>
     <v-card-text>
       Pour accéder au site web:
       <v-btn
@@ -20,6 +20,13 @@ import HousingConfig from './config/HousingConfig.vue'
 export default {
   components: {
     HousingConfig,
+  },
+  computed: {
+    housingName() {
+      const { id } = this.$route.params
+
+      return this.$store.state.housings.housings[id].name
+    },
   },
 }
 </script>

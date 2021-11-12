@@ -14,15 +14,15 @@ const routes = [
   },
   {
     path: '/add-housing',
-    name: 'add-housing',
+    name: 'add-housing-page',
     component: () => import('@/views/AddHousing.vue'),
     meta: {
       layout: 'content',
     },
   },
   {
-    path: '/mon_logement_1',
-    name: 'mon_logement_1',
+    path: '/housing/:id',
+    name: 'housing-page',
     component: () => import('@/views/HousingView.vue'),
     meta: {
       layout: 'content',

@@ -75,5 +75,5 @@
   },
   "publicPath": "/",
   "error": "ModuleError",
-  "message": "Module Error (from ./node_modules/eslint-loader/index.js):\n\n/home/odoo/perso/projets/eroo/dashboard-frontend/src/store/eroo/housing/index.js\n  2:1  error  `vue` import should occur before import of `@/http`  import/order\n\n✖ 1 problem (1 error, 0 warnings)\n  1 error and 0 warnings potentially fixable with the `--fix` option.\n"
+  "message": "Module Error (from ./node_modules/eslint-loader/index.js):\n\n/home/odoo/perso/projets/eroo/dashboard-frontend/src/store/eroo/housing/index.js\n  43:13  error  Expected newline before return statement  newline-before-return\n\n✖ 1 problem (1 error, 0 warnings)\n  1 error and 0 warnings potentially fixable with the `--fix` option.\n"
 }

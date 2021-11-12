@@ -12,6 +12,7 @@
           <v-btn
             small
             color="primary"
+            @click="goToAddHousingPage"
           >
             Ajouter un logement
           </v-btn>
@@ -57,21 +58,7 @@ export default {
       const housingMenuItems = []
 
       Object.entries(this.$store.state.housings.housings).forEach(([id, housing]) => {
-        housingMenuItems.push({
-          title: housing.name,
-          icon: mdiHomeOutline,
-          to: 'second-page',
-          children: [
-            {
-              title: 'Réservations',
-              to: `page-${id}`,
-            },
-            {
-              title: 'Site Web',
-              to: '',
-            },
-          ],
-        })
+        housingMenuItems.push(this.housingMenuItem(id, housing))
       })
 
       return [
@@ -88,6 +75,18 @@ export default {
         mdiHeartOutline,
       },
     }
+  },
+  methods: {
+    housingMenuItem(id, housing) {
+      return {
+        title: housing.name,
+        icon: mdiHomeOutline,
+        to: { name: 'housing-page', params: { id } },
+      }
+    },
+    goToAddHousingPage: function event() {
+      this.$router.push({ name: 'add-housing-page' })
+    },
   },
 }
 </script>
