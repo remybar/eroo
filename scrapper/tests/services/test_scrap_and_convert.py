@@ -1,12 +1,12 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from scrapper.apis import scrap_and_convert
+from scrapper.services import scrap_and_convert
 
 
 class ScrapAndConvertTestCase(TestCase):
 
-    @patch("scrapper.apis.scrap_airbnb_data")
+    @patch("scrapper.services._scrap_airbnb_data")
     def test_returns_none_on_scrap_error(self, mock_scrap):
         airbnb_id = "1234"
 
@@ -17,8 +17,8 @@ class ScrapAndConvertTestCase(TestCase):
         self.assertEqual(response, None)
         mock_scrap.assert_called_with(airbnb_id)
 
-    @patch("scrapper.apis.convert_airbnb_data")
-    @patch("scrapper.apis.scrap_airbnb_data")
+    @patch("scrapper.services._convert_airbnb_data")
+    @patch("scrapper.services._scrap_airbnb_data")
     def test_returns_none_on_convert_error(self, mock_scrap, mock_convert):
         airbnb_id = "1234"
         scrapped_data = {"data": "value"}
@@ -32,8 +32,8 @@ class ScrapAndConvertTestCase(TestCase):
         mock_scrap.assert_called_with(airbnb_id)
         mock_convert.assert_called_with(scrapped_data)
 
-    @patch("scrapper.apis.convert_airbnb_data")
-    @patch("scrapper.apis.scrap_airbnb_data")
+    @patch("scrapper.services._convert_airbnb_data")
+    @patch("scrapper.services._scrap_airbnb_data")
     def test_returns_formatted_data(self, mock_scrap, mock_convert):
         airbnb_id = "1234"
         scrapped_data = {"data": "value"}

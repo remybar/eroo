@@ -1,6 +1,7 @@
 import airbnb
 import logging
 import re
+from typing import Union
 
 from django.conf import settings
 
@@ -10,12 +11,7 @@ REVIEWS_COUNT = 5
 
 _logger = logging.getLogger('scrapper')
 
-# ---------------------------------------------------------------
-# AIRBNB provider
-# ---------------------------------------------------------------
-
-
-def scrap_airbnb_data(id):
+def _scrap_airbnb_data(id):
     try:
         api = airbnb.Api(
             randomize=True,
@@ -145,9 +141,11 @@ def _get_airbnb_reviews(data):
                 "language": review["language"],
             }
             for review in data
-            if all(x in review for x in ["author", "rating", "comments", "created_at", "language"])
-            and all(x in review["author"] for x in ["has_profile_pic", "first_name", "picture_url"])
-            and review["rating"] == 5
+            if (
+                all(x in review for x in ["author", "rating", "comments", "created_at", "language"]) and
+                all(x in review["author"] for x in ["has_profile_pic", "first_name", "picture_url"]) and
+                review["rating"] == 5
+            )
         ],
         key=lambda r: r["date"],
         reverse=True,
@@ -198,7 +196,7 @@ def _validate_data(data):
     return data if data and all(data.get(f) for f in mandatory_fields) else None
 
 
-def convert_airbnb_data(data):
+def _convert_airbnb_data(data):
     try:
         details, reviews = data
         details = details["pdp_listing_detail"]
@@ -223,10 +221,13 @@ def convert_airbnb_data(data):
         return None
 
 
-def scrap_and_convert(airbnb_id):
+def scrap_and_convert(airbnb_id: str) -> Union[dict, None]:
+    """
+    Scrap raw data from Airbnb and convert them to a well formated dict.
+    """
     _logger.info("scrap airbnb data {'id': %s}", airbnb_id)
-    airbnb_data = scrap_airbnb_data(airbnb_id)
+    airbnb_data = _scrap_airbnb_data(airbnb_id)
     if not airbnb_data:
         return None
 
-    return convert_airbnb_data(airbnb_data)
+    return _convert_airbnb_data(airbnb_data)

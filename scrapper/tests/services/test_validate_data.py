@@ -1,7 +1,7 @@
 from parameterized import parameterized
 from unittest import TestCase
 
-from scrapper.apis import _validate_data
+from scrapper.services import _validate_data
 
 from .common import full_converted_data
 

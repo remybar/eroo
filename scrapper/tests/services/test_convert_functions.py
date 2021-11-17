@@ -1,7 +1,7 @@
 from parameterized import parameterized
 from unittest import TestCase
 
-from scrapper.apis import (
+from scrapper.services import (
     _get_airbnb_name,
     _get_airbnb_host_info,
     _get_airbnb_general_info,

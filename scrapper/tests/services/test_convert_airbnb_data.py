@@ -1,7 +1,7 @@
 from parameterized import parameterized
 from unittest import TestCase
 
-from scrapper.apis import convert_airbnb_data
+from scrapper.services import _convert_airbnb_data
 
 from .common import full_input_details, full_input_reviews, full_converted_data
 
@@ -23,5 +23,5 @@ class ConvertTestCase(TestCase):
          ), None)
     ])
     def test_returns_none_on_invalid_input_data(self, input_data, expected_data):
-        response = convert_airbnb_data(input_data)
+        response = _convert_airbnb_data(input_data)
         self.assertEqual(response, expected_data)
