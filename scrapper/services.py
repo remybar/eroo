@@ -5,7 +5,7 @@ from typing import Union
 
 from django.conf import settings
 
-from websites.utils import save_debug_data
+from common.services import save_debug_data
 
 REVIEWS_COUNT = 5
 
@@ -221,7 +221,7 @@ def _convert_airbnb_data(data):
         return None
 
 
-def scrap_and_convert(airbnb_id: str) -> Union[dict, None]:
+def scrap_and_convert(*, airbnb_id: str) -> Union[dict, None]:
     """
     Scrap raw data from Airbnb and convert them to a well formated dict.
     """

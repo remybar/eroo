@@ -16,11 +16,12 @@ from bookings.services import (
 
 class _HousingInputSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=128)
+    airbnb_url = serializers.URLField()
 
 class _HousingOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Housing
-        fields = ('name',)
+        fields = ('name', 'airbnb_url',)
 
 class HousingListApi(APIView):
     def get(self, request):
@@ -33,6 +34,8 @@ class HousingCreateApi(APIView):
         serializer.is_valid(raise_exception=True)
 
         housing = create_housing(**serializer.validated_data)
+
+        # TODO BAR: complete data with task_id and maybe other things
         return Response(data={'id': housing.id}, status=status.HTTP_201_CREATED)
 
 class HousingDetailApi(APIView):

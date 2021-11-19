@@ -5,7 +5,8 @@ from typing import Union
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-from accounts.models import ErooUser
+from allauth.utils import get_user_model
+
 from bookings.exceptions import (
     UnexistingBookingSeason,
     BookingPeriodOverlapping,
@@ -18,6 +19,7 @@ from bookings.models import (
     Weekdays,
     PeriodOfYear,
 )
+from websites.tasks import task_generate_website_from_airbnb
 from bookings.selectors import (
     get_housing,
     is_period_overlaps_another_one,
@@ -27,8 +29,20 @@ from bookings.selectors import (
 )
 from bookings.utils import _check_dates
 
-def create_housing(*, name: str) -> Housing:
-    return Housing.objects.create(name=name)
+User = get_user_model()
+
+def create_housing(*, user_id: int, name: str, airbnb_url: str) -> Housing:
+    housing = Housing.objects.create(
+        user=User.objects.get(id=user_id),
+        name=name,
+        airbnb_url=airbnb_url,
+    )
+    housing.website_task_id = task_generate_website_from_airbnb.delay(
+        user_id=user_id,
+        housing=housing,
+    ) if housing else False
+    housing.save(update_fields=["website_task_id"])
+    return housing
 
 def update_housing(*, housing_id: int, name: str) -> Housing:
     housing = get_housing(housing_id=housing_id)

@@ -1,5 +1,7 @@
 from django.test import TestCase
 
+from allauth.utils import get_user_model
+
 from bookings.exceptions import (
     UnexistingBookingPriceCategory,
 )
@@ -13,10 +15,13 @@ from bookings.services.price_services import (
     delete_price_category,
 )
 
+User = get_user_model()
+
 class BookingSeasonServiceTests(TestCase):
 
     def setUp(self):
-        self.housing = Housing.objects.create(name="housing 1")
+        self.user = User.objects.create_user(username='Test User')
+        self.housing = Housing.objects.create(name="housing 1", user=self.user)
         self.category = BookingPriceCategory.objects.create(housing=self.housing, name="a category")
 
     def test_add_a_new_price_category(self):

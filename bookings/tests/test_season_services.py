@@ -1,6 +1,8 @@
 from datetime import timedelta, date
 from unittest.mock import Mock, patch, ANY
 
+from allauth.utils import get_user_model
+
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from django.utils import timezone
@@ -33,10 +35,13 @@ from bookings.services.season_services import (
     delete_booking_season_period,
 )
 
+User = get_user_model()
+
 class BookingSeasonServiceTests(TestCase):
 
     def setUp(self):
-        self.housing = Housing.objects.create(name="housing 1")
+        self.user = User.objects.create_user(username='Test User')
+        self.housing = Housing.objects.create(name="housing 1", user=self.user)
         self.s1 = BookingSeason.objects.create(housing=self.housing, name="s1 - empty season")
 
         self.start_period = PeriodOfYear(day=1, month=1)

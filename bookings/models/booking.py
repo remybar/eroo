@@ -5,6 +5,10 @@ from typing import TypeVar
 from django.db import models
 from django.core.exceptions import ValidationError
 
+from allauth.utils import get_user_model
+
+User = get_user_model()
+
 Weekdays = namedtuple('Weekdays', ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'], defaults=7 * [True])
 
 DEFAULT_YEAR = 2021
@@ -60,7 +64,13 @@ class Housing(models.Model):
     """
     A housing to rent.
     """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     name = models.CharField(max_length=256)
+    airbnb_url = models.URLField()
+    airbnb_id = models.CharField(max_length=32)
+
+    website_task_id = models.IntegerField(blank=True, null=True)
 
 class BookingSeason(models.Model):
     """

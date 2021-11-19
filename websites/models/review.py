@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-from websites.utils import get_review_dir_path
+from websites.models.common import get_review_dir_path
 
 AUTHOR_NAME_LENGTH = 64
 LANGUAGE_LENGTH = 8

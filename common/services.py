@@ -9,12 +9,7 @@ from django.core.files.temp import NamedTemporaryFile
 
 from .storage_backends import private_storage
 
-_logger = logging.getLogger("utils")
-
-
-def is_ajax(request):
-    return request.headers.get("x-requested-with") == "XMLHttpRequest"
-
+_logger = logging.getLogger(__name__)
 
 def partition_list(lst, n):
     """
@@ -36,49 +31,6 @@ def partition_list(lst, n):
         pos += part_size
     return partitions
 
-
-def explode_airbnb_url(url):
-    """
-    explode the airbnb url in a tuple (base url, airbnb id)
-    """
-
-    def _explode(_url):
-        base_url = _url.split("?")[0]
-        res = re.search(r"/([0-9]+)$", base_url)
-        if res:
-            return (base_url, res.group(1))
-        return None, None
-
-    try:
-        base_url, airbnb_id = _explode(url)
-        if not airbnb_id:
-            # the provided url main be a shortcut of the real airbnb URL
-            # in this case, just access to the URL to retrieve the real URL
-            response = requests.get(url, timeout=1)
-            if response.status_code != 200:
-                return None, None
-            base_url, airbnb_id = _explode(response.url)
-    except Exception:
-        return None, None
-
-    return base_url, airbnb_id
-
-
-def get_filename_from_url(url):
-    """
-    extract the filename from an url
-    """
-    return url.split("?")[0].split("/")[-1]
-
-
-def get_extension_from_url(url):
-    """
-    extract the filename extension from an URL
-    """
-    filename = get_filename_from_url(url)
-    return Path(filename).suffix
-
-
 def download_media_file(url, filename):
     """
     download a media file from `url`.
@@ -97,9 +49,10 @@ def download_media_file(url, filename):
 
     return media_file
 
-
 def save_debug_data(filename, data):
-    """ save debug data in a `filename` in the private media storage """
+    """
+    save debug data in a `filename` in the private media storage
+    """
     _logger.info("save debug data {'filename': %s}", filename)
     file = NamedTemporaryFile(mode="wb+", delete=True)
     try:
@@ -109,17 +62,24 @@ def save_debug_data(filename, data):
     except Exception as e:
         _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
 
-
 def delete_debug_data(filename):
+    """
+    Delete debug data from the private media storage.
+    """
     try:
         private_storage.delete(filename)
     except Exception as e:
         _logger.exception("exception: %s, type: %s", str(e), type(e).__name__)
 
+def get_filename_from_url(url):
+    """
+    extract the filename from an url
+    """
+    return url.split("?")[0].split("/")[-1]
 
-def get_photo_dir_path(instance, filename):
-    return f"websites/{instance.website.key}/photos/{filename}"
-
-
-def get_review_dir_path(instance, filename):
-    return f"websites/{instance.website.key}/reviews/{filename}"
+def get_extension_from_url(url):
+    """
+    extract the filename extension from an URL
+    """
+    filename = get_filename_from_url(url)
+    return Path(filename).suffix

@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-from websites.utils import get_photo_dir_path
+from websites.models.common import get_photo_dir_path
 
 CAPTION_LENGTH = 255
 

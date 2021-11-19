@@ -12,7 +12,7 @@ class ScrapAndConvertTestCase(TestCase):
 
         mock_scrap.return_value = False
 
-        response = scrap_and_convert(airbnb_id)
+        response = scrap_and_convert(airbnb_id=airbnb_id)
 
         self.assertEqual(response, None)
         mock_scrap.assert_called_with(airbnb_id)
@@ -26,7 +26,7 @@ class ScrapAndConvertTestCase(TestCase):
         mock_scrap.return_value = scrapped_data
         mock_convert.return_value = None
 
-        response = scrap_and_convert(airbnb_id)
+        response = scrap_and_convert(airbnb_id=airbnb_id)
 
         self.assertEqual(response, None)
         mock_scrap.assert_called_with(airbnb_id)
@@ -42,7 +42,7 @@ class ScrapAndConvertTestCase(TestCase):
         mock_scrap.return_value = scrapped_data
         mock_convert.return_value = converted_data
 
-        response = scrap_and_convert(airbnb_id)
+        response = scrap_and_convert(airbnb_id=airbnb_id)
 
         self.assertEqual(response, converted_data)
         mock_scrap.assert_called_with(airbnb_id)

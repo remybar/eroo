@@ -27,7 +27,6 @@
           required
         ></v-text-field>
       </v-col>
-      <!--
       <v-col
         cols="12"
         md="3"
@@ -42,14 +41,15 @@
         <v-text-field
           id="emailHorizontalIcons"
           v-model="airbnbUrl"
+          name="airbnbUrl"
           :prepend-inner-icon="icons.mdiWeb"
           outlined
           dense
           placeholder="URL de votre annonce Airbnb"
-          hide-details
+          :rules="urlRules"
+          required
         ></v-text-field>
       </v-col>
--->
       <v-col
         offset-md="3"
         cols="12"
@@ -83,12 +83,18 @@ export default {
       v => !!v || 'Un nom est requis',
       v => (v && v.length <= 13) || 'Le nom ne doit pas dépasser 13 caractères',
     ],
+    urlRules: [
+      v => !!v || 'Une URL est requise',
+      v => v.startsWith('http') || "Doit être sous la forme d'une URL 'https://....'",
+    ],
   }),
   setup() {
     const housingname = ref('')
+    const airbnbUrl = ref('')
 
     return {
       housingname,
+      airbnbUrl,
 
       // icons
       icons: {
@@ -99,7 +105,7 @@ export default {
   },
   methods: {
     createHousing() {
-      const housing = { name: this.housingname }
+      const housing = { name: this.housingname, airbnb_url: this.airbnbUrl }
       this.$store.dispatch('housings/create', housing)
         .then(
           housingId => this.$router.push({ name: 'housing-page', params: { id: housingId } }),

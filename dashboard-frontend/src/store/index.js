@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   getters: {
     urls: state => state.config.urls,
+    housings: state => state.housings.housings,
   },
   mutations: {},
   actions: {},

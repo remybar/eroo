@@ -1,5 +1,8 @@
 from datetime import date
 from django.test import TestCase
+
+from allauth.utils import get_user_model
+
 # from django.core.exceptions import ValidationError
 # from django.utils import timezone
 
@@ -30,12 +33,14 @@ from bookings.selectors import (
     explode_booking_dates_in_season_periods,
 )
 
+User = get_user_model()
+
 class SelectorTests(TestCase):
 
     def setUp(self):
         self.maxDiff = None
-
-        self.housing = Housing.objects.create(name="housing 1")
+        self.user = User.objects.create_user(username='Test User')
+        self.housing = Housing.objects.create(name="housing 1", user=self.user)
         self.low_season = BookingSeason.objects.create(housing=self.housing, name="low season", base_price=80)
         self.med_season = BookingSeason.objects.create(housing=self.housing, name="medium season", base_price=90)
         self.high_season = BookingSeason.objects.create(housing=self.housing, name="high season", base_price=100)

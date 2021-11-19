@@ -14,7 +14,7 @@ from .models import (
     Room,
     Rule,
 )
-from .utils import partition_list
+from common.services import partition_list
 
 EQUIPMENT_COLUMN_COUNT = 4
 
