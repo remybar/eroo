@@ -21,7 +21,7 @@ class _HousingInputSerializer(serializers.Serializer):
 class _HousingOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = Housing
-        fields = ('name', 'airbnb_url',)
+        fields = ('id', 'name', 'airbnb_url', 'website_task_id')
 
 class HousingListApi(APIView):
     def get(self, request):
@@ -33,15 +33,13 @@ class HousingCreateApi(APIView):
         serializer = _HousingInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        housing = create_housing(**serializer.validated_data)
-
-        # TODO BAR: complete data with task_id and maybe other things
-        return Response(data={'id': housing.id}, status=status.HTTP_201_CREATED)
+        housing = create_housing(user=request.user, **serializer.validated_data)
+        return Response(data=_HousingOutputSerializer(housing).data, status=status.HTTP_201_CREATED)
 
 class HousingDetailApi(APIView):
     def get(self, request, housing_id):
-        season = get_housing(housing_id=housing_id)
-        return Response(_HousingOutputSerializer(season).data)
+        housing = get_housing(housing_id=housing_id)
+        return Response(_HousingOutputSerializer(housing).data)
 
 class HousingUpdateApi(APIView):
     def post(self, request, housing_id):

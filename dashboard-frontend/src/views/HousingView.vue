@@ -1,20 +1,17 @@
 <template>
-  <v-card>
-    <v-card-title>{{ housingName }}</v-card-title>
-    <v-card-text>
-      <website-access-component housing-id="housingId" />
-      <housing-config />
-    </v-card-text>
-  </v-card>
+  <container>
+    <website-access-component housing-id="housingId" />
+    <config-housing-form />
+  </container>
 </template>
 
 <script>
-import HousingConfig from './config/HousingConfig.vue'
-import WebsiteAccessComponent from '../components/WebsiteAccessComponent.vue'
+import ConfigHousingForm from '@/components/forms/ConfigHousingForm.vue'
+import WebsiteAccessComponent from '@/components/WebsiteAccessComponent.vue'
 
 export default {
   components: {
-    HousingConfig,
+    ConfigHousingForm,
     WebsiteAccessComponent,
   },
   computed: {

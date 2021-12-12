@@ -7,7 +7,6 @@
       <div
         class="navbar-content-container"
       >
-        <!-- Left Content: Search -->
         <div class="d-flex align-center">
           <v-btn
             small

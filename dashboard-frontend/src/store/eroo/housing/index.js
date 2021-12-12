@@ -37,7 +37,8 @@ export default {
         .then(
           res => {
             const { id } = res.data
-            commit(SET_HOUSING, { id, housing })
+            const attrs = res.data
+            commit(SET_HOUSING, { id, attrs })
 
             return id
           },

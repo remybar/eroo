@@ -31,16 +31,21 @@ from bookings.utils import _check_dates
 
 User = get_user_model()
 
-def create_housing(*, user_id: int, name: str, airbnb_url: str) -> Housing:
+def create_housing(*, user: User, name: str, airbnb_url: str) -> Housing:
+
+    # TODO BAR: raise an exception if the limit is reached
+
     housing = Housing.objects.create(
-        user=User.objects.get(id=user_id),
+        user=user,
         name=name,
         airbnb_url=airbnb_url,
     )
-    housing.website_task_id = task_generate_website_from_airbnb.delay(
-        user_id=user_id,
-        housing=housing,
+    res = task_generate_website_from_airbnb.delay(
+        user_id=user.id,
+        housing_id=housing.id,
     ) if housing else False
+
+    housing.website_task_id = res.id
     housing.save(update_fields=["website_task_id"])
     return housing
 

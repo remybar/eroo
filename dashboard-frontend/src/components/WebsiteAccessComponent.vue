@@ -1,16 +1,28 @@
 <template>
-  <div>
-    Pour accéder au site web:
-    <v-btn
-      small
-      color="primary"
-      :loading="isGenerating"
-      :disabled="isGenerating"
-      @click="showOrGenerateWebsite"
-    >
-      {{ buttonTitle }}
-    </v-btn>
-  </div>
+  <v-card
+    elevation="2"
+    outlined
+    class="mb-4"
+  >
+    <v-card-title>
+      <v-row>
+        <v-col md="8">
+          <h2>Site Web</h2>
+        </v-col>
+        <v-col
+          class="d-flex justify-end"
+          md="4"
+        >
+          <v-btn
+            color="primary"
+            dark
+          >
+            Voir le site
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-card-title>
+  </v-card>
 </template>
 
 <script>
@@ -28,20 +40,6 @@ export default {
     housingId: {
       type: Number,
       required: true,
-    },
-  },
-  computed: {
-    isGenerating() {
-      return this.$store.state.housings[this.housingId].isGeneratingWebsite
-    },
-    buttonTitle() {
-      const { websiteUrl } = this.$store.state.housings[this.housingId]
-
-      return websiteUrl ? 'Voir le site' : 'Générer le site'
-    },
-  },
-  methods: {
-    showOrGenerateWebsite() {
     },
   },
 }

@@ -39,7 +39,7 @@ _logger = logging.getLogger(__name__)
 def _explode_airbnb_url(*, url: str) -> tuple:
     """
     From a raw airbnb URL (might be an alias), returns the base airbnb URL
-    such as https://airbnb.fr/12345 and the airbnb_id
+    such as https://airbnb.fr/rooms/12345 and the airbnb_id
     """
     def _explode(_url):
         base_url = _url.split("?")[0]
@@ -171,13 +171,13 @@ def _generate_website_description(*, desc_lines: Sequence[str]) -> str:
         [f"<p>{html.escape(line)}</p>" if line else "<br />" for line in desc_lines]
     )
 
-def create_website(*, user_id: int, housing: Housing, data: dict) -> Website:
+def create_website(*, user: User, housing: Housing, data: dict) -> Website:
     """
     Create a website record from airbnb data.
     """
     return Website.objects.create(
         key=generate_website_key(),
-        user=User.objects.get(id=user_id),
+        user=user,
         housing=housing,
         name=data["name"],
         description=_generate_website_description(data["description"]),
@@ -187,14 +187,14 @@ def create_website(*, user_id: int, housing: Housing, data: dict) -> Website:
         bathroom_count=data["general_info"]["bathroom_count"],
     )
 
-def create_website_structure(*, user_id: int, housing: Housing, data: dict) -> Website:
+def create_website_structure(*, user: User, housing: Housing, data: dict) -> Website:
     """
     create the whole website structure from scrapped data
     """
     if not _are_airbnb_data_valid(data=data):
         return False
 
-    website = create_website(user_id=user_id, housing=Housing, data=data)
+    website = create_website(user=user, housing=Housing, data=data)
 
     create_location(website=website, data=data["location"])
     create_host(website=website, data=data["host"])
@@ -211,7 +211,7 @@ def create_website_structure(*, user_id: int, housing: Housing, data: dict) -> W
 
     return website
 
-def generate_website_from_airbnb(*, user_id: int, housing: Housing):
+def generate_website_from_airbnb(*, user: User, housing: Housing):
     """
     Generate a website and all its attributes for a specific housing.
     """
@@ -231,7 +231,7 @@ def generate_website_from_airbnb(*, user_id: int, housing: Housing):
 
     # generate the website and get the redirect page
     try:
-        website = create_website_structure(user_id=user_id, housing=housing, data=scrapped_data)
+        website = create_website_structure(user=user, housing=housing, data=scrapped_data)
     except Exception as e:
         _logger.exception(str(e))
         website = None

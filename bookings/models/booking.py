@@ -70,7 +70,7 @@ class Housing(models.Model):
     airbnb_url = models.URLField()
     airbnb_id = models.CharField(max_length=32)
 
-    website_task_id = models.IntegerField(blank=True, null=True)
+    website_task_id = models.CharField(max_length=48, blank=True, null=True)
 
 class BookingSeason(models.Model):
     """

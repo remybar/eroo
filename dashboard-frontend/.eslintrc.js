@@ -12,11 +12,15 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
     // ignore import sorting
-    'sort-imports': ['error', {
-      ignoreDeclarationSort: true,
-      ignoreMemberSort: true,
-      allowSeparatedGroups: true,
-    }],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
+      },
+    ],
 
     // recommended by Vetur
     'vue/html-self-closing': 'off',

@@ -108,7 +108,7 @@ export default {
       const housing = { name: this.housingname, airbnb_url: this.airbnbUrl }
       this.$store.dispatch('housings/create', housing)
         .then(
-          housingId => this.$router.push({ name: 'housing-page', params: { id: housingId } }),
+          data => this.$router.push({ name: 'housing-page', params: { id: data.id } }),
           error => console.log(error),
         )
     },

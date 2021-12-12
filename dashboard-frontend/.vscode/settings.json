@@ -53,7 +53,7 @@
     "vetur.validation.template": false,
     "vetur.format.defaultFormatter.html": "none",
     "[vue]": {
-        "editor.defaultFormatter": "octref.vetur",
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     },
     // Extension: npm
     "npm.packageManager": "yarn",
