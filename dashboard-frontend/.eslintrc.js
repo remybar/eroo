@@ -11,6 +11,15 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 20,
+      },
+      multiline: {
+        max: 20,
+      },
+    }],
+
     // ignore import sorting
     'sort-imports': [
       'error',

@@ -1,0 +1,102 @@
+{
+    "config": {
+        "maxNumberOfPeople": 4,
+        "extraGuestEnabled": true,
+        "firstExtraGuest": 1
+    },
+    "seasons": [
+        {
+            "id": 1,
+            "name": "basse saison",
+            "periods": [
+                {
+                    "id": 1,
+                    "start": "01-01",
+                    "end": "31-03"
+                },
+                {
+                    "id": 2,
+                    "start": "01-11",
+                    "end": "31-12"
+                }
+            ],
+            "base_price": 100,
+            "extra_guest_price": 35
+        },
+        {
+            "id": 2,
+            "name": "moyenne saison",
+            "periods": [
+                {
+                    "id": 3,
+                    "start": "01-04",
+                    "end": "31-05"
+                },
+                {
+                    "id": 4,
+                    "start": "01-09",
+                    "end": "31-10"
+                }
+            ],
+            "base_price": 120,
+            "extra_guest_price": 20
+        },
+        {
+            "id": 3,
+            "name": "haute saison",
+            "periods": [
+                {
+                    "id": 5,
+                    "start": "01-06",
+                    "end": "31-08"
+                }
+            ],
+            "base_price": 140,
+            "extra_guest_price": 50
+        }
+    ],
+    "fees": [
+        {
+            "id": 1,
+            "name": "ménage",
+            "price": 100,
+            "by_day": false,
+            "by_people": false
+        },
+        {
+            "id": 1,
+            "name": "petit déjeuner",
+            "price": 2.5,
+            "by_day": true,
+            "by_people": true
+        },
+        {
+            "id": 1,
+            "name": "sauna",
+            "price": 15,
+            "by_day": false,
+            "by_people": true
+        },
+        {
+            "id": 1,
+            "name": "chauffage",
+            "price": 20,
+            "by_day": true,
+            "by_people": false
+        }
+    ],
+    "discounts": [
+        {
+            "id": 1,
+            "name": "semaine",
+            "days_count": 7,
+            "discount": 15
+        },
+        {
+            "id": 1,
+            "name": "mois",
+            "days_count": 30,
+            "discount": 40
+        }
+    ]
+}

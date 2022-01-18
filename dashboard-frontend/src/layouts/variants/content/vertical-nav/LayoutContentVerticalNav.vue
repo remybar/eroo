@@ -36,13 +36,14 @@
 
 <script>
 import AppBarThemeSwitcher from '@core/layouts/components/app-bar/AppBarThemeSwitcher.vue'
-import { mdiMenu, mdiHeartOutline, mdiHomeOutline } from '@mdi/js'
+import { mdiHeartOutline, mdiHomeOutline, mdiMenu } from '@mdi/js'
 import LayoutContentVerticalNav from '@/@core/layouts/variants/content/vertical-nav/LayoutContentVerticalNav.vue'
 
 // App Bar Components
 import AppBarUserMenu from '@/components/AppBarUserMenu.vue'
 import navMainMenuItems from '@/navigation/vertical/main-pages'
 import navHousingMenuItems from '@/navigation/vertical/housing-pages'
+import navAccountMenuItems from '@/navigation/vertical/account-pages'
 
 export default {
   components: {
@@ -64,6 +65,7 @@ export default {
         ...navMainMenuItems,
         ...navHousingMenuItems,
         ...housingMenuItems,
+        ...navAccountMenuItems,
       ]
     },
   },

@@ -75,5 +75,5 @@
   },
   "publicPath": "/",
   "error": "ModuleError",
-  "message": "Module Error (from ./node_modules/eslint-loader/index.js):\n\n/home/odoo/perso/projets/eroo/dashboard-frontend/src/components/forms/ConfigHousingForm.vue\n  165:5  error  Parsing error: x-invalid-end-tag  vue/no-parsing-error\n\n✖ 1 problem (1 error, 0 warnings)\n"
+  "message": "Module Error (from ./node_modules/eslint-loader/index.js):\n\n/home/odoo/perso/projets/eroo/dashboard-frontend/src/components/HousingConfig/SeasonConfigWidget.vue\n  218:10  error  Parsing error: Missing semicolon.\n\n  36 |           isAddDialogVisible: false,\n  37 |   },\n> 38 |   computed: {\n     |           ^\n  39 |     headers() {\n  40 |       const headers = [\n  41 |         { text: 'SAISON', value: 'name' },\n\n✖ 1 problem (1 error, 0 warnings)\n"
 }
