@@ -45,6 +45,12 @@ SCRAPING_PROXY = env.str("SCRAPING_PROXY") if SCRAPING_PROXY_ENABLED else None
 
 # ------------ logging/exception handling configurations ------------
 
+if not IS_ENV_DEV:
+    SENTRY_DSN = env.str("SENTRY_DSN")
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+
 if not IS_TESTS_IN_PROGRESS:
     LOGGING = {
         'version': 1,
@@ -94,7 +100,7 @@ GOOGLE_MAP_API_KEY = env.str("GOOGLE_MAP_API_KEY")
 
 # ------------ Safety configuration ------------
 
-ALLOWED_HOSTS = [".eroo.remybaranx.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".eroo.fr", ".herokuapp.com", "localhost", "127.0.0.1"]
 
 if not IS_ENV_DEV:
     SECURE_BROWSER_XSS_FILTER = True

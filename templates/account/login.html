@@ -1,6 +1,4 @@
-{% extends "_base.html" %}
-{% load static %}
-{% block body_content %}
+{% extends "_base.html" %} {% load static %} {% block body_content %}
 <!-- Hero Start -->
 <section class="bg-home bg-light d-flex align-items-center">
   <div class="bg-overlay bg-overlay-white"></div>
@@ -14,14 +12,12 @@
             <form
               class="login-form mt-4"
               method="POST"
-              action="{% url 'account_login' %}"
-            >
+              action="{% url 'account_login' %}">
               {% csrf_token %} {% if redirect_field_value %}
               <input
                 type="hidden"
                 name="{{ redirect_field_name }}"
-                value="{{ redirect_field_value }}"
-              />
+                value="{{ redirect_field_value }}" />
               {% endif %}
               <div class="row">
                 <div class="col-lg-12">
@@ -36,8 +32,7 @@
                         class="form-control ps-5"
                         placeholder="Votre email"
                         name="login"
-                        required=""
-                      />
+                        required="" />
                     </div>
                   </div>
                 </div>
@@ -55,8 +50,7 @@
                         type="password"
                         class="form-control ps-5"
                         placeholder="Votre mot de passe"
-                        required=""
-                      />
+                        required="" />
                     </div>
                   </div>
                 </div>
@@ -104,12 +98,14 @@
                     </div>
                   </div> -->
 
+                <!-- DEMO
                 <div class="col-12 text-center">
                   <p class="mb-0 mt-3">
                     <small class="text-dark me-2">Pas encore de compte ?</small>
-                    <a href="{% url 'account_signup' %}" class="text-dark fw-bold">S'inscrire</a>
+                    <a class="text-dark fw-bold">S'inscrire</a>
                   </p>
                 </div>
+                -->
                 <!--end col-->
               </div>
               <!--end row-->
