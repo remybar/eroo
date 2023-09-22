@@ -1,6 +1,7 @@
 media
 mediafiles
 .env
+.venv
 __pycache__/
 db.sqlite3
 staticfiles/**
